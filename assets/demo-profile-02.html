@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serial Entrepreneur | Business Profile</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Syne:wght@400;500;600;700;800&display=swap');
+        :root {
+            --bg-primary: #0B1120;
+            --bg-secondary: #0F1728;
+            --bg-card: #141E30;
+            --bg-elevated: #1A2540;
+            --electric: #2D8C5A;
+            --electric-bright: #3AA66D;
+            --electric-dim: rgba(45,140,90,0.12);
+            --electric-glow: rgba(45,140,90,0.25);
+            --charcoal: #1C1F26;
+            --charcoal-light: #252A33;
+            --white: #FFFFFF;
+            --white-90: rgba(255,255,255,0.9);
+            --white-70: rgba(255,255,255,0.7);
+            --white-50: rgba(255,255,255,0.5);
+            --white-30: rgba(255,255,255,0.3);
+            --white-10: rgba(255,255,255,0.1);
+            --white-05: rgba(255,255,255,0.05);
+            --border: rgba(255,255,255,0.08);
+            --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Noto Sans KR', 'Space Grotesk', sans-serif;
+            background: var(--bg-primary);
+            color: var(--white);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        .display { font-family: 'Syne', sans-serif; }
+        .mono { font-family: 'Space Grotesk', monospace; }
+        ul { list-style: none; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        .container { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* ── Mosaic / Blur ── */
+        .mosaic {
+            filter: blur(8px) !important;
+            -webkit-filter: blur(8px) !important;
+            user-select: none !important;
+            -webkit-user-select: none !important;
+            pointer-events: none !important;
+            display: inline-block;
+        }
+
+        /* ── Scroll Progress ── */
+        .scroll-progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--electric-bright); z-index: 9999; width: 0; transition: width 0.1s linear; box-shadow: 0 0 12px var(--electric-glow); }
+
+        /* ── Header ── */
+        header { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 28px 0; transition: var(--transition); }
+        header.sticky { background: rgba(11,17,32,0.92); backdrop-filter: blur(24px) saturate(180%); padding: 20px 0; border-bottom: 1px solid var(--border); }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700; font-size: 1.15rem; letter-spacing: 3px;
+            color: var(--electric-bright); text-transform: uppercase;
+            line-height: 1.5; transform: scaleX(0.88); transform-origin: left center;
+            filter: blur(6px) !important; -webkit-filter: blur(6px) !important; user-select: none;
+        }
+        .nav-links { display: flex; gap: 30px; align-items: center; }
+        .nav-links a { font-family: 'Space Grotesk', sans-serif; font-size: 0.75rem; font-weight: 400; text-transform: uppercase; letter-spacing: 1.5px; color: var(--white-50); position: relative; }
+        .nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1.5px; background: var(--electric-bright); transition: width 0.3s ease; }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+        .nav-links a:hover, .nav-links a.active { color: var(--electric-bright); }
+
+        /* ── Hero ── */
+        .hero { min-height: 100vh; display: flex; align-items: center; position: relative; overflow: hidden; }
+        .hero::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(ellipse at 30% 40%, rgba(45,140,90,0.05) 0%, transparent 50%),
+                        radial-gradient(ellipse at 80% 80%, rgba(45,140,90,0.03) 0%, transparent 50%);
+        }
+        .hero-grid-bg {
+            position: absolute; inset: 0; opacity: 0.03;
+            background-image: linear-gradient(var(--white-30) 1px, transparent 1px), linear-gradient(90deg, var(--white-30) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+        .hero-content {
+            position: relative; z-index: 2; width: 100%;
+            display: flex; align-items: center; justify-content: space-between; gap: 60px;
+        }
+        .hero-text { flex: 1; min-width: 0; }
+        .hero-photo {
+            flex-shrink: 0; width: 340px; height: 440px; border-radius: 16px;
+            overflow: hidden; position: relative; border: 1px solid var(--border);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.4), 0 0 60px rgba(45,140,90,0.08);
+        }
+        .hero-photo::before {
+            content: ''; position: absolute; inset: 0; border-radius: 16px;
+            border: 1px solid rgba(45,140,90,0.15); z-index: 1; pointer-events: none;
+        }
+        .hero-photo img {
+            width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block;
+            filter: blur(20px) brightness(0.85) !important; -webkit-filter: blur(20px) brightness(0.85) !important;
+            transform: scale(1.08) !important; transition: none !important; pointer-events: none;
+        }
+        .hero-photo:hover img {
+            filter: blur(20px) brightness(0.85) !important; -webkit-filter: blur(20px) brightness(0.85) !important;
+            transform: scale(1.08) !important;
+        }
+        .hero-photo::after {
+            content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 120px;
+            background: linear-gradient(to top, var(--bg-primary), transparent);
+            z-index: 1; pointer-events: none; border-radius: 0 0 16px 16px;
+        }
+        .hero-tag {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 8px 18px; border: 1px solid rgba(45,140,90,0.35);
+            border-radius: 30px; font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.72rem; color: var(--electric-bright); letter-spacing: 2px;
+            text-transform: uppercase; margin-bottom: 32px; background: var(--electric-dim);
+        }
+        .hero-tag .pulse { width: 6px; height: 6px; background: var(--electric-bright); border-radius: 50%; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 var(--electric-glow)} 50%{box-shadow:0 0 0 8px transparent} }
+        .hero-text h1 {
+            font-family: 'Syne', sans-serif; font-size: 4.8rem; line-height: 1.25;
+            font-weight: 800; letter-spacing: -2px; margin-bottom: 20px;
+        }
+        .hero-text h1 .highlight { color: var(--electric-bright); }
+        .hero-text h1 .outline {
+            color: var(--bg-primary); letter-spacing: 0px;
+            text-shadow: -1.5px -1.5px 0 var(--white-30), 1.5px -1.5px 0 var(--white-30),
+                -1.5px 1.5px 0 var(--white-30), 1.5px 1.5px 0 var(--white-30),
+                0px -1.5px 0 var(--white-30), 0px 1.5px 0 var(--white-30),
+                -1.5px 0px 0 var(--white-30), 1.5px 0px 0 var(--white-30);
+        }
+        .hero-subtitle {
+            font-family: 'Space Grotesk', sans-serif; font-size: 1.05rem;
+            color: var(--white-50); font-weight: 300; margin-bottom: 40px;
+            max-width: 520px; line-height: 1.8;
+        }
+        .hero-stats { display: flex; gap: 36px; margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--border); }
+        .stat-item .stat-number {
+            font-family: 'Space Grotesk', sans-serif; font-size: 2.2rem; font-weight: 700;
+            color: var(--electric-bright); line-height: 1.3; margin-bottom: 6px; display: block;
+        }
+        .stat-item .stat-label { font-size: 0.72rem; color: var(--white-50); font-weight: 300; letter-spacing: 0.5px; }
+
+        /* ── Sections ── */
+        section { padding: 120px 0; }
+        .section-header { margin-bottom: 64px; }
+        .section-header .overline {
+            font-family: 'Space Grotesk', sans-serif; font-size: 0.68rem; letter-spacing: 4px;
+            text-transform: uppercase; color: var(--electric-bright); display: block; margin-bottom: 12px; font-weight: 500;
+        }
+        .section-header h2 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 700; letter-spacing: -1px; line-height: 1.3; }
+        .section-header h2 span { color: var(--electric-bright); }
+        .section-header .desc { font-size: 0.9rem; color: var(--white-50); margin-top: 14px; max-width: 500px; line-height: 1.7; }
+
+        /* ── About ── */
+        .about-section { background: var(--charcoal); }
+        .strength-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .strength-card {
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
+            padding: 36px 28px; transition: var(--transition); position: relative; overflow: hidden;
+        }
+        .strength-card::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 2px; background: var(--electric-bright); transition: width 0.5s ease; }
+        .strength-card:hover::before { width: 100%; }
+        .strength-card:hover { border-color: rgba(45,140,90,0.25); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+        .strength-card .s-number { font-family: 'Space Grotesk', sans-serif; font-size: 3rem; font-weight: 700; color: var(--electric-bright); opacity: 0.15; line-height: 1.3; margin-bottom: 14px; }
+        .strength-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 10px; }
+        .strength-card p { font-size: 0.84rem; color: var(--white-50); line-height: 1.7; }
+
+        /* ── Experience ── */
+        .exp-grid { display: flex; flex-direction: column; gap: 16px; }
+        .exp-card {
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
+            padding: 36px 40px; display: flex; align-items: flex-start; gap: 40px;
+            transition: var(--transition); position: relative; overflow: hidden;
+        }
+        .exp-card::after { content: ''; position: absolute; top: 0; right: 0; bottom: 0; width: 3px; background: transparent; transition: background 0.3s ease; }
+        .exp-card:hover { border-color: rgba(45,140,90,0.2); }
+        .exp-card:hover::after { background: var(--electric-bright); }
+        .exp-card .exp-period { flex-shrink: 0; width: 120px; font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem; color: var(--electric-bright); font-weight: 500; padding-top: 3px; }
+        .exp-card .exp-body { flex: 1; }
+        .exp-card .exp-body h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 3px; }
+        .exp-card .exp-body .exp-role { font-size: 0.8rem; color: var(--electric-bright); font-weight: 500; margin-bottom: 10px; opacity: 0.8; }
+        .exp-card .exp-body p { font-size: 0.84rem; color: var(--white-50); line-height: 1.7; }
+        .exp-card .exp-badge { display: inline-block; font-family: 'Space Grotesk', sans-serif; font-size: 0.6rem; padding: 3px 10px; background: var(--electric-bright); color: var(--white); border-radius: 4px; font-weight: 700; letter-spacing: 1px; margin-left: 10px; vertical-align: middle; }
+        .exp-card .metric-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+        .metric-tag { font-family: 'Space Grotesk', sans-serif; font-size: 0.7rem; padding: 4px 12px; border: 1px solid rgba(45,140,90,0.3); border-radius: 4px; color: var(--electric-bright); background: var(--electric-dim); }
+
+        /* ── Highlights ── */
+        .highlights-section { background: var(--charcoal); }
+        .hl-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+        .hl-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 24px 28px; display: flex; align-items: flex-start; gap: 16px; transition: var(--transition); }
+        .hl-card:hover { border-color: rgba(45,140,90,0.25); }
+        .hl-card .hl-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+        .hl-card .hl-body h4 { font-size: 0.92rem; font-weight: 600; margin-bottom: 3px; }
+        .hl-card .hl-body p { font-size: 0.78rem; color: var(--white-50); }
+        .edu-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 36px 40px; display: inline-flex; align-items: center; gap: 24px; }
+        .edu-card .edu-icon { font-size: 2rem; }
+        .edu-card h4 { font-size: 1.05rem; font-weight: 600; margin-bottom: 2px; }
+        .edu-card p { font-size: 0.82rem; color: var(--white-50); }
+
+        /* ── Footer ── */
+        footer { background: var(--bg-primary); padding: 100px 0 50px; position: relative; border-top: 1px solid var(--border); }
+        footer::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 0%, rgba(45,140,90,0.04) 0%, transparent 50%); }
+        .footer-content { position: relative; z-index: 1; text-align: center; }
+        .footer-content h2 { font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 700; margin-bottom: 8px; }
+        .footer-content .subtitle { font-size: 0.85rem; color: var(--white-30); margin-bottom: 48px; }
+        .contact-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 70px; max-width: 820px; margin-left: auto; margin-right: auto; }
+        .contact-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 26px 16px; text-align: center; transition: var(--transition); cursor: pointer; position: relative; }
+        .contact-item:hover { border-color: rgba(45,140,90,0.35); background: var(--electric-dim); transform: translateY(-3px); }
+        .contact-item .c-icon { font-size: 1.3rem; margin-bottom: 10px; display: block; }
+        .contact-item h4 { font-family: 'Space Grotesk', sans-serif; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 2px; color: var(--electric-bright); margin-bottom: 6px; }
+        .contact-item p { font-size: 0.82rem; color: var(--white-70); }
+        .contact-item .sub { font-size: 0.68rem; color: var(--white-30); margin-top: 3px; }
+        .copy-tooltip { position: absolute; top: -30px; left: 50%; transform: translateX(-50%) scale(0.8); background: var(--electric-bright); color: var(--white); padding: 4px 12px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; opacity: 0; pointer-events: none; transition: all 0.3s ease; white-space: nowrap; }
+        .copy-tooltip.show { opacity: 1; transform: translateX(-50%) scale(1); }
+        .copy-tooltip::after { content: ''; position: absolute; bottom: -4px; left: 50%; transform: translateX(-50%); border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 4px solid var(--electric-bright); }
+        .footer-bottom { padding-top: 36px; border-top: 1px solid var(--border); text-align: center; }
+        .footer-logo { font-family: 'Syne', sans-serif; font-size: 0.85rem; color: var(--electric-bright); font-weight: 800; letter-spacing: 3px; margin-bottom: 6px; text-transform: uppercase; filter: blur(6px) !important; -webkit-filter: blur(6px) !important; user-select: none; }
+        .footer-bottom p { font-size: 0.72rem; color: var(--white-30); }
+
+        /* ── Responsive ── */
+        @media (max-width: 992px) {
+            .hero-content { flex-direction: column-reverse; text-align: center; gap: 40px; }
+            .hero-photo { width: 260px; height: 340px; }
+            .hero-text h1 { font-size: 3.5rem; }
+            .hero-stats { justify-content: center; flex-wrap: wrap; gap: 24px; }
+            .hero-subtitle { margin-left: auto; margin-right: auto; }
+            .hero-tag { margin-left: auto; margin-right: auto; }
+            .strength-grid { grid-template-columns: 1fr; }
+            .exp-card { flex-direction: column; gap: 10px; }
+            .exp-card .exp-period { width: auto; }
+            .hl-grid { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .hero-text h1 { font-size: 2.6rem; letter-spacing: -1px; }
+            .hero-photo { width: 220px; height: 290px; }
+            .nav-links { display: none; }
+            section { padding: 80px 0; }
+            .hero-stats { gap: 20px; }
+            .stat-item .stat-number { font-size: 1.8rem; }
+            .section-header h2 { font-size: 2rem; }
+        }
+        @media (max-width: 480px) {
+            .hero-text h1 { font-size: 2.2rem; }
+            .hero-photo { width: 200px; height: 260px; }
+            .hero-stats { flex-direction: column; gap: 16px; }
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <header id="header">
+        <div class="container">
+            <nav>
+                <div class="logo">YJH.</div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#highlights">Highlights</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-grid-bg"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-tag"><span class="pulse"></span> Serial Entrepreneur</div>
+                    <h1 class="display">
+                        <span class="highlight">아이디어</span>를<br>
+                        <span class="outline">매출</span>로 바꾸는 사람<br>
+                        <span style="font-size:0.45em;letter-spacing:2px;color:var(--white-50);font-weight:400;" class="mosaic">윤제훈 · Yun Je Hoon</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        20세 첫 창업 이후, 광고·커머스·의료 플랫폼 등<br>
+                        다양한 사업을 직접 설계하고 실행해 온 연쇄 창업가입니다.<br>
+                        숫자로 검증하고, 속도로 확장합니다.
+                    </p>
+                    <div class="hero-stats" id="heroStats">
+                        <div class="stat-item">
+                            <span class="stat-number mono" data-countup="11" data-suffix="억+">0</span>
+                            <span class="stat-label">누적 매출</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number mono" data-countup="4" data-suffix="">0</span>
+                            <span class="stat-label">창업 이력</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number mono" data-countup="7300" data-suffix="만" data-comma="true">0</span>
+                            <span class="stat-label">월 최대 매출</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number mono" data-countup="3.5" data-suffix="만" data-decimal="true">0</span>
+                            <span class="stat-label">SNS 팔로워</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-photo">
+                    <img src="https://github.com/ceoYS/Profile_photo_YJH/blob/main/%EC%A0%9C%ED%9B%88%EC%9D%B4.jpg?raw=true" alt="프로필">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="overline">Core Strengths</span>
+                <h2 class="display">실행으로 <span>증명</span>합니다</h2>
+                <p class="desc">마케팅·영업·운영을 통합해 빠른 매출 전환 및 수익 구조를 구축합니다.</p>
+            </div>
+            <div class="strength-grid">
+                <div class="strength-card reveal">
+                    <div class="s-number">01</div>
+                    <h3>아이디어 → 매출 전환</h3>
+                    <p>시장의 빈틈을 포착하고, 최소 리소스로 빠르게 MVP를 만들어 실제 매출로 연결합니다. 유니브립 창업 1년 만에 월 6,800만 원을 기록했습니다.</p>
+                </div>
+                <div class="strength-card reveal">
+                    <div class="s-number">02</div>
+                    <h3>비즈니스 구조 설계</h3>
+                    <p>유입부터 전환, 수익화까지 전체 퍼널을 설계합니다. 커머스, 광고대행, 플랫폼 등 서로 다른 BM을 직접 구축하고 운영해왔습니다.</p>
+                </div>
+                <div class="strength-card reveal">
+                    <div class="s-number">03</div>
+                    <h3>빠른 실행 & 확장</h3>
+                    <p>가설을 세우고, 실행으로 검증하고, 데이터로 확장합니다. 림픽컴퍼니에서 일 최대 1,800만 원 매출을 만들어낸 실행력이 강점입니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="overline">Experience</span>
+                <h2 class="display">만들고, 키우고, <span>증명</span>하다</h2>
+            </div>
+            <div class="exp-grid">
+                <div class="exp-card reveal">
+                    <div class="exp-period">2025 —</div>
+                    <div class="exp-body">
+                        <h4>대한민국 공군 <span class="exp-badge">복무중</span></h4>
+                        <div class="exp-role">기반통신체계정비병</div>
+                        <p>통신 장비 유지보수 및 운용 · 2027년 8월 전역 예정</p>
+                    </div>
+                </div>
+                <div class="exp-card reveal">
+                    <div class="exp-period">2025</div>
+                    <div class="exp-body">
+                        <h4><span class="mosaic">(주)디렉터홀딩스</span></h4>
+                        <div class="exp-role">마케팅본부장 · 사내 최연소</div>
+                        <p>피부과 프랜차이즈 본사 마케팅 전략 및 예산 총괄. 디렉터의원 강남점 개원 마케팅 초기 전략 및 컨셉 기획</p>
+                    </div>
+                </div>
+                <div class="exp-card reveal">
+                    <div class="exp-period">2024</div>
+                    <div class="exp-body">
+                        <h4><span class="mosaic">(주)텐덤</span></h4>
+                        <div class="exp-role">PM (Product Manager)</div>
+                        <p>'애드캠퍼스' 및 '베어유' 서비스 기획</p>
+                    </div>
+                </div>
+                <div class="exp-card reveal">
+                    <div class="exp-period">2024 — 2025</div>
+                    <div class="exp-body">
+                        <h4><span class="mosaic">산호초메디컬</span></h4>
+                        <div class="exp-role">공동창업자</div>
+                        <p>대학생 대상 비급여 의료 플랫폼 기획·운영. 전국 주요 대학 총학생회 제휴 및 유입 채널 구축, 안과·치과·피부과 병의원 제휴 인프라 확보</p>
+                    </div>
+                </div>
+                <div class="exp-card reveal">
+                    <div class="exp-period">2024</div>
+                    <div class="exp-body">
+                        <h4><span class="mosaic">에셋코치 @assetcoach0</span></h4>
+                        <div class="exp-role">공동창업자</div>
+                        <p>경제 콘텐츠 기반 인스타그램 계정 구축·운영</p>
+                        <div class="metric-tags"><span class="metric-tag">팔로워 3.5만</span></div>
+                    </div>
+                </div>
+                <div class="exp-card reveal">
+                    <div class="exp-period">2023 — 2025</div>
+                    <div class="exp-body">
+                        <h4><span class="mosaic">유니브립 (UNIVLIP)</span></h4>
+                        <div class="exp-role">공동창업자 · 대표</div>
+                        <p>대학생 타겟 광고대행사 창업. 신한카드, 네이버페이, 필립모리스, 메이투 등 국내외 대기업 마케팅 캠페인 기획·수행. 동국대학교 캠퍼스타운 입주 기업 선정</p>
+                        <div class="metric-tags"><span class="metric-tag">월 매출 6,800만</span><span class="metric-tag">1년 내 달성</span></div>
+                    </div>
+                </div>
+                <div class="exp-card reveal">
+                    <div class="exp-period">2023 — 2025</div>
+                    <div class="exp-body">
+                        <h4><span class="mosaic">림픽컴퍼니</span></h4>
+                        <div class="exp-role">창업자 · 대표</div>
+                        <p>배드민턴 용품 커머스 사업 구축. 리닝, 삼화 배드민턴, KBB SPORTS 공식 판매사</p>
+                        <div class="metric-tags"><span class="metric-tag">일 최대 1,800만</span><span class="metric-tag">월 최대 7,300만</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="highlights" class="highlights-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="overline">Highlights</span>
+                <h2 class="display">수상 & <span>성과</span></h2>
+            </div>
+            <div class="hl-grid">
+                <div class="hl-card reveal"><div class="hl-icon">🏆</div><div class="hl-body"><h4>건국대학교 '학생 창업 대표자 30인'</h4><p>2024년 선정</p></div></div>
+                <div class="hl-card reveal"><div class="hl-icon">🥇</div><div class="hl-body"><h4>Connect 창업 아이디어톤 최우수상</h4><p>팀장 · 2024</p></div></div>
+                <div class="hl-card reveal"><div class="hl-icon">📦</div><div class="hl-body"><h4>KBB SPORTS 전국 최다 판매처</h4><p>2024.12 선정</p></div></div>
+                <div class="hl-card reveal"><div class="hl-icon">📈</div><div class="hl-body"><h4>토스증권 실전투자대회 Top 100</h4><p>3,000만 원 리그 · 2025.05</p></div></div>
+            </div>
+            <div style="margin-top:60px;" class="reveal">
+                <div class="section-header" style="margin-bottom:28px;"><span class="overline">Education</span></div>
+                <div class="edu-card"><div class="edu-icon">🎓</div><div><h4>건국대학교 산업공학과</h4><p>재학 중 · 2029년 2월 졸업 예정</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <h2 class="display">Contact</h2>
+                <p class="subtitle">사업 제안, 협업 문의 환영합니다.</p>
+                <div class="contact-grid">
+                    <div class="contact-item" data-copy="sample.business@naver.com" onclick="copyFromData(this,'tooltip-email')">
+                        <span class="copy-tooltip" id="tooltip-email">복사 완료!</span>
+                        <span class="c-icon">✉</span>
+                        <h4>Email</h4>
+                        <p class="mosaic">sample.business@naver.com</p>
+                        <p class="sub">클릭하여 복사</p>
+                    </div>
+                    <div class="contact-item" data-copy="010-9876-5432" onclick="copyFromData(this,'tooltip-mobile')">
+                        <span class="copy-tooltip" id="tooltip-mobile">복사 완료!</span>
+                        <span class="c-icon">☎</span>
+                        <h4>Mobile</h4>
+                        <p class="mosaic">010-9876-5432</p>
+                        <p class="sub">클릭하여 복사</p>
+                    </div>
+                    <div class="contact-item" data-link="https://instagram.com/sample_profile" onclick="openLink(this)">
+                        <span class="c-icon">📸</span>
+                        <h4>Instagram</h4>
+                        <p class="mosaic">@sample_profile</p>
+                        <p class="sub">클릭하여 이동</p>
+                    </div>
+                    <div class="contact-item" onclick="copyText(window.location.href,'tooltip-link')">
+                        <span class="copy-tooltip" id="tooltip-link">링크 복사 완료!</span>
+                        <span class="c-icon">⧉</span>
+                        <h4>Profile Link</h4>
+                        <p>프로필 링크 복사</p>
+                        <p class="sub">클릭하여 복사</p>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="footer-logo">YUN JE HOON</div>
+                    <p>Serial Entrepreneur · Builder · Executor</p>
+                    <p style="margin-top:14px;">© 2026 All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        /* ── 스크롤 진행 바 ── */
+        window.addEventListener('scroll', function() {
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            document.getElementById('scrollProgress').style.width = (scrollTop / scrollHeight * 100) + '%';
+        });
+
+        /* ── 헤더 sticky ── */
+        var header = document.getElementById('header');
+        window.addEventListener('scroll', function() {
+            header.classList.toggle('sticky', window.scrollY > 80);
+        });
+
+        /* ── 네비게이션 활성 링크 ── */
+        var sections = document.querySelectorAll('section, .hero');
+        var navLinks = document.querySelectorAll('.nav-links a');
+        window.addEventListener('scroll', function() {
+            var scrollPos = window.scrollY + 200;
+            sections.forEach(function(sec) {
+                if (scrollPos >= sec.offsetTop && scrollPos < sec.offsetTop + sec.offsetHeight) {
+                    var id = sec.getAttribute('id');
+                    navLinks.forEach(function(link) {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === '#' + id) link.classList.add('active');
+                    });
+                }
+            });
+        });
+
+        /* ── Reveal 애니메이션 ── */
+        var revealObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(function(el) { revealObserver.observe(el); });
+
+        /* ── 복사 기능 ── */
+        function copyFromData(el, tooltipId) {
+            var text = el.getAttribute('data-copy');
+            if (text) copyText(text, tooltipId);
+        }
+
+        function openLink(el) {
+            var url = el.getAttribute('data-link');
+            if (url) window.open(url, '_blank');
+        }
+
+        function copyText(text, tooltipId) {
+            navigator.clipboard.writeText(text).then(function() {
+                showTooltip(tooltipId);
+            }).catch(function() {
+                var ta = document.createElement('textarea');
+                ta.value = text;
+                ta.style.position = 'fixed';
+                ta.style.left = '-9999px';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                showTooltip(tooltipId);
+            });
+        }
+
+        function showTooltip(id) {
+            var el = document.getElementById(id);
+            el.classList.add('show');
+            setTimeout(function() { el.classList.remove('show'); }, 2000);
+        }
+
+        /* ═══════════════════════════════════════
+           ★ Count-Up 애니메이션 (수정됨)
+           ═══════════════════════════════════════ */
+        function easeOutCubic(t) {
+            return 1 - Math.pow(1 - t, 3);
+        }
+
+        function animateCountUp(el) {
+            var targetVal = parseFloat(el.getAttribute('data-countup'));
+            var suffix = el.getAttribute('data-suffix') || '';
+            var isDecimal = el.getAttribute('data-decimal') === 'true';
+            var useComma = el.getAttribute('data-comma') === 'true';
+            var duration = 2200;
+            var startTime = null;
+
+            function formatNumber(num) {
+                if (isDecimal) return num.toFixed(1);
+                if (useComma) return Math.round(num).toLocaleString();
+                return Math.round(num).toString();
+            }
+
+            function step(timestamp) {
+                if (!startTime) startTime = timestamp;
+                var elapsed = timestamp - startTime;
+                var progress = Math.min(elapsed / duration, 1);
+                var easedProgress = easeOutCubic(progress);
+                var current = easedProgress * targetVal;
+                el.textContent = formatNumber(current) + suffix;
+                if (progress < 1) {
+                    requestAnimationFrame(step);
+                } else {
+                    el.textContent = formatNumber(targetVal) + suffix;
+                }
+            }
+            requestAnimationFrame(step);
+        }
+
+        /* 모든 카운트업 요소를 한 번에 시작하는 함수 */
+        var countUpFired = false;
+
+        function fireAllCountUps() {
+            if (countUpFired) return;
+            countUpFired = true;
+            document.querySelectorAll('[data-countup]').forEach(function(el) {
+                animateCountUp(el);
+            });
+        }
+
+        /* 방법 1: IntersectionObserver로 감지 */
+        var heroStats = document.getElementById('heroStats');
+        if (heroStats) {
+            var statsObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        fireAllCountUps();
+                        statsObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            statsObserver.observe(heroStats);
+        }
+
+        /* 방법 2: 페이지 로드 후 안전장치 — Observer가 놓쳤을 경우 대비 */
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                fireAllCountUps();
+            }, 800);
+        });
+
+        /* 방법 3: DOMContentLoaded에서도 한 번 더 시도 */
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                fireAllCountUps();
+            }, 1200);
+        });
+    </script>
+</body>
+</html>

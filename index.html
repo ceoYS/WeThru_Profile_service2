@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WeThru — 비즈니스 프로필 &amp; 디지털 명함</title>
+  <meta name="description" content="검색당하는 시대, 당신의 프로필이 계약을 바꿉니다. WeThru 비즈니스 프로필로 24시간 일하는 온라인 명함을 만드세요.">
+
+  <!-- Fonts (font-display: swap via Google Fonts param) -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ====== Navigation ====== -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#hero" class="nav__logo">We<span>Thru</span></a>
+      <div class="nav__links">
+        <a href="#showcase" class="nav__link" data-nav="showcase">포트폴리오</a>
+        <a href="#pricing" class="nav__link" data-nav="pricing">가격</a>
+        <a href="#process" class="nav__link" data-nav="process">프로세스</a>
+        <a href="#testimonials" class="nav__link" data-nav="testimonials">후기</a>
+      </div>
+      <a href="#cta" class="nav__cta">무료 상담</a>
+      <button class="nav__hamburger" id="navHamburger" aria-label="메뉴 열기">
+        <span class="nav__hamburger-line"></span>
+        <span class="nav__hamburger-line"></span>
+        <span class="nav__hamburger-line"></span>
+      </button>
+    </div>
+    <div class="nav__mobile-menu" id="navMobileMenu">
+      <a href="#showcase" class="nav__mobile-link">포트폴리오</a>
+      <a href="#pricing" class="nav__mobile-link">가격</a>
+      <a href="#process" class="nav__mobile-link">프로세스</a>
+      <a href="#testimonials" class="nav__mobile-link">후기</a>
+      <a href="https://open.kakao.com/o/placeholder" class="nav__mobile-cta" target="_blank" rel="noopener noreferrer">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3C6.5 3 2 6.58 2 11c0 2.83 1.82 5.32 4.56 6.72l-.96 3.56c-.1.36.28.64.6.44L10.56 19h1.44c5.5 0 10-3.58 10-8s-4.5-8-10-8z"/></svg>
+        카카오톡 무료 상담
+      </a>
+    </div>
+  </nav>
+
+  <!-- ====== Section 1: Hero ====== -->
+  <section class="hero" id="hero">
+    <div class="hero__bg">
+      <div class="hero__bg-orb"></div>
+    </div>
+    <div class="hero__noise"></div>
+
+    <div class="hero__content">
+      <div class="hero__text">
+        <span class="hero__label">Business Profile &amp; Digital Card</span>
+        <h1 class="hero__headline">검색당하는 시대,<br>당신의 프로필이<br>계약을 바꿉니다.</h1>
+        <p class="hero__sub">명함 한 장을 건넨 그 순간, 상대는 이미 당신의 이름을 검색하고 있습니다.<br>WeThru의 비즈니스 프로필은 검색 결과에서도 당신을 대신해 말합니다.</p>
+        <div class="hero__cta-group">
+          <a href="https://open.kakao.com/o/placeholder" class="btn-primary" target="_blank" rel="noopener noreferrer">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3C6.5 3 2 6.58 2 11c0 2.83 1.82 5.32 4.56 6.72l-.96 3.56c-.1.36.28.64.6.44L10.56 19h1.44c5.5 0 10-3.58 10-8s-4.5-8-10-8z"/></svg>
+            카카오톡 상담
+          </a>
+          <a href="#showcase" class="btn-outline">포트폴리오 보기</a>
+        </div>
+      </div>
+
+      <div class="hero__mockup">
+        <div class="mockup-wrapper">
+          <!-- Laptop -->
+          <div class="mockup-laptop">
+            <div class="mockup-laptop__top-bar">
+              <span class="mockup-laptop__dot mockup-laptop__dot--red"></span>
+              <span class="mockup-laptop__dot mockup-laptop__dot--yellow"></span>
+              <span class="mockup-laptop__dot mockup-laptop__dot--green"></span>
+            </div>
+            <div class="mockup-laptop__screen">
+              <!-- TODO: assets/demo-profile-hero.html 완성 후 아래 iframe src 교체 -->
+              <iframe src="assets/demo-profile-01.html" class="mockup-iframe" title="건설업 임원 비즈니스 프로필 미리보기" scrolling="yes" loading="lazy"></iframe>
+            </div>
+            <div class="mockup-laptop__base"></div>
+          </div>
+
+          <!-- Mobile -->
+          <div class="mockup-mobile">
+            <div class="mockup-mobile__notch"></div>
+            <div class="mockup-mobile__screen">
+              <!-- TODO: assets/demo-profile-hero.html 완성 후 아래 iframe src 교체 -->
+              <iframe src="assets/demo-profile-01.html" scrolling="yes"
+                style="width:100%;height:100%;border:none;" title="모바일 비즈니스 프로필 미리보기" loading="lazy"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__scroll">
+      <span class="hero__scroll-text">Scroll</span>
+      <div class="hero__scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- ====== Section 2: Problem ====== -->
+  <section class="problem" id="problem">
+    <div class="container">
+      <div class="problem__header reveal">
+        <h2 class="problem__headline">명함을 건네고 3초 뒤,<br>상대는 당신을 검색합니다.</h2>
+        <p class="problem__sub">그 순간, 당신의 이름이 검색 결과에 아무것도 없다면?<br>혹은 오래된 LinkedIn 사진과 잡다한 SNS만 나온다면?</p>
+      </div>
+
+      <div class="problem__comparison">
+        <div class="problem__col problem__col--old reveal-left">
+          <span class="problem__col-label">Paper Business Card</span>
+          <div class="problem__card-mock problem__card-mock--paper">
+            <div class="problem__biz-card">
+              <div class="problem__biz-card-logo"></div>
+              <div class="problem__biz-card-name">김&nbsp;&nbsp;&nbsp;○&nbsp;&nbsp;&nbsp;○</div>
+              <div class="problem__biz-card-title">부장 · 영업본부</div>
+              <div class="problem__biz-card-divider"></div>
+              <div class="problem__biz-card-row">
+                <span class="problem__biz-card-field">T.</span>
+                <span class="problem__biz-card-blurred">010-○○○○-○○○○</span>
+              </div>
+              <div class="problem__biz-card-row">
+                <span class="problem__biz-card-field">E.</span>
+                <span class="problem__biz-card-blurred">name@company.co.kr</span>
+              </div>
+              <div class="problem__biz-card-row">
+                <span class="problem__biz-card-field">W.</span>
+                <span class="problem__biz-card-blurred">www.company.co.kr</span>
+              </div>
+            </div>
+          </div>
+          <ul class="problem__bullets" data-stagger>
+            <li class="problem__bullet stagger-item reveal">
+              <span class="problem__bullet-icon">&times;</span>
+              명함함 안에서 잊힌다
+            </li>
+            <li class="problem__bullet stagger-item reveal">
+              <span class="problem__bullet-icon">&times;</span>
+              검색해도 아무것도 없다
+            </li>
+            <li class="problem__bullet stagger-item reveal">
+              <span class="problem__bullet-icon">&times;</span>
+              첫인상 한 번으로 끝
+            </li>
+          </ul>
+        </div>
+
+        <div class="problem__vs reveal-scale">VS</div>
+
+        <div class="problem__col problem__col--new reveal-right">
+          <span class="problem__col-label">Business Profile</span>
+          <div class="problem__card-mock problem__card-mock--profile">
+            <iframe src="assets/demo-profile-01.html" class="problem__profile-iframe" title="비즈니스 프로필 미리보기" scrolling="yes" loading="lazy" tabindex="-1"></iframe>
+          </div>
+          <ul class="problem__bullets" data-stagger>
+            <li class="problem__bullet stagger-item reveal">
+              <span class="problem__bullet-icon">&#10003;</span>
+              24시간 365일 대신 소개
+            </li>
+            <li class="problem__bullet stagger-item reveal">
+              <span class="problem__bullet-icon">&#10003;</span>
+              QR 하나로 즉시 연결
+            </li>
+            <li class="problem__bullet stagger-item reveal">
+              <span class="problem__bullet-icon">&#10003;</span>
+              업데이트 가능한 살아있는 명함
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="problem__stats reveal">
+        <p class="problem__stat-text">첫 미팅 후 <strong>84%</strong>의 사람이 상대방 이름을 검색합니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Section 3: Why Now ====== -->
+  <section class="whynow" id="whynow">
+    <div class="whynow__gold-line"></div>
+    <div class="container">
+      <div class="whynow__header reveal">
+        <h2 class="whynow__headline">개인 브랜딩은<br>이제 선택이 아닙니다.</h2>
+        <p class="whynow__sub">시장은 이미 변했습니다. 이름 하나가 곧 신뢰입니다.</p>
+      </div>
+
+      <div class="whynow__stats">
+        <div class="whynow__stat reveal">
+          <div class="whynow__stat-number" data-count="1100" data-suffix="만+">0</div>
+          <p class="whynow__stat-desc">국내 링크드인 사용자<br>(전년 대비 +23%)</p>
+          <span class="whynow__stat-source">출처: LinkedIn 2024</span>
+        </div>
+        <div class="whynow__stat reveal" style="transition-delay:0.15s">
+          <div class="whynow__stat-number" data-count="194" data-suffix="만+">0</div>
+          <p class="whynow__stat-desc">국내 1인 기업<br>(5년 전 대비 2배)</p>
+          <span class="whynow__stat-source">출처: 통계청 2024</span>
+        </div>
+        <div class="whynow__stat reveal" style="transition-delay:0.3s">
+          <div class="whynow__stat-number" data-count="67" data-suffix="%">0</div>
+          <p class="whynow__stat-desc">Z세대 의사결정자가<br>파트너 선택 전 온라인 검색</p>
+          <span class="whynow__stat-source">출처: Edelman 2024</span>
+        </div>
+      </div>
+
+      <blockquote class="whynow__quote reveal">
+        <div class="whynow__quote-bar"></div>
+        <div>
+          <p class="whynow__quote-text">"당신이 구글에서 보이지 않는다면, 당신은 존재하지 않는 것과 같습니다."</p>
+          <cite class="whynow__quote-author">— Guy Kawasaki</cite>
+        </div>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ====== Section 4: Showcase ====== -->
+  <section class="showcase" id="showcase">
+    <div class="container">
+      <div class="showcase__header reveal">
+        <h2 class="showcase__headline">세 가지 이야기,<br>세 가지 브랜드.</h2>
+        <p class="showcase__sub">어떤 직군도, 어떤 스타일도 맞춤 제작됩니다.</p>
+      </div>
+
+      <div class="showcase__main reveal">
+        <!-- Browser Mockup -->
+        <div class="showcase__browser">
+          <div class="showcase__browser-bar">
+            <span class="showcase__browser-dot showcase__browser-dot--red"></span>
+            <span class="showcase__browser-dot showcase__browser-dot--yellow"></span>
+            <span class="showcase__browser-dot showcase__browser-dot--green"></span>
+            <span class="showcase__browser-url" id="showcaseUrl">profile.wethru.co.kr</span>
+          </div>
+          <div class="showcase__screen">
+            <!-- Slide 1: 건설업 임원 (Dark Premium) -->
+            <div class="showcase__slide is-active" data-slide="0" style="padding:0">
+              <iframe src="assets/demo-profile-01.html" class="showcase__iframe" title="건설업 임원 비즈니스 프로필" scrolling="yes" loading="lazy"></iframe>
+            </div>
+
+            <!-- Slide 2: 연쇄창업가 (Career Story) -->
+            <div class="showcase__slide" data-slide="1" style="padding:0">
+              <iframe src="assets/demo-profile-02.html" class="showcase__iframe" title="연쇄창업가 비즈니스 프로필" scrolling="yes" loading="lazy"></iframe>
+            </div>
+
+            <!-- Slide 3: 영업 직무 직장인 (Professional Card) -->
+            <div class="showcase__slide" data-slide="2" style="padding:0">
+              <iframe src="assets/demo-profile-03.html" class="showcase__iframe" title="영업 직무 직장인 비즈니스 프로필" scrolling="yes" loading="lazy"></iframe>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="showcase__tabs">
+          <div class="showcase__tab is-active" data-tab="0">
+            <span class="showcase__tab-num">01</span>
+            <div class="showcase__tab-info">
+              <span class="showcase__tab-name">건설업 임원</span>
+              <span class="showcase__tab-desc">Dark Premium</span>
+            </div>
+          </div>
+          <div class="showcase__tab" data-tab="1">
+            <span class="showcase__tab-num">02</span>
+            <div class="showcase__tab-info">
+              <span class="showcase__tab-name">연쇄창업가</span>
+              <span class="showcase__tab-desc">Career Story</span>
+            </div>
+          </div>
+          <div class="showcase__tab" data-tab="2">
+            <span class="showcase__tab-num">03</span>
+            <div class="showcase__tab-info">
+              <span class="showcase__tab-name">영업 직무 직장인</span>
+              <span class="showcase__tab-desc">Professional Card</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tags -->
+      <div class="showcase__tags">
+        <div class="showcase__tags-group is-active" data-tags="0">
+          <span class="showcase__tag">#다크톤</span>
+          <span class="showcase__tag">#건설업</span>
+          <span class="showcase__tag">#풀페이지</span>
+          <span class="showcase__tag">#임원</span>
+        </div>
+        <div class="showcase__tags-group" data-tags="1">
+          <span class="showcase__tag">#라이트톤</span>
+          <span class="showcase__tag">#연쇄창업가</span>
+          <span class="showcase__tag">#데이터중심</span>
+          <span class="showcase__tag">#스타트업</span>
+        </div>
+        <div class="showcase__tags-group" data-tags="2">
+          <span class="showcase__tag">#미니멀</span>
+          <span class="showcase__tag">#카드형</span>
+          <span class="showcase__tag">#심플</span>
+          <span class="showcase__tag">#영업직무</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Section 5: Pricing ====== -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="pricing__header reveal">
+        <h2 class="pricing__headline">당신의 브랜드 무게에 맞는<br>선택을 하세요.</h2>
+        <p class="pricing__sub">모든 플랜에 QR 명함이 포함됩니다.</p>
+      </div>
+
+      <div class="pricing__cards">
+        <!-- BASIC -->
+        <div class="pricing__card reveal" style="transition-delay:0s">
+          <div class="pricing__tier">BASIC</div>
+          <div class="pricing__price">
+            <span class="pricing__amount">200,000</span>
+            <span class="pricing__currency">원</span>
+          </div>
+          <ul class="pricing__features">
+            <li class="pricing__feature">
+              <span class="pricing__feature-icon">&#10003;</span>
+              비즈니스 프로필 4P
+            </li>
+            <li class="pricing__feature">
+              <span class="pricing__feature-icon">&#10003;</span>
+              QR 디지털 명함
+            </li>
+            <li class="pricing__feature">
+              <span class="pricing__feature-icon">&#10003;</span>
+              GitHub Pages 배포
+            </li>
+            <li class="pricing__feature">
+              <span class="pricing__feature-icon">&#10003;</span>
+              수정 2회 포함
+            </li>
+          </ul>
+          <a href="#cta" class="pricing__btn pricing__btn--outline">크몽에서 의뢰하기</a>
+        </div>
+
+        <!-- PRO -->
+        <div class="pricing__card pricing__card--pro reveal" style="transition-delay:0.15s">
+          <div class="pricing__badge">BEST</div>
+          <div class="pricing__tier">PRO</div>
+          <div class="pricing__price">
+            <span class="pricing__amount">500,000</span>
+            <span class="pricing__currency">원</span>
+          </div>
+          <ul class="pricing__features">
+            <li class="pricing__feature">
+              <span class="pricing__feature-icon">&#10003;</span>
+              비즈니스 프로필 8P
+            </li>
+            <li class="pricing__feature">
+              <span class="pricing__feature-icon">&#10003;</span>
+              QR 디지털 명함
+            </li>
+            <li class="pricing__feature">
+              <span class="pricing__feature-icon">&#10003;</span>
+              리플렛 디자인
+            </li>
+            <li class="pricing__feature">
+              <span class="pricing__feature-icon">&#10003;</span>
+              GitHub Pages 배포
+            </li>
+            <li class="pricing__feature">
+              <span class="pricing__feature-icon">&#10003;</span>
+              수정 3회 포함
+            </li>
+          </ul>
+          <a href="#cta" class="pricing__btn pricing__btn--gold">크몽에서 의뢰하기</a>
+        </div>
+
+        <!-- PREMIUM -->
+        <div class="pricing__card reveal" style="transition-delay:0.3s">
+          <div class="pricing__tier">PREMIUM</div>
+          <div class="pricing__price">
+            <span class="pricing__amount">1,000,000</span>
+            <span class="pricing__currency">원</span>
+          </div>
+          <ul class="pricing__features">
+            <li class="pricing__feature">
+              <span class="pricing__feature-icon">&#10003;</span>
+              비즈니스 프로필 16P
+            </li>
+            <li class="pricing__feature">
+              <span class="pricing__feature-icon">&#10003;</span>
+              QR 디지털 명함
+            </li>
+            <li class="pricing__feature">
+              <span class="pricing__feature-icon">&#10003;</span>
+              브로셔 디자인
+            </li>
+            <li class="pricing__feature">
+              <span class="pricing__feature-icon">&#10003;</span>
+              전략 컨설팅
+            </li>
+            <li class="pricing__feature">
+              <span class="pricing__feature-icon">&#10003;</span>
+              GitHub Pages + 커스텀 도메인
+            </li>
+            <li class="pricing__feature">
+              <span class="pricing__feature-icon">&#10003;</span>
+              수정 5회 포함
+            </li>
+          </ul>
+          <a href="#cta" class="pricing__btn pricing__btn--outline">크몽에서 의뢰하기</a>
+        </div>
+      </div>
+
+      <p class="pricing__note reveal">* 모든 가격은 VAT 별도 / 수정 횟수 초과 시 별도 협의</p>
+    </div>
+  </section>
+
+  <!-- ====== Section 6: Process ====== -->
+  <section class="process" id="process">
+    <div class="container">
+      <div class="process__header reveal">
+        <h2 class="process__headline">5단계로 완성되는<br>당신만의 프로필</h2>
+        <p class="process__sub">복잡한 것은 저희가 합니다. 당신은 결과만 받으세요.</p>
+      </div>
+
+      <div class="process__timeline">
+        <div class="process__step reveal">
+          <div class="process__card">
+            <div class="process__step-num">01</div>
+            <h3 class="process__step-title">무료 상담</h3>
+            <p class="process__step-desc">카카오톡 또는 크몽 채팅으로 목표 브랜드 방향을 논의합니다.</p>
+            <span class="process__step-badge">1~2일</span>
+          </div>
+        </div>
+
+        <div class="process__step reveal" style="transition-delay:0.1s">
+          <div class="process__card">
+            <div class="process__step-num">02</div>
+            <h3 class="process__step-title">브랜딩 전략</h3>
+            <p class="process__step-desc">색상·톤·콘셉트 레퍼런스 수집 및 방향을 확정합니다.</p>
+            <span class="process__step-badge">2~3일</span>
+          </div>
+        </div>
+
+        <div class="process__step reveal" style="transition-delay:0.2s">
+          <div class="process__card">
+            <div class="process__step-num">03</div>
+            <h3 class="process__step-title">디자인 제작</h3>
+            <p class="process__step-desc">섹션별 시안 제작 및 1차 피드백을 반영합니다.</p>
+            <span class="process__step-badge">3~5일</span>
+          </div>
+        </div>
+
+        <div class="process__step reveal" style="transition-delay:0.3s">
+          <div class="process__card">
+            <div class="process__step-num">04</div>
+            <h3 class="process__step-title">개발·배포</h3>
+            <p class="process__step-desc">HTML 개발 + GitHub Pages 배포 + 도메인 연결까지 완료합니다.</p>
+            <span class="process__step-badge">2~3일</span>
+          </div>
+        </div>
+
+        <div class="process__step reveal" style="transition-delay:0.4s">
+          <div class="process__card">
+            <div class="process__step-num">05</div>
+            <h3 class="process__step-title">QR명함 납품</h3>
+            <p class="process__step-desc">디지털 명함 QR 생성 + 최종 파일을 전달합니다.</p>
+            <span class="process__step-badge">1일</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="process__total reveal">
+        <p class="process__total-text">총 소요기간 약 <span>2~3주</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Section 7: Testimonials ====== -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <div class="testimonials__header reveal">
+        <h2 class="testimonials__headline">이미 브랜드를 바꾼<br>사람들의 이야기</h2>
+      </div>
+
+      <div class="testimonials__carousel">
+        <div class="testimonials__track" id="testimonialTrack">
+          <!-- Card 1 -->
+          <div class="testimonials__card">
+            <div class="testimonials__stars">
+              <span class="testimonials__star">&#9733;</span>
+              <span class="testimonials__star">&#9733;</span>
+              <span class="testimonials__star">&#9733;</span>
+              <span class="testimonials__star">&#9733;</span>
+              <span class="testimonials__star">&#9733;</span>
+            </div>
+            <div class="testimonials__quote-mark">&ldquo;</div>
+            <p class="testimonials__text">투자자 미팅 전날 프로필을 완성했는데, 다음 날 미팅에서 '사이트 보고 왔다'는 말을 들었습니다. 프로필 하나가 이렇게 큰 차이를 만들 줄 몰랐어요.</p>
+            <div class="testimonials__author">
+              <div class="testimonials__avatar">K</div>
+              <div class="testimonials__author-info">
+                <span class="testimonials__name">K.J.</span>
+                <span class="testimonials__role">스타트업 대표</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="testimonials__card">
+            <div class="testimonials__stars">
+              <span class="testimonials__star">&#9733;</span>
+              <span class="testimonials__star">&#9733;</span>
+              <span class="testimonials__star">&#9733;</span>
+              <span class="testimonials__star">&#9733;</span>
+              <span class="testimonials__star">&#9733;</span>
+            </div>
+            <div class="testimonials__quote-mark">&ldquo;</div>
+            <p class="testimonials__text">명함을 건네는 게 자신감 있어졌어요. QR 찍으면 바로 연결되니까 훨씬 프로페셔널해 보이더라고요. 클라이언트 반응이 확실히 달라졌습니다.</p>
+            <div class="testimonials__author">
+              <div class="testimonials__avatar">P</div>
+              <div class="testimonials__author-info">
+                <span class="testimonials__name">P.S.</span>
+                <span class="testimonials__role">독립 컨설턴트</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="testimonials__card">
+            <div class="testimonials__stars">
+              <span class="testimonials__star">&#9733;</span>
+              <span class="testimonials__star">&#9733;</span>
+              <span class="testimonials__star">&#9733;</span>
+              <span class="testimonials__star">&#9733;</span>
+              <span class="testimonials__star">&#9733;</span>
+            </div>
+            <div class="testimonials__quote-mark">&ldquo;</div>
+            <p class="testimonials__text">링크드인 대신 이걸로 자기소개 대체하고 있습니다. 반응이 완전 달라졌어요. 특히 해외 클라이언트들이 인상적이라고 하더라고요.</p>
+            <div class="testimonials__author">
+              <div class="testimonials__avatar">L</div>
+              <div class="testimonials__author-info">
+                <span class="testimonials__name">L.H.</span>
+                <span class="testimonials__role">프리랜서 개발자</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="testimonials__card">
+            <div class="testimonials__stars">
+              <span class="testimonials__star">&#9733;</span>
+              <span class="testimonials__star">&#9733;</span>
+              <span class="testimonials__star">&#9733;</span>
+              <span class="testimonials__star">&#9733;</span>
+              <span class="testimonials__star">&#9733;</span>
+            </div>
+            <div class="testimonials__quote-mark">&ldquo;</div>
+            <p class="testimonials__text">제 커리어 연혁을 이렇게 예쁘게 정리해줄 줄 몰랐습니다. 결과물이 정말 만족스럽습니다. 동료들에게도 추천하고 있어요.</p>
+            <div class="testimonials__author">
+              <div class="testimonials__avatar">C</div>
+              <div class="testimonials__author-info">
+                <span class="testimonials__name">C.M.</span>
+                <span class="testimonials__role">임원</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonials__nav">
+          <button class="testimonials__arrow" id="testimonialPrev" aria-label="이전 후기">&larr;</button>
+          <div class="testimonials__dots" id="testimonialDots">
+            <button class="testimonials__dot is-active" data-dot="0" aria-label="후기 1"></button>
+            <button class="testimonials__dot" data-dot="1" aria-label="후기 2"></button>
+            <button class="testimonials__dot" data-dot="2" aria-label="후기 3"></button>
+            <button class="testimonials__dot" data-dot="3" aria-label="후기 4"></button>
+          </div>
+          <button class="testimonials__arrow" id="testimonialNext" aria-label="다음 후기">&rarr;</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Section 8: Cross-sell ====== -->
+  <section class="crosssell" id="crosssell">
+    <div class="crosssell__gold-line"></div>
+    <div class="container">
+      <div class="crosssell__header reveal">
+        <h2 class="crosssell__headline">프로필이 완성되면,<br>다음 무기를 준비하세요.</h2>
+        <p class="crosssell__sub">WeThru는 당신의 브랜드 전체를 설계합니다.</p>
+      </div>
+
+      <div class="crosssell__cards">
+        <div class="crosssell__card reveal" style="transition-delay:0s">
+          <div class="crosssell__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>
+          </div>
+          <h3 class="crosssell__card-title">사업계획서</h3>
+          <p class="crosssell__card-desc">투자자를 설득하는 문서. 시장분석부터 재무계획까지 체계적으로 구성합니다.</p>
+          <a href="#" class="crosssell__card-link">자세히 보기</a>
+        </div>
+
+        <div class="crosssell__card reveal" style="transition-delay:0.1s">
+          <div class="crosssell__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+          </div>
+          <h3 class="crosssell__card-title">IR / PPT</h3>
+          <p class="crosssell__card-desc">데이터로 말하는 슬라이드. 투자 유치와 발표를 위한 프리미엄 덱을 제작합니다.</p>
+          <a href="#" class="crosssell__card-link">자세히 보기</a>
+        </div>
+
+        <div class="crosssell__card reveal" style="transition-delay:0.2s">
+          <div class="crosssell__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20h9"/><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838.838-2.872a2 2 0 0 1 .506-.855Z"/></svg>
+          </div>
+          <h3 class="crosssell__card-title">발표 PPT</h3>
+          <p class="crosssell__card-desc">무대를 지배하는 프레젠테이션. 청중의 시선을 사로잡는 디자인을 완성합니다.</p>
+          <a href="#" class="crosssell__card-link">자세히 보기</a>
+        </div>
+
+        <div class="crosssell__card reveal" style="transition-delay:0.3s">
+          <div class="crosssell__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5Z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3 class="crosssell__card-title">홈페이지</h3>
+          <p class="crosssell__card-desc">브랜드의 영구적 온라인 거점. 기업 아이덴티티를 담은 웹사이트를 구축합니다.</p>
+          <a href="#" class="crosssell__card-link">자세히 보기</a>
+        </div>
+      </div>
+
+      <div class="crosssell__banner reveal">
+        <p class="crosssell__banner-text">비즈니스 프로필과 함께 의뢰 시 <strong>15% 할인</strong></p>
+        <a href="#cta" class="crosssell__banner-btn">지금 상담하기</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Section 9: CTA + Footer ====== -->
+  <section class="cta-section" id="cta">
+    <div class="container">
+      <h2 class="cta__headline" id="ctaHeadline">당신의 브랜드가<br>오늘부터 일하게 하세요.</h2>
+      <p class="cta__sub reveal">무료 상담으로 시작합니다. 부담 없이 물어보세요.</p>
+      <a href="https://open.kakao.com/o/placeholder" class="cta__button reveal" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3C6.5 3 2 6.58 2 11c0 2.83 1.82 5.32 4.56 6.72l-.96 3.56c-.1.36.28.64.6.44L10.56 19h1.44c5.5 0 10-3.58 10-8s-4.5-8-10-8z"/></svg>
+        카카오톡 무료 상담 시작하기
+      </a>
+      <p class="cta__note reveal">* 크몽 플랫폼을 통해 안전하게 진행됩니다</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__content">
+        <div class="footer__logo">We<span>Thru</span></div>
+        <nav class="footer__links">
+          <a href="https://ceoys.github.io/Wethru_website/" class="footer__link" target="_blank" rel="noopener">위쓰루 메인사이트</a>
+          <a href="#" class="footer__link">크몽 프로필</a>
+        </nav>
+        <span class="footer__copy">&copy; 2025 WeThru. All rights reserved.</span>
+      </div>
+      <div class="footer__bottom">
+        <span class="footer__credit">Designed &amp; Built by WeThru</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="main.js" defer></script>
+</body>
+</html>

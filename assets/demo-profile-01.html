@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Profile | 현대건설</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap');
+        :root {
+            --charcoal: #1a1a2e;
+            --deep-navy: #16213e;
+            --slate: #2c3e50;
+            --bronze: #B08D57;
+            --bronze-light: #D4C5A0;
+            --bronze-glow: rgba(176, 141, 87, 0.15);
+            --cream: #FAF8F5;
+            --white: #FFFFFF;
+            --text-dark: #2D2D2D;
+            --text-mid: #5A5A5A;
+            --text-light: #8A8A8A;
+            --divider: #E8E4DE;
+            --transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        [data-theme="dark"] {
+            --charcoal: #0a0a12;
+            --deep-navy: #0e1525;
+            --slate: #1a2332;
+            --cream: #111827;
+            --white: #1a2236;
+            --text-dark: #E2E8F0;
+            --text-mid: #94A3B8;
+            --text-light: #64748B;
+            --divider: #2D3748;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: var(--cream);
+            color: var(--text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+            transition: background-color 0.4s ease;
+        }
+        .serif { font-family: 'Cormorant Garamond', 'Noto Serif KR', serif; }
+        h1, h2, h3 { font-family: 'Cormorant Garamond', 'Noto Serif KR', serif; }
+        ul { list-style: none; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* ── 모자이크 — 텍스트용 (강화) ── */
+        .mosaic {
+            filter: blur(14px) !important;
+            -webkit-filter: blur(14px) !important;
+            user-select: none !important;
+            -webkit-user-select: none !important;
+            pointer-events: none !important;
+            display: inline-block;
+        }
+        /* ── 모자이크 — 이름 전용 (초강화) ── */
+        .mosaic-name {
+            filter: blur(22px) !important;
+            -webkit-filter: blur(22px) !important;
+            user-select: none !important;
+            -webkit-user-select: none !important;
+            pointer-events: none !important;
+            display: inline-block;
+        }
+        /* ── 모자이크 — 블록 레벨 (dept 영역 등) ── */
+        .mosaic-line {
+            filter: blur(14px) !important;
+            -webkit-filter: blur(14px) !important;
+            user-select: none !important;
+            -webkit-user-select: none !important;
+            pointer-events: none !important;
+        }
+
+        header {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            padding: 24px 0; transition: var(--transition);
+        }
+        header.sticky {
+            background: rgba(250, 248, 245, 0.92); backdrop-filter: blur(20px) saturate(180%);
+            padding: 16px 0; box-shadow: 0 1px 0 var(--divider);
+        }
+        [data-theme="dark"] header.sticky { background: rgba(17, 24, 39, 0.92); }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700; font-size: 1.1rem; letter-spacing: 3px;
+            color: var(--slate); text-transform: uppercase;
+        }
+        [data-theme="dark"] .logo { color: var(--bronze); }
+        .nav-links { display: flex; gap: 36px; align-items: center; }
+        .nav-links a {
+            font-size: 0.78rem; font-weight: 400; text-transform: uppercase;
+            letter-spacing: 2px; color: var(--text-light); position: relative;
+        }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -4px; left: 0;
+            width: 0; height: 1px; background: var(--bronze); transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+        .nav-links a:hover, .nav-links a.active { color: var(--bronze); }
+        .theme-toggle {
+            cursor: pointer; background: none; border: 1px solid var(--text-light);
+            color: var(--text-light); padding: 6px 14px; border-radius: 2px;
+            font-size: 0.65rem; font-weight: 500; letter-spacing: 2px; transition: var(--transition);
+        }
+        .theme-toggle:hover { border-color: var(--bronze); color: var(--bronze); }
+        .hero {
+            min-height: 100vh; display: flex; align-items: center;
+            position: relative; background: var(--charcoal); color: #F1F5F9; overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(ellipse at 20% 50%, rgba(176,141,87,0.08) 0%, transparent 60%), radial-gradient(ellipse at 80% 20%, rgba(176,141,87,0.05) 0%, transparent 50%);
+        }
+        .hero::after {
+            content: ''; position: absolute; inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23B08D57' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .hero-content {
+            position: relative; z-index: 2;
+            display: flex; align-items: center; gap: 80px; width: 100%;
+        }
+        .hero-text { flex: 1; }
+        .hero-text .overline {
+            font-size: 0.72rem; color: var(--bronze); font-weight: 400;
+            letter-spacing: 4px; text-transform: uppercase; margin-bottom: 16px; display: block;
+        }
+        .hero-text h1 { font-size: 5rem; line-height: 1.05; margin-bottom: 16px; font-weight: 400; letter-spacing: -1px; }
+        .hero-text .title-en {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem; font-weight: 400; font-style: italic;
+            color: var(--bronze-light); opacity: 0.7; margin-bottom: 28px; display: block;
+        }
+        .hero-text .typing-container { font-size: 1.15rem; font-weight: 300; min-height: 1.7em; color: rgba(241,245,249,0.6); }
+        .cursor {
+            display: inline-block; width: 1px; height: 1.2em;
+            background-color: var(--bronze); margin-left: 3px; vertical-align: text-bottom;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+        .hero-text .dept {
+            margin-top: 40px; padding-top: 24px;
+            border-top: 1px solid rgba(176,141,87,0.2);
+            font-size: 0.82rem; opacity: 0.4; font-weight: 300; letter-spacing: 1px; line-height: 1.8;
+        }
+        .profile-photo-wrapper { flex-shrink: 0; position: relative; }
+        .profile-photo-wrapper::before {
+            content: ''; position: absolute;
+            top: -12px; left: -12px; right: -12px; bottom: -12px;
+            border: 1px solid rgba(176,141,87,0.25); border-radius: 4px;
+        }
+        .profile-photo {
+            width: 300px; height: 380px; border-radius: 4px; overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+        }
+        .profile-photo img {
+            width: 100%; height: 100%;
+            object-fit: cover; object-position: center top;
+            filter: blur(30px) brightness(0.7) saturate(0.5) !important;
+            -webkit-filter: blur(30px) brightness(0.7) saturate(0.5) !important;
+            transform: scale(1.15) !important;
+            transition: none !important;
+            pointer-events: none !important;
+            user-select: none !important;
+        }
+        .profile-photo:hover img {
+            filter: blur(30px) brightness(0.7) saturate(0.5) !important;
+            -webkit-filter: blur(30px) brightness(0.7) saturate(0.5) !important;
+            transform: scale(1.15) !important;
+        }
+
+        section { padding: 140px 0; }
+        .section-header { text-align: center; margin-bottom: 80px; }
+        .section-header .overline { font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; color: var(--bronze); display: block; margin-bottom: 12px; }
+        .section-header h2 { font-size: 2.8rem; color: var(--text-dark); font-weight: 400; margin-bottom: 20px; }
+        [data-theme="dark"] .section-header h2 { color: var(--bronze-light); }
+        .section-header .line { width: 40px; height: 1px; background: var(--bronze); margin: 0 auto; }
+        .about-statement {
+            font-size: 1.15rem; max-width: 800px; margin: 0 auto 70px;
+            color: var(--text-mid); text-align: center; word-break: keep-all; line-height: 2;
+        }
+        .about-statement em { font-style: normal; color: var(--bronze); font-weight: 500; }
+        .value-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .value-card {
+            background: var(--white); padding: 48px 36px; border-radius: 2px;
+            border: 1px solid var(--divider); transition: var(--transition);
+            position: relative; overflow: hidden;
+        }
+        .value-card::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 2px; background: var(--bronze); transition: width 0.5s ease; }
+        .value-card:hover::before { width: 100%; }
+        .value-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(176,141,87,0.08); border-color: transparent; }
+        .value-card .number { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: var(--bronze); opacity: 0.4; line-height: 1; margin-bottom: 20px; }
+        .value-card h3 { font-size: 1.15rem; font-weight: 500; margin-bottom: 14px; font-family: 'Noto Sans KR', sans-serif; }
+        .value-card p { font-size: 0.88rem; color: var(--text-mid); line-height: 1.7; }
+        .expertise-banner { background: var(--charcoal); padding: 80px 0; position: relative; overflow: hidden; }
+        .expertise-banner::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 50%, rgba(176,141,87,0.06) 0%, transparent 70%); }
+        .expertise-inner { position: relative; z-index: 1; text-align: center; max-width: 800px; margin: 0 auto; }
+        .expertise-inner .overline-light { font-size: 0.68rem; letter-spacing: 4px; text-transform: uppercase; color: var(--bronze); margin-bottom: 20px; display: block; }
+        .expertise-inner h3 { font-size: 1.8rem; color: #F1F5F9; font-weight: 400; margin-bottom: 24px; line-height: 1.5; }
+        .expertise-inner h3 span { color: var(--bronze); }
+        .expertise-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 36px; max-width: 640px; margin-left: auto; margin-right: auto; }
+        .expertise-tag { padding: 14px 12px; border: 1px solid rgba(176,141,87,0.3); color: var(--bronze-light); font-size: 0.85rem; font-weight: 400; border-radius: 2px; transition: var(--transition); letter-spacing: 0.5px; text-align: center; }
+        .expertise-tag:hover { background: rgba(176,141,87,0.1); border-color: var(--bronze); }
+        .career-section { background: var(--white); }
+        .career-intro { text-align: center; max-width: 720px; margin: 0 auto 80px; font-size: 1rem; color: var(--text-mid); word-break: keep-all; line-height: 1.9; }
+        .career-intro strong { color: var(--bronze); font-weight: 600; }
+        .timeline { position: relative; max-width: 860px; margin: 0 auto; }
+        .timeline::before { content: ''; position: absolute; left: 140px; top: 0; width: 1px; height: 100%; background: var(--divider); }
+        .timeline-item { display: flex; align-items: flex-start; gap: 40px; margin-bottom: 48px; position: relative; }
+        .timeline-item .period { width: 120px; flex-shrink: 0; text-align: right; font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600; color: var(--bronze); padding-top: 4px; letter-spacing: 0.5px; }
+        .timeline-item .dot { position: absolute; left: 136px; top: 8px; width: 9px; height: 9px; background: var(--bronze); border-radius: 50%; border: 3px solid var(--white); z-index: 1; }
+        [data-theme="dark"] .timeline-item .dot { border-color: var(--white); }
+        .timeline-item .content { flex: 1; padding-left: 20px; }
+        .timeline-item .content h4 { font-size: 1.05rem; font-weight: 600; margin-bottom: 4px; font-family: 'Noto Sans KR', sans-serif; }
+        .timeline-item .content .role { font-size: 0.82rem; color: var(--bronze); font-weight: 500; margin-bottom: 6px; }
+        .timeline-item .content p { font-size: 0.85rem; color: var(--text-light); }
+        .badge-current { display: inline-block; font-size: 0.6rem; padding: 3px 10px; background: var(--bronze); color: #fff; border-radius: 2px; font-weight: 700; letter-spacing: 1px; margin-left: 10px; vertical-align: middle; text-transform: uppercase; }
+        .current-block { background: var(--white); border: 1px solid var(--divider); border-left: 3px solid var(--bronze); border-radius: 2px; padding: 20px 24px; margin-bottom: 8px; }
+        .current-block h4 { font-size: 1.05rem; font-weight: 600; margin-bottom: 4px; font-family: 'Noto Sans KR', sans-serif; }
+        .current-block .role { font-size: 0.82rem; color: var(--bronze); font-weight: 500; margin-bottom: 4px; }
+        .current-block p { font-size: 0.85rem; color: var(--text-light); }
+        .credentials-layout { display: grid; grid-template-columns: 1fr 1px 1fr; gap: 60px; }
+        .credentials-divider { background: var(--divider); }
+        .cred-section-title { font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: var(--bronze); margin-bottom: 30px; font-weight: 500; }
+        .cred-item { margin-bottom: 28px; padding-bottom: 28px; border-bottom: 1px solid var(--divider); }
+        .cred-item:last-child { border-bottom: none; }
+        .cred-item .year { font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; color: var(--bronze); font-weight: 600; margin-bottom: 6px; display: block; }
+        .cred-item h4 { font-size: 1rem; font-weight: 500; margin-bottom: 4px; font-family: 'Noto Sans KR', sans-serif; }
+        .cred-item p { font-size: 0.85rem; color: var(--text-light); }
+        .cert-badge { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; background: var(--charcoal); color: #F1F5F9; border-radius: 2px; font-size: 0.85rem; font-weight: 500; margin-right: 10px; margin-bottom: 10px; }
+        [data-theme="dark"] .cert-badge { background: var(--slate); border: 1px solid var(--divider); }
+        .award-tag { display: inline-block; padding: 6px 16px; border: 1px solid var(--divider); border-radius: 2px; font-size: 0.8rem; color: var(--text-mid); margin-right: 8px; margin-bottom: 8px; transition: var(--transition); }
+        .award-tag:hover { border-color: var(--bronze); color: var(--bronze); }
+        footer { background: var(--charcoal); color: #F1F5F9; padding: 100px 0 50px; position: relative; overflow: hidden; }
+        footer::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 0%, rgba(176,141,87,0.06) 0%, transparent 60%); }
+        .footer-content { position: relative; z-index: 1; text-align: center; }
+        .footer-content h2 { font-size: 2.2rem; color: var(--bronze-light); font-weight: 400; margin-bottom: 12px; }
+        .footer-content .subtitle { font-size: 0.9rem; opacity: 0.4; margin-bottom: 50px; }
+        .contact-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 80px; }
+        .contact-item { background: rgba(255,255,255,0.03); border: 1px solid rgba(176,141,87,0.15); border-radius: 2px; padding: 28px 20px; text-align: center; transition: var(--transition); cursor: pointer; position: relative; }
+        .contact-item:hover { border-color: var(--bronze); background: rgba(176,141,87,0.05); transform: translateY(-4px); }
+        .contact-item .c-icon { font-size: 1.5rem; margin-bottom: 12px; display: block; }
+        .contact-item h4 { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 2px; color: var(--bronze); margin-bottom: 8px; font-family: 'Noto Sans KR', sans-serif; }
+        .contact-item p { font-size: 0.82rem; opacity: 0.8; }
+        .contact-item .sub { font-size: 0.68rem; opacity: 0.4; margin-top: 4px; }
+        .copy-tooltip { position: absolute; top: -32px; left: 50%; transform: translateX(-50%) scale(0.8); background: var(--bronze); color: var(--charcoal); padding: 5px 14px; border-radius: 2px; font-size: 0.72rem; font-weight: 700; opacity: 0; pointer-events: none; transition: all 0.3s ease; white-space: nowrap; }
+        .copy-tooltip.show { opacity: 1; transform: translateX(-50%) scale(1); }
+        .copy-tooltip::after { content: ''; position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%); border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 5px solid var(--bronze); }
+        .footer-bottom { padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.05); }
+        .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; color: var(--bronze); font-weight: 700; letter-spacing: 3px; margin-bottom: 10px; }
+        .footer-bottom p { font-size: 0.78rem; opacity: 0.3; }
+        .scroll-progress { position: fixed; top: 0; left: 0; height: 2px; background: var(--bronze); z-index: 9999; width: 0; transition: width 0.1s linear; }
+        @media (max-width: 992px) {
+            .hero-text h1 { font-size: 3.5rem; }
+            .value-grid { grid-template-columns: 1fr; }
+            .credentials-layout { grid-template-columns: 1fr; gap: 40px; }
+            .credentials-divider { display: none; }
+            .timeline::before { left: 20px; }
+            .timeline-item .period { width: auto; text-align: left; }
+            .timeline-item { flex-direction: column; gap: 8px; padding-left: 50px; }
+            .timeline-item .dot { left: 16px; }
+            .expertise-grid { grid-template-columns: repeat(2, 1fr); }
+            .contact-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .hero-content { flex-direction: column-reverse; text-align: center; gap: 50px; }
+            .profile-photo { width: 220px; height: 280px; }
+            .hero-text h1 { font-size: 3rem; }
+            .nav-links { display: none; }
+            section { padding: 100px 0; }
+            .expertise-banner { padding: 60px 0; }
+            .expertise-inner h3 { font-size: 1.3rem; }
+            .expertise-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+            .contact-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <header id="header">
+        <div class="container">
+            <nav>
+                <div class="logo">HYUNDAI E&C</div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#career">Career</a></li>
+                    <li><a href="#credentials">Credentials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <button class="theme-toggle" id="theme-toggle">LIGHT</button>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <span class="overline">Hyundai Engineering & Construction</span>
+                    <h1 class="serif"><span class="mosaic-name">여철기</span></h1>
+                    <span class="title-en mosaic-name">Cheolgi Yeo</span>
+                    <div class="typing-container">
+                        <span id="typing-text"></span><span class="cursor"></span>
+                    </div>
+                    <p class="dept">
+                        <span class="mosaic-line">힐스테이트 이수역센트럴</span> · 지원1팀장<br>
+                        <span class="mosaic-line">디에이치 아델스타</span> · 지원1팀장<br>
+                        책임매니저
+                    </p>
+                </div>
+                <div class="profile-photo-wrapper">
+                    <div class="profile-photo">
+                        <img src="https://github.com/SinaBroMan/YCM_PICTURE2/blob/main/%EC%97%AC%EC%B2%A0%EA%B8%B0%EB%8B%98%20(5).JPG?raw=true" alt="프로필">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="overline">About</span>
+                <h2 class="serif">소개</h2>
+                <div class="line"></div>
+            </div>
+            <p class="about-statement reveal">현장 시공에서 시작하여 <em>해외사업, 영업, 구매, 채권관리, 경영지원</em>까지<br>건설사업의 전 과정을 직접 경험해 왔습니다.<br><br>특히 <em>주택·도시정비 영업</em>과 <em>민간사업 현장지원</em>을 두루 거치며<br>사업의 수주부터 준공까지 흐름을 꿰뚫는 시야를 갖추게 되었습니다.<br><br>어느 자리에서든, 함께 일하는 분들이 본업에 집중할 수 있도록<br><em>든든히 뒷받침하는 것</em>이 저의 역할이라고 생각합니다.</p>
+            <div class="value-grid">
+                <div class="value-card reveal">
+                    <div class="number">01</div>
+                    <h3>현장을 아는 지원</h3>
+                    <p>18년 간의 시공현장 경험과 국내외 다수 프로젝트를 거치며 현장이 진짜 필요로 하는 것이 무엇인지 체득했습니다.</p>
+                </div>
+                <div class="value-card reveal">
+                    <div class="number">02</div>
+                    <h3>영업과 사업의 이해</h3>
+                    <p>주택·도시정비 영업 3년, 도시정비추진 팀장 경험을 통해 수주에서 사업추진까지의 전 과정을 이해하고 있습니다.</p>
+                </div>
+                <div class="value-card reveal">
+                    <div class="number">03</div>
+                    <h3>폭넓은 관리 역량</h3>
+                    <p>구매, 채권관리, 비즈니스지원까지 경영지원 전반을 경험하며 조직 운영에 필요한 다양한 업무를 수행해 왔습니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="expertise-banner reveal">
+        <div class="container">
+            <div class="expertise-inner">
+                <span class="overline-light">Expertise</span>
+                <h3><span>건축주택</span>부터 <span>도시정비영업</span>, <span>민간사업</span>까지<br>건설사업의 전 과정을 경험한 현장형 관리 전문가</h3>
+                <div class="expertise-grid">
+                    <span class="expertise-tag">건축주택사업</span>
+                    <span class="expertise-tag">도시정비영업</span>
+                    <span class="expertise-tag">민간사업지원</span>
+                    <span class="expertise-tag">해외현장관리</span>
+                    <span class="expertise-tag">경영지원 / 총무</span>
+                    <span class="expertise-tag">구매 / 채권관리</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="career" class="career-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="overline">Career</span>
+                <h2 class="serif">주요 이력</h2>
+                <div class="line"></div>
+            </div>
+            <p class="career-intro reveal">현장에서 시작하여 다양한 부서를 거치며 <strong>약 <span class="count-up" data-target="30" data-suffix="년간">0</span></strong><br><strong>시공, 영업, 구매, 해외사업, 경영지원</strong> 등<br>여러 분야에서 경험을 쌓아올 수 있었습니다.<br><span style="font-size:0.88rem;opacity:0.7;">그 중 <strong>약 <span class="count-up" data-target="19" data-suffix="년">0</span></strong>은 국내외 건설현장에서 직접 뛰었습니다.</span></p>
+
+            <div class="timeline">
+                <div class="timeline-item reveal">
+                    <div class="period">2025 —</div>
+                    <div class="dot"></div>
+                    <div class="content">
+                        <div class="current-block">
+                            <h4><span class="mosaic">힐스테이트 이수역센트럴</span> <span class="badge-current">현 재직</span></h4>
+                            <div class="role">지원1팀장</div>
+                            <p>민간현장 지원업무 총괄</p>
+                        </div>
+                        <div class="current-block">
+                            <h4><span class="mosaic">디에이치 아델스타</span> <span class="badge-current">겸직</span></h4>
+                            <div class="role">지원1팀장</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="period">1.5년</div>
+                    <div class="dot"></div>
+                    <div class="content">
+                        <h4><span class="mosaic">도시정비추진팀</span></h4>
+                        <div class="role">팀장</div>
+                        <p>도시정비사업 추진 업무 담당</p>
+                    </div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="period">3년</div>
+                    <div class="dot"></div>
+                    <div class="content">
+                        <h4><span class="mosaic">비즈니스지원실 비즈니스지원팀</span></h4>
+                        <div class="role">팀장</div>
+                        <p>경영지원본부에서 본사 및 현장 업무지원 담당</p>
+                    </div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="period">1년</div>
+                    <div class="dot"></div>
+                    <div class="content">
+                        <h4><span class="mosaic">지주택 / 재건축 / 데이터센터 현장</span></h4>
+                        <div class="role">사업지원팀장</div>
+                        <p>다양한 사업유형 현장의 지원업무 담당</p>
+                    </div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="period">3년</div>
+                    <div class="dot"></div>
+                    <div class="content">
+                        <h4><span class="mosaic">홍은2, 대곡소사 현장</span></h4>
+                        <div class="role">지원팀장</div>
+                        <p>현장 행정·관리 지원 담당</p>
+                    </div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="period">1년</div>
+                    <div class="dot"></div>
+                    <div class="content">
+                        <h4><span class="mosaic">삼호가든, 클래시안 현장</span></h4>
+                        <div class="role">관리책임자</div>
+                    </div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="period">2년</div>
+                    <div class="dot"></div>
+                    <div class="content">
+                        <h4><span class="mosaic">싱가포르 테콩 현장</span></h4>
+                        <div class="role">관리책임자</div>
+                    </div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="period">2년</div>
+                    <div class="dot"></div>
+                    <div class="content">
+                        <h4><span class="mosaic">사업관리실 채권관리팀</span></h4>
+                        <div class="role">담당</div>
+                    </div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="period">2년</div>
+                    <div class="dot"></div>
+                    <div class="content">
+                        <h4><span class="mosaic">UAE 합샨 현장</span></h4>
+                        <div class="role">총무파트장</div>
+                    </div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="period">3년</div>
+                    <div class="dot"></div>
+                    <div class="content">
+                        <h4><span class="mosaic">주택 도시정비영업팀</span></h4>
+                        <div class="role">영업담당</div>
+                    </div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="period">2년</div>
+                    <div class="dot"></div>
+                    <div class="content">
+                        <h4><span class="mosaic">외주구매실 구매팀</span></h4>
+                        <div class="role">해외전기</div>
+                    </div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="period">9년</div>
+                    <div class="dot"></div>
+                    <div class="content">
+                        <h4><span class="mosaic">무악동, 태안화력 外 다수 현장</span></h4>
+                        <div class="role">공구장</div>
+                        <p>국내 건설현장 시공관리 실무</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="credentials">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="overline">Credentials</span>
+                <h2 class="serif">자격 · 학력 · 수상</h2>
+                <div class="line"></div>
+            </div>
+            <div class="credentials-layout reveal">
+                <div>
+                    <div class="cred-section-title">Education</div>
+                    <div class="cred-item">
+                        <h4>행정학과 (학사)</h4>
+                        <p>학부 전공</p>
+                    </div>
+                    <div class="cred-item">
+                        <h4>건설관리학 (석사)</h4>
+                        <p>대학원 전공</p>
+                    </div>
+                    <div class="cred-section-title" style="margin-top:50px;">Certification</div>
+                    <div style="margin-top:10px;">
+                        <span class="cert-badge">건설안전기사 (2020)</span>
+                    </div>
+                </div>
+                <div class="credentials-divider"></div>
+                <div>
+                    <div class="cred-section-title">Awards & Recognition</div>
+                    <div class="cred-item"><span class="year">2021</span><h4>준공우수 / 우수사원</h4></div>
+                    <div class="cred-item"><span class="year">2020</span><h4>우수 지식/제안</h4></div>
+                    <div class="cred-item"><span class="year">2014</span><h4>우수사원</h4></div>
+                    <div class="cred-item"><span class="year">2011</span><h4>준공우수 / 무재해 10배수</h4></div>
+                    <div class="cred-item"><span class="year">'01 — '02</span><h4>진행우수 3회</h4></div>
+                    <div style="margin-top:24px;">
+                        <span class="award-tag">준공우수 2회</span>
+                        <span class="award-tag">진행우수 3회</span>
+                        <span class="award-tag">우수사원 2회</span>
+                        <span class="award-tag">무재해 10배수</span>
+                        <span class="award-tag">우수 지식/제안</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <h2 class="serif">Contact</h2>
+                <p class="subtitle">업무 관련 문의사항이 있으시면 편하게 연락 주십시오.</p>
+                <div class="contact-grid">
+                    <div class="contact-item" data-copy="sample.work@hdec.co.kr" onclick="copyFromData(this,'tooltip-email-work')">
+                        <span class="copy-tooltip" id="tooltip-email-work">복사 완료!</span>
+                        <span class="c-icon">✉</span>
+                        <h4>Work Email</h4>
+                        <p class="mosaic">sample.work@hdec.co.kr</p>
+                        <p class="sub">클릭하여 복사</p>
+                    </div>
+                    <div class="contact-item" data-copy="sample.personal@gmail.com" onclick="copyFromData(this,'tooltip-email-personal')">
+                        <span class="copy-tooltip" id="tooltip-email-personal">복사 완료!</span>
+                        <span class="c-icon">✉</span>
+                        <h4>Personal Email</h4>
+                        <p class="mosaic">sample.personal@gmail.com</p>
+                        <p class="sub">클릭하여 복사</p>
+                    </div>
+                    <div class="contact-item" data-copy="010-1234-5678" onclick="copyFromData(this,'tooltip-mobile')">
+                        <span class="copy-tooltip" id="tooltip-mobile">복사 완료!</span>
+                        <span class="c-icon">☎</span>
+                        <h4>Mobile</h4>
+                        <p class="mosaic">010-1234-5678</p>
+                        <p class="sub">클릭하여 복사</p>
+                    </div>
+                    <div class="contact-item" data-copy="02-123-4567" onclick="copyFromData(this,'tooltip-office')">
+                        <span class="copy-tooltip" id="tooltip-office">복사 완료!</span>
+                        <span class="c-icon">☏</span>
+                        <h4>Office</h4>
+                        <p class="mosaic">02-123-4567</p>
+                        <p class="sub">클릭하여 복사</p>
+                    </div>
+                    <div class="contact-item" onclick="copyText(window.location.href,'tooltip-link')">
+                        <span class="copy-tooltip" id="tooltip-link">링크 복사 완료!</span>
+                        <span class="c-icon">⧉</span>
+                        <h4>Profile Link</h4>
+                        <p>프로필 링크 복사</p>
+                        <p class="sub">클릭하여 복사</p>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="footer-logo">HYUNDAI E&C</div>
+                    <p><span class="mosaic">힐스테이트 이수역센트럴</span> · <span class="mosaic">디에이치 아델스타</span> · 지원1팀</p>
+                    <p style="margin-top:20px;font-size:0.75rem;opacity:0.25;">© 2026 All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        /* ── 다크모드 기본 시작 ── */
+        var themeToggle = document.getElementById('theme-toggle');
+        var isDark = true;
+        document.body.setAttribute('data-theme', 'dark');
+        themeToggle.textContent = 'LIGHT';
+        themeToggle.addEventListener('click', function() {
+            isDark = !isDark;
+            document.body.setAttribute('data-theme', isDark ? 'dark' : '');
+            themeToggle.textContent = isDark ? 'LIGHT' : 'DARK';
+        });
+
+        /* ── 타이핑 애니메이션 ── */
+        var typingText = document.getElementById('typing-text');
+        var phrases = [
+            "수주에서 준공까지, 사업의 흐름을 아는 사람",
+            "건축주택 · 도시정비 · 민간사업 전문가",
+            "현장과 본사를 잇는 든든한 지원군"
+        ];
+        var phraseIndex = 0, charIndex = 0, isDeleting = false, typeSpeed = 120;
+        function type() {
+            var cur = phrases[phraseIndex];
+            if (isDeleting) { typingText.textContent = cur.substring(0, charIndex - 1); charIndex--; typeSpeed = 40; }
+            else { typingText.textContent = cur.substring(0, charIndex + 1); charIndex++; typeSpeed = 120; }
+            if (!isDeleting && charIndex === cur.length) { isDeleting = true; typeSpeed = 3000; }
+            else if (isDeleting && charIndex === 0) { isDeleting = false; phraseIndex = (phraseIndex + 1) % phrases.length; typeSpeed = 600; }
+            setTimeout(type, typeSpeed);
+        }
+        type();
+
+        /* ── 복사 기능 ── */
+        function copyFromData(el, tooltipId) {
+            var text = el.getAttribute('data-copy');
+            if (text) copyText(text, tooltipId);
+        }
+        function copyText(text, tooltipId) {
+            navigator.clipboard.writeText(text).then(function() {
+                showTooltip(tooltipId);
+            }).catch(function() {
+                var ta = document.createElement('textarea');
+                ta.value = text; ta.style.position = 'fixed'; ta.style.left = '-9999px';
+                document.body.appendChild(ta); ta.select(); document.execCommand('copy');
+                document.body.removeChild(ta); showTooltip(tooltipId);
+            });
+        }
+        function showTooltip(id) {
+            var el = document.getElementById(id);
+            el.classList.add('show');
+            setTimeout(function() { el.classList.remove('show'); }, 2000);
+        }
+
+        /* ── 스크롤 프로그레스 바 ── */
+        window.addEventListener('scroll', function() {
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            document.getElementById('scrollProgress').style.width = (scrollTop / scrollHeight) * 100 + '%';
+        });
+
+        /* ── 스티키 헤더 ── */
+        var header = document.getElementById('header');
+        window.addEventListener('scroll', function() {
+            header.classList.toggle('sticky', window.scrollY > 100);
+        });
+
+        /* ── 네비게이션 활성화 ── */
+        var sections = document.querySelectorAll('section, .hero');
+        var navLinks = document.querySelectorAll('.nav-links a');
+        window.addEventListener('scroll', function() {
+            var scrollPos = window.scrollY + 200;
+            sections.forEach(function(sec) {
+                if (scrollPos >= sec.offsetTop && scrollPos < sec.offsetTop + sec.offsetHeight) {
+                    var id = sec.getAttribute('id');
+                    navLinks.forEach(function(link) {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === '#' + id) link.classList.add('active');
+                    });
+                }
+            });
+        });
+
+        /* ── 스크롤 reveal 애니메이션 ── */
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) { if (entry.isIntersecting) entry.target.classList.add('active'); });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+
+        /* ── Count-Up 애니메이션 ── */
+        function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+        function animateCountUp(el) {
+            var targetVal = parseFloat(el.getAttribute('data-target'));
+            var suffix = el.getAttribute('data-suffix') || '';
+            var duration = 2000; var startTime = null;
+            function step(timestamp) {
+                if (!startTime) startTime = timestamp;
+                var elapsed = timestamp - startTime;
+                var progress = Math.min(elapsed / duration, 1);
+                var current = Math.round(easeOutCubic(progress) * targetVal);
+                el.textContent = current + suffix;
+                if (progress < 1) requestAnimationFrame(step);
+                else el.textContent = targetVal + suffix;
+            }
+            requestAnimationFrame(step);
+        }
+        var countUpElements = document.querySelectorAll('.count-up');
+        var countUpStarted = new Set();
+        var countUpObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting && !countUpStarted.has(entry.target)) {
+                    countUpStarted.add(entry.target);
+                    animateCountUp(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        countUpElements.forEach(function(el) { countUpObserver.observe(el); });
+
+        /* 안전장치: 페이지 로드 후 강제 실행 */
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                countUpElements.forEach(function(el) {
+                    if (!countUpStarted.has(el)) {
+                        countUpStarted.add(el);
+                        animateCountUp(el);
+                    }
+                });
+            }, 800);
+        });
+    </script>
+</body>
+</html>

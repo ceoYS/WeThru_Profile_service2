@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>포트폴리오 샘플 | 현대건설</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --navy: #1B2A4A;
+            --gold: #C9A96E;
+            --gold-light: #E5D5B5;
+            --white: #FFFFFF;
+            --bg-light: #F5F5F5;
+            --text-main: #333333;
+            --text-muted: #666666;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        [data-theme="dark"] {
+            --navy: #0F172A;
+            --gold: #D4AF37;
+            --white: #1E293B;
+            --bg-light: #0F172A;
+            --text-main: #F1F5F9;
+            --text-muted: #94A3B8;
+        }
+
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease;
+        }
+
+        h1, h2, h3, .serif { font-family: 'Playfair Display', 'Noto Sans KR', serif; }
+        ul { list-style: none; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: var(--transition); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* --- Navigation --- */
+        header {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            padding: 20px 0; transition: var(--transition);
+        }
+        header.sticky {
+            background: rgba(255,255,255,0.9); backdrop-filter: blur(10px);
+            padding: 15px 0; box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+        [data-theme="dark"] header.sticky { background: rgba(15,23,42,0.9); }
+
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-weight: 900; font-size: 1.2rem; letter-spacing: 1px; color: var(--navy); }
+        [data-theme="dark"] .logo { color: var(--gold); }
+
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { font-size: 0.85rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); }
+        .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+
+        .theme-toggle {
+            cursor: pointer; background: none; border: 1px solid var(--gold);
+            color: var(--gold); padding: 5px 10px; border-radius: 20px;
+            font-size: 0.7rem; font-weight: bold;
+        }
+
+        /* --- Hero --- */
+        .hero {
+            height: 100vh; display: flex; align-items: center;
+            position: relative; background-color: var(--navy);
+            color: #F1F5F9; overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image:
+                linear-gradient(30deg, #1B2A4A 12%, transparent 12.5%, transparent 87%, #1B2A4A 87.5%),
+                linear-gradient(150deg, #1B2A4A 12%, transparent 12.5%, transparent 87%, #1B2A4A 87.5%),
+                linear-gradient(30deg, #1B2A4A 12%, transparent 12.5%, transparent 87%, #1B2A4A 87.5%),
+                linear-gradient(150deg, #1B2A4A 12%, transparent 12.5%, transparent 87%, #1B2A4A 87.5%),
+                linear-gradient(60deg, #24365d 25%, transparent 25.5%, transparent 75%, #24365d 75%),
+                linear-gradient(60deg, #24365d 25%, transparent 25.5%, transparent 75%, #24365d 75%);
+            background-size: 80px 140px;
+            background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
+            opacity: 0.15;
+        }
+
+        .hero-content {
+            position: relative; z-index: 2;
+            display: flex; align-items: center; gap: 60px; width: 100%;
+        }
+        .hero-text h2 { font-size: 1rem; color: var(--gold); margin-bottom: 10px; font-weight: 400; letter-spacing: 2px; }
+        .hero-text .typing-container { font-size: 1.5rem; font-weight: 300; min-height: 1.6em; color: var(--gold-light); }
+        .cursor { display: inline-block; width: 2px; background-color: var(--gold); margin-left: 5px; animation: blink 1s infinite; }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+        /* ===== 프로필 사진 모자이크 ===== */
+        .profile-photo {
+            width: 450px; height: 450px; border-radius: 50%;
+            border: 3px solid var(--gold);
+            overflow: hidden; flex-shrink: 0;
+            box-shadow: 0 0 60px rgba(201,169,110,0.2);
+            position: relative;
+        }
+        .profile-photo img { 
+            width: 100%; height: 100%; object-fit: cover; 
+            filter: blur(25px);
+            transform: scale(1.15);
+        }
+        .profile-photo::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(27, 42, 74, 0.15) 0px,
+                    rgba(27, 42, 74, 0.15) 8px,
+                    transparent 8px,
+                    transparent 10px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    rgba(27, 42, 74, 0.15) 0px,
+                    rgba(27, 42, 74, 0.15) 8px,
+                    transparent 8px,
+                    transparent 10px
+                );
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 2;
+        }
+        .profile-photo::before {
+            content: 'SAMPLE';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%) rotate(-30deg);
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: rgba(201, 169, 110, 0.5);
+            letter-spacing: 8px;
+            z-index: 3;
+            pointer-events: none;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        /* ===== 이름 - 완전히 가리고 대체 텍스트 표시 ===== */
+        .name-placeholder {
+            font-family: 'Playfair Display', 'Noto Sans KR', serif;
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        .name-placeholder .blocked-name {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .name-placeholder .block-char {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 80px;
+            height: 90px;
+            background: rgba(201, 169, 110, 0.12);
+            border: 2px solid rgba(201, 169, 110, 0.3);
+            border-radius: 12px;
+            color: rgba(201, 169, 110, 0.5);
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 0;
+            backdrop-filter: blur(5px);
+        }
+
+        /* 이메일/링크드인 블러 */
+        .email-blur {
+            filter: blur(6px);
+            user-select: none;
+            -webkit-user-select: none;
+            transition: none;
+        }
+        .linkedin-blur {
+            filter: blur(6px);
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        /* --- Sections --- */
+        section { padding: 120px 0; }
+        .section-title { text-align: center; margin-bottom: 70px; }
+        .section-title h2 { font-size: 2.5rem; color: var(--navy); margin-bottom: 15px; }
+        [data-theme="dark"] .section-title h2 { color: var(--gold); }
+        .section-title .line { width: 50px; height: 2px; background: var(--gold); margin: 0 auto; }
+
+        /* --- About --- */
+        .about-text {
+            font-size: 1.1rem; max-width: 800px; margin: 0 auto 50px;
+            color: var(--text-muted); word-break: keep-all; text-align: center;
+        }
+        .strength-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 30px; }
+        .card {
+            background: var(--white); padding: 40px 30px; border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03); transition: var(--transition);
+            border: 1px solid transparent; text-align: center;
+        }
+        .card:hover { transform: translateY(-10px); border-color: var(--gold-light); box-shadow: 0 15px 40px rgba(201,169,110,0.1); }
+        .card .icon { font-size: 2.5rem; margin-bottom: 20px; display: block; }
+        .card h3 { margin-bottom: 15px; color: var(--navy); }
+        .card p { font-size: 0.9rem; color: var(--text-muted); }
+
+        /* --- Career --- */
+        .career-intro {
+            text-align: center; max-width: 700px; margin: 0 auto 60px;
+            font-size: 1.05rem; color: var(--text-muted); word-break: keep-all;
+        }
+        .career-intro strong { color: var(--gold); font-weight: 700; }
+
+        .timeline { position: relative; max-width: 800px; margin: 0 auto; padding-left: 50px; }
+        .timeline::before { content:''; position:absolute; left:0; top:0; width:2px; height:100%; background: var(--gold-light); }
+
+        .timeline-item { position: relative; margin-bottom: 60px; }
+        .timeline-item::after {
+            content:''; position:absolute; left:-55px; top:5px;
+            width:12px; height:12px; background: var(--gold);
+            border-radius:50%; border: 4px solid var(--bg-light);
+        }
+        .year { font-family:'Playfair Display'; font-size:1.8rem; font-weight:700; color: var(--gold); margin-bottom:15px; display:block; }
+        .project {
+            background: var(--white); padding:25px; border-radius:10px;
+            margin-bottom:15px; box-shadow:0 5px 15px rgba(0,0,0,0.02);
+        }
+        .project.main { border-left:5px solid var(--gold); }
+        .project h4 { font-size:1.1rem; margin-bottom:5px; }
+        .project .badge {
+            display:inline-block; font-size:0.7rem; padding:2px 8px;
+            border-radius:4px; background: var(--gold); color: #fff;
+            font-weight:bold; margin-left:10px;
+        }
+
+        /* --- Credentials --- */
+        .credentials-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+        .list-item { margin-bottom: 30px; }
+        .list-item .date { font-size:0.8rem; color: var(--gold); font-weight:600; margin-bottom:5px; display:block; }
+        .list-item h4 { font-size:1.05rem; margin-bottom:5px; }
+        .list-item p { font-size:0.85rem; color: var(--text-muted); }
+
+        .cert-badges { display:flex; flex-wrap:wrap; gap:12px; margin-top:15px; }
+        .badge-tag {
+            padding:8px 18px; background: var(--navy); color: #F1F5F9;
+            border-radius:30px; font-size:0.85rem; font-weight:500;
+        }
+        .skill-list { display:flex; flex-wrap:wrap; gap:10px; margin-top:15px; }
+        .skill-tag { padding:5px 15px; border:1px solid var(--gold-light); border-radius:5px; font-size:0.8rem; color: var(--text-muted); }
+
+        /* --- Contact Section --- */
+        .contact-cards {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .contact-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(201,169,110,0.3);
+            border-radius: 15px;
+            padding: 30px 35px;
+            text-align: center;
+            min-width: 220px;
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .contact-card:hover {
+            border-color: var(--gold);
+            background: rgba(201,169,110,0.08);
+            transform: translateY(-5px);
+        }
+
+        .contact-card .contact-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .contact-card h4 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold);
+            margin-bottom: 10px;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .contact-card p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            word-break: break-all;
+        }
+
+        .contact-card a {
+            color: #F1F5F9;
+            border-bottom: 1px solid transparent;
+            transition: var(--transition);
+        }
+
+        .contact-card a:hover {
+            color: var(--gold);
+            border-bottom-color: var(--gold);
+        }
+
+        /* Copy tooltip */
+        .copy-tooltip {
+            position: absolute;
+            top: -35px;
+            left: 50%;
+            transform: translateX(-50%) scale(0.8);
+            background: var(--gold);
+            color: var(--navy);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .copy-tooltip.show {
+            opacity: 1;
+            transform: translateX(-50%) scale(1);
+        }
+
+        .copy-tooltip::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid var(--gold);
+        }
+
+        /* ===== 포트폴리오 배너 ===== */
+        .portfolio-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(135deg, var(--navy) 0%, #2a3f6b 100%);
+            color: #F1F5F9;
+            padding: 14px 20px;
+            text-align: center;
+            z-index: 9999;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            border-top: 2px solid var(--gold);
+            backdrop-filter: blur(10px);
+        }
+        .portfolio-banner span {
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: var(--navy); color: #F1F5F9;
+            padding: 80px 0 40px; text-align: center;
+            padding-bottom: 80px;
+        }
+        .contact-info { margin-bottom: 30px; }
+        .contact-info h2 { font-size: 2rem; margin-bottom: 15px; color: var(--gold); }
+        .contact-info p { opacity: 0.6; font-size: 0.95rem; }
+        .footer-bottom { margin-top: 60px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.08); }
+        .copyright { font-size: 0.8rem; opacity: 0.4; }
+
+        /* --- Responsive --- */
+        @media (max-width:992px) {
+            .name-placeholder { font-size: 3.5rem; }
+            .name-placeholder .block-char { width: 65px; height: 75px; font-size: 2rem; }
+            .strength-cards, .credentials-grid { grid-template-columns:1fr; }
+        }
+        @media (max-width:768px) {
+            .hero-content { flex-direction:column-reverse; text-align:center; gap:40px; }
+            .profile-photo { width:200px; height:200px; }
+            .profile-photo::before { font-size: 1.2rem; letter-spacing: 4px; }
+            .name-placeholder { font-size: 2.8rem; }
+            .name-placeholder .block-char { width: 52px; height: 60px; font-size: 1.6rem; gap: 8px; }
+            .nav-links { display:none; }
+            .contact-cards { flex-direction: column; align-items: center; }
+            .contact-card { width: 100%; max-width: 320px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <div class="container">
+            <nav>
+                <div class="logo">HYUNDAI E&C</div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#career">Career</a></li>
+                    <li><a href="#credentials">Credentials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <button class="theme-toggle" id="theme-toggle">DARK</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h2>HYUNDAI ENGINEERING & CONSTRUCTION</h2>
+                    <!-- 이름: 완전 블록 처리 (원본 텍스트 없음) -->
+                    <h1 class="name-placeholder">
+                        <span class="blocked-name">
+                            <span class="block-char">*</span>
+                            <span class="block-char">*</span>
+                            <span class="block-char">*</span>
+                        </span>
+                    </h1>
+                    <div class="typing-container">
+                        <span id="typing-text"></span><span class="cursor"></span>
+                    </div>
+                    <p style="margin-top:25px; opacity:0.6; font-weight:300; letter-spacing:1px; font-size:0.95rem;">
+                        도시미래가치사업1실 · 도시미래가치사업기획팀
+                    </p>
+                </div>
+                <div class="profile-photo">
+                    <img src="https://github.com/SinaBroMan/hansol_face/blob/main/IMG_8715.jpeg?raw=true" alt="프로필 (모자이크)">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== ABOUT ========== -->
+    <section id="about" class="reveal">
+        <div class="container">
+            <div class="section-title">
+                <h2>About</h2>
+                <div class="line"></div>
+            </div>
+            <p class="about-text">
+                홍익대학교 도시공학과를 졸업하고, 현대건설에서 도시정비사업 수주 업무를 담당하고 있습니다.<br>
+                도시계획기사·공인중개사 자격을 기반으로, 조합원분들께 신뢰할 수 있는 전문성과 소통을 약속드립니다.
+            </p>
+            <div class="strength-cards">
+                <div class="card">
+                    <span class="icon">🎯</span>
+                    <h3>책임감</h3>
+                    <p>맡은 일을 끝까지 책임지고 기한 내에 완수합니다.</p>
+                </div>
+                <div class="card">
+                    <span class="icon">🤝</span>
+                    <h3>소통</h3>
+                    <p>다양한 이해관계자분들과 원활하게 소통하며 최적의 합의점을 찾습니다.</p>
+                </div>
+                <div class="card">
+                    <span class="icon">💡</span>
+                    <h3>문제해결</h3>
+                    <p>현장에서 발생하는 이슈에 빠르게 대응하고 해결책을 제시합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CAREER ========== -->
+    <section id="career" class="reveal" style="background-color: var(--white);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Career</h2>
+                <div class="line"></div>
+            </div>
+            <p class="career-intro">
+                <strong>현대건설 도시미래가치사업1실</strong>에서 수도권 주요 도시정비사업의 수주를 담당하고 있으며,<br>
+                현재 <strong>신사역 디에이치 갤러리</strong>에 근무하고 있습니다.
+            </p>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="year">2025 — Present</span>
+                    <div class="project main">
+                        <h4>현대건설 입사 <span class="badge">재직 중</span></h4>
+                        <p style="font-size:0.9rem; color: var(--gold); font-weight:600;">도시미래가치사업기획팀</p>
+                        <p style="font-size:0.85rem; margin-top:8px; color: var(--text-muted);">
+                            수도권 재개발·재건축 수주 기획 및 영업 업무 수행
+                        </p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="year">Key Projects</span>
+                    <div class="project main">
+                        <h4>압구정 지구 재건축 <span class="badge">진행 중</span></h4>
+                        <p style="font-size:0.85rem; color: var(--text-muted);">압구정 정비사업 수주 추진</p>
+                    </div>
+                    <div class="project">
+                        <h4>구리 수택동 재개발</h4>
+                        <p style="font-size:0.85rem; color: var(--text-muted);">수주 업무 수행</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CREDENTIALS ========== -->
+    <section id="credentials" class="reveal">
+        <div class="container">
+            <div class="section-title">
+                <h2>Credentials</h2>
+                <div class="line"></div>
+            </div>
+            <div class="credentials-grid">
+                <div>
+                    <h3 style="margin-bottom:30px; color: var(--navy);">Education</h3>
+                    <div class="list-item">
+                        <span class="date">2018.03 — 2024.02</span>
+                        <h4>홍익대학교 도시공학과</h4>
+                        <p style="color: var(--gold); font-weight:600;">GPA 4.0 / 4.5</p>
+                    </div>
+                    <h3 style="margin-bottom:20px; margin-top:40px; color: var(--navy);">Certifications</h3>
+                    <div class="cert-badges">
+                        <span class="badge-tag">공인중개사</span>
+                        <span class="badge-tag">도시계획기사</span>
+                        <span class="badge-tag">투자자산운용사</span>
+                        <span class="badge-tag">컴퓨터활용능력 1급</span>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="margin-bottom:30px; color: var(--navy);">Experience</h3>
+                    <div class="list-item">
+                        <span class="date">2024.01 — 2024.02</span>
+                        <h4>P&P 멘토링클래스 21기</h4>
+                        <p>실물오피스 IM 작성 (조장 수행)</p>
+                    </div>
+                    <div class="list-item">
+                        <span class="date">2024.01 — 2024.02</span>
+                        <h4>서울특별시의회 대학생인턴십</h4>
+                        <p>정책아이디어 PT 발표 및 의정활동 보조</p>
+                    </div>
+                    <div class="list-item">
+                        <span class="date">2022.01 — 2022.12</span>
+                        <h4>홍익대학교 도시공학과 학생회장</h4>
+                    </div>
+                    <h3 style="margin-bottom:20px; margin-top:40px; color: var(--navy);">Skills</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">AutoCAD</span>
+                        <span class="skill-tag">Figma</span>
+                        <span class="skill-tag">Photoshop</span>
+                        <span class="skill-tag">Illustrator</span>
+                        <span class="skill-tag">Excel</span>
+                        <span class="skill-tag">PowerPoint</span>
+                    </div>
+                    <div style="margin-top:20px;">
+                        <p style="font-size:0.85rem; color: var(--text-muted);">TOEIC 855 · TOEIC Speaking IH (150)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER / CONTACT ========== -->
+    <footer id="contact">
+        <div class="container">
+            <div class="contact-info">
+                <h2 class="serif">Contact</h2>
+                <p>도시정비사업에 대해 궁금하신 점이 있으시면 편하게 연락 주세요.</p>
+            </div>
+
+            <div class="contact-cards">
+                <!-- 이메일 (임의 더미 + 복사 기능) -->
+                <div class="contact-card" onclick="copyToClipboard('sample.demo@hdec.co.kr', 'email-tooltip')">
+                    <span class="copy-tooltip" id="email-tooltip">복사 완료!</span>
+                    <span class="contact-icon">✉️</span>
+                    <h4>Email</h4>
+                    <p>sample.demo@hdec.co.kr</p>
+                </div>
+
+                <!-- 링크드인 (임의 더미 + 복사 기능) -->
+                <div class="contact-card" onclick="copyToClipboard('https://linkedin.com/in/sample-profile', 'linkedin-tooltip')">
+                    <span class="copy-tooltip" id="linkedin-tooltip">복사 완료!</span>
+                    <span class="contact-icon">💼</span>
+                    <h4>LinkedIn</h4>
+                    <p>Sample Profile</p>
+                </div>
+
+                <!-- 전화번호 (임의 더미 + 복사 기능) -->
+                <div class="contact-card" onclick="copyToClipboard('010-0000-0000', 'phone-tooltip')">
+                    <span class="copy-tooltip" id="phone-tooltip">복사 완료!</span>
+                    <span class="contact-icon">📞</span>
+                    <h4>Phone</h4>
+                    <p>010-0000-0000</p>
+                </div>
+
+                <!-- 프로필 링크 복사 -->
+                <div class="contact-card" onclick="copyToClipboard(window.location.href, 'link-tooltip')">
+                    <span class="copy-tooltip" id="link-tooltip">링크 복사 완료!</span>
+                    <span class="contact-icon">🔗</span>
+                    <h4>Profile Link</h4>
+                    <p>프로필 링크 복사</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="logo" style="color: var(--gold); margin-bottom:15px; font-size:1rem;">HYUNDAI E&C</div>
+                <p style="font-size:0.85rem; opacity:0.5;">
+                    현대건설 도시미래가치사업1실 · 신사역 디에이치 갤러리
+                </p>
+                <p class="copyright">© 2026 Portfolio Sample. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 포트폴리오 안내 배너 -->
+    <div class="portfolio-banner">
+        <span>PORTFOLIO SAMPLE</span> — 개인정보 보호를 위해 이름·사진·연락처가 처리되어 있습니다
+    </div>
+
+    <script>
+        // --- Typing Animation ---
+        const typingText = document.getElementById('typing-text');
+        const phrases = ["도시의 미래 가치를 만드는 사람", "Urban Value Strategist", "현대건설과 함께합니다"];
+        let phraseIndex = 0, charIndex = 0, isDeleting = false, typeSpeed = 100;
+
+        function type() {
+            const cur = phrases[phraseIndex];
+            if (isDeleting) { typingText.textContent = cur.substring(0, charIndex - 1); charIndex--; typeSpeed = 50; }
+            else { typingText.textContent = cur.substring(0, charIndex + 1); charIndex++; typeSpeed = 150; }
+            if (!isDeleting && charIndex === cur.length) { isDeleting = true; typeSpeed = 2500; }
+            else if (isDeleting && charIndex === 0) { isDeleting = false; phraseIndex = (phraseIndex + 1) % phrases.length; typeSpeed = 500; }
+            setTimeout(type, typeSpeed);
+        }
+
+        // --- 범용 복사 함수 ---
+        function copyToClipboard(text, tooltipId) {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showTooltip(tooltipId);
+                }).catch(() => {
+                    fallbackCopy(text, tooltipId);
+                });
+            } else {
+                fallbackCopy(text, tooltipId);
+            }
+        }
+
+        function fallbackCopy(text, tooltipId) {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.left = '-9999px';
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            showTooltip(tooltipId);
+        }
+
+        function showTooltip(id) {
+            const tooltip = document.getElementById(id);
+            tooltip.classList.add('show');
+            setTimeout(() => { tooltip.classList.remove('show'); }, 2000);
+        }
+
+        // --- Intersection Observer ---
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // --- Sticky Header & Active Links ---
+        const header = document.getElementById('header');
+        const navLinks = document.querySelectorAll('.nav-links a');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('sticky', window.scrollY > 100);
+            let current = "";
+            document.querySelectorAll('section').forEach(s => {
+                if (pageYOffset >= s.offsetTop - 200) current = s.getAttribute("id");
+            });
+            navLinks.forEach(l => { l.classList.remove("active"); if (l.getAttribute("href").includes(current)) l.classList.add("active"); });
+        });
+
+        // --- Theme Toggle ---
+        const themeToggle = document.getElementById('theme-toggle');
+        let isDark = false;
+        themeToggle.addEventListener('click', () => {
+            isDark = !isDark;
+            document.body.setAttribute('data-theme', isDark ? 'dark' : 'light');
+            themeToggle.textContent = isDark ? 'LIGHT' : 'DARK';
+        });
+
+        document.addEventListener('DOMContentLoaded', type);
+    </script>
+</body>
+</html>

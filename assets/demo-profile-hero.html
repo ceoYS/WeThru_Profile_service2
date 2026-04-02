@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strategic Planner | WeThru</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+
+    <style>
+        :root {
+            --bg-primary: #0A0A0A;
+            --bg-secondary: #111111;
+            --bg-surface: #1A1A1A;
+            --bg-surface-hover: #222222;
+            --gold: #C9A84C;
+            --gold-light: #E2D1A0;
+            --gold-dim: rgba(201, 168, 76, 0.15);
+            --gold-border: rgba(201, 168, 76, 0.3);
+            --white: #F5F5F5;
+            --white-dim: rgba(245, 245, 245, 0.7);
+            --white-muted: rgba(245, 245, 245, 0.4);
+            --serif: 'Cormorant Garamond', Georgia, serif;
+            --sans: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--sans);
+            background-color: var(--bg-primary);
+            color: var(--white);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            z-index: 1000;
+            padding: 24px 0;
+            transition: var(--transition);
+        }
+        header.scrolled {
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(201, 168, 76, 0.08);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--sans);
+            font-weight: 800;
+            font-size: 0.85rem;
+            letter-spacing: 4px;
+            color: var(--gold);
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--white-muted);
+            text-decoration: none;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0;
+            width: 0; height: 1px;
+            background: var(--gold);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--gold); }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: var(--bg-primary);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -30%; right: -10%;
+            width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.04) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold-border), transparent);
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-text { flex: 1; }
+
+        .hero-label {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 1.15rem;
+            color: var(--gold);
+            letter-spacing: 3px;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .hero-name {
+            font-family: var(--sans);
+            font-weight: 800;
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            line-height: 1.1;
+            color: var(--white);
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .hero-sub {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--white-muted);
+            margin-bottom: 32px;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-desc {
+            font-size: 0.95rem;
+            color: var(--white-dim);
+            max-width: 480px;
+            line-height: 1.8;
+            word-break: keep-all;
+        }
+
+        .hero-scroll-hint {
+            margin-top: 48px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--white-muted);
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .hero-scroll-hint .line {
+            width: 40px; height: 1px;
+            background: var(--gold);
+        }
+
+        /* === CSS 실루엣 아바타 === */
+        .avatar-wrapper {
+            flex-shrink: 0;
+            width: 380px; height: 380px;
+            position: relative;
+        }
+
+        .avatar-circle {
+            width: 100%; height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #1A1A1A 0%, #0F0F0F 100%);
+            border: 1.5px solid var(--gold-border);
+            position: relative;
+            overflow: hidden;
+            box-shadow:
+                0 0 80px rgba(201, 168, 76, 0.06),
+                inset 0 0 60px rgba(0,0,0,0.4);
+        }
+
+        .avatar-circle::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: conic-gradient(from 0deg, transparent 0%, rgba(201,168,76,0.03) 25%, transparent 50%);
+            animation: avatarRotate 20s linear infinite;
+        }
+
+        @keyframes avatarRotate {
+            to { transform: rotate(360deg); }
+        }
+
+        /* 사람 실루엣 - 순수 CSS */
+        .silhouette {
+            position: absolute;
+            bottom: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 200px; height: 320px;
+        }
+
+        /* 머리 */
+        .silhouette-head {
+            width: 80px; height: 88px;
+            background: radial-gradient(ellipse, #2A2A2A 0%, #1F1F1F 60%, #181818 100%);
+            border-radius: 50% 50% 48% 48%;
+            margin: 0 auto 2px;
+            position: relative;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+        }
+
+        /* 목 */
+        .silhouette-neck {
+            width: 32px; height: 20px;
+            background: linear-gradient(180deg, #252525, #1E1E1E);
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+
+        /* 어깨/상체 */
+        .silhouette-body {
+            width: 180px; height: 210px;
+            background: linear-gradient(180deg, #222222 0%, #1A1A1A 40%, #151515 100%);
+            margin: 0 auto;
+            border-radius: 80px 80px 0 0;
+            position: relative;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.2);
+        }
+
+        /* 어깨 라인 하이라이트 */
+        .silhouette-body::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 10%; right: 10%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(201,168,76,0.15), transparent);
+        }
+
+        .avatar-label {
+            position: absolute;
+            bottom: -36px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 0.8rem;
+            color: var(--gold);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            white-space: nowrap;
+            opacity: 0.6;
+        }
+
+        /* ===== SECTIONS COMMON ===== */
+        section {
+            padding: 140px 0;
+            position: relative;
+        }
+
+        .section-label {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 1.3rem;
+            color: var(--gold);
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .section-title {
+            font-family: var(--sans);
+            font-weight: 800;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: var(--white);
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .section-divider {
+            width: 48px; height: 1.5px;
+            background: var(--gold);
+            margin-bottom: 60px;
+        }
+
+        .section-desc {
+            font-size: 1.05rem;
+            color: var(--white-dim);
+            max-width: 700px;
+            line-height: 1.9;
+            margin-bottom: 60px;
+            word-break: keep-all;
+        }
+
+        /* ===== ABOUT ===== */
+        .about { background: var(--bg-secondary); }
+
+        .strength-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .strength-card {
+            background: var(--bg-surface);
+            border-radius: 16px;
+            padding: 36px 28px;
+            border-top: 2px solid var(--gold);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .strength-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 80px;
+            background: linear-gradient(180deg, rgba(201,168,76,0.04), transparent);
+            pointer-events: none;
+        }
+
+        .strength-card:hover {
+            transform: translateY(-6px);
+            background: var(--bg-surface-hover);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .strength-card .card-num {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 2.2rem;
+            color: rgba(201, 168, 76, 0.2);
+            margin-bottom: 20px;
+            display: block;
+            line-height: 1;
+        }
+
+        .strength-card h3 {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+
+        .strength-card p {
+            font-size: 0.85rem;
+            color: var(--white-muted);
+            line-height: 1.7;
+            word-break: keep-all;
+        }
+
+        /* ===== EXPERIENCE TIMELINE ===== */
+        .experience { background: var(--bg-primary); }
+
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0; bottom: 0;
+            width: 1px;
+            background: linear-gradient(180deg, var(--gold), var(--gold-border), transparent);
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 8px;
+            width: 14px; height: 14px;
+            background: var(--bg-primary);
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .timeline-dot::after {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 5px; height: 5px;
+            background: var(--gold);
+            border-radius: 50%;
+        }
+
+        .timeline-content {
+            width: calc(50% - 50px);
+            background: var(--bg-surface);
+            border-radius: 14px;
+            padding: 32px;
+            transition: var(--transition);
+            border: 1px solid rgba(255,255,255,0.03);
+        }
+
+        .timeline-content:hover {
+            border-color: var(--gold-border);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-right: auto;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: auto;
+        }
+
+        .timeline-date {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 0.9rem;
+            color: var(--gold);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .timeline-role {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--white);
+            margin-bottom: 10px;
+        }
+
+        .timeline-desc {
+            font-size: 0.85rem;
+            color: var(--white-muted);
+            line-height: 1.7;
+            word-break: keep-all;
+        }
+
+        .timeline-tag {
+            display: inline-block;
+            margin-top: 14px;
+            padding: 4px 14px;
+            background: var(--gold-dim);
+            color: var(--gold);
+            font-size: 0.72rem;
+            font-weight: 600;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        /* ===== PRODUCT ===== */
+        .product { background: var(--bg-secondary); }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+        }
+
+        .product-card {
+            background: var(--bg-surface);
+            border-radius: 18px;
+            padding: 44px 36px;
+            border: 1px solid rgba(255,255,255,0.03);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 3px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+        }
+
+        .product-card:hover {
+            border-color: var(--gold-border);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+        }
+
+        .product-card .product-icon {
+            width: 56px; height: 56px;
+            background: var(--gold-dim);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            font-size: 1.5rem;
+        }
+
+        .product-card h3 {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--white);
+            margin-bottom: 14px;
+        }
+
+        .product-card p {
+            font-size: 0.88rem;
+            color: var(--white-muted);
+            line-height: 1.8;
+            word-break: keep-all;
+            margin-bottom: 20px;
+        }
+
+        .product-stat {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .product-stat span {
+            font-size: 0.75rem;
+            padding: 5px 14px;
+            background: rgba(201,168,76,0.08);
+            border: 1px solid var(--gold-border);
+            border-radius: 6px;
+            color: var(--gold-light);
+            font-weight: 500;
+        }
+
+        /* ===== BUSINESS ===== */
+        .business { background: var(--bg-primary); }
+
+        .business-hero {
+            background: var(--bg-surface);
+            border-radius: 24px;
+            padding: 60px 50px;
+            border: 1px solid rgba(255,255,255,0.04);
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .business-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .business-hero .biz-label {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 0.95rem;
+            color: var(--gold);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .business-hero h3 {
+            font-weight: 800;
+            font-size: 1.6rem;
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+
+        .business-hero > p {
+            font-size: 0.92rem;
+            color: var(--white-dim);
+            max-width: 600px;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            word-break: keep-all;
+        }
+
+        .biz-stats {
+            display: flex;
+            gap: 48px;
+            flex-wrap: wrap;
+        }
+
+        .biz-stat-item {
+            text-align: left;
+        }
+
+        .biz-stat-item .stat-number {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1.1;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .biz-stat-item .stat-label {
+            font-size: 0.78rem;
+            color: var(--white-muted);
+            letter-spacing: 0.5px;
+        }
+
+        .biz-details {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 36px;
+        }
+
+        .biz-detail-tag {
+            padding: 8px 20px;
+            background: rgba(201,168,76,0.08);
+            border: 1px solid var(--gold-border);
+            border-radius: 8px;
+            font-size: 0.8rem;
+            color: var(--gold-light);
+            font-weight: 500;
+        }
+
+        .business-sub {
+            background: var(--bg-surface);
+            border-radius: 16px;
+            padding: 36px;
+            border: 1px solid rgba(255,255,255,0.03);
+        }
+
+        .business-sub h4 {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--white);
+            margin-bottom: 10px;
+        }
+
+        .business-sub p {
+            font-size: 0.85rem;
+            color: var(--white-muted);
+            line-height: 1.7;
+            word-break: keep-all;
+        }
+
+        /* ===== AWARDS ===== */
+        .awards { background: var(--bg-secondary); }
+
+        .awards-summary {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .award-count {
+            text-align: center;
+            padding: 28px 36px;
+            background: var(--bg-surface);
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.03);
+            min-width: 140px;
+        }
+
+        .award-count .num {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .award-count .label {
+            font-size: 0.75rem;
+            color: var(--white-muted);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .awards-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .award-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 22px 24px;
+            background: var(--bg-surface);
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.02);
+            transition: var(--transition);
+        }
+
+        .award-item:hover {
+            border-color: var(--gold-border);
+            background: var(--bg-surface-hover);
+        }
+
+        .award-item .award-icon {
+            width: 42px; height: 42px;
+            background: var(--gold-dim);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1rem;
+        }
+
+        .award-item .award-text h4 {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--white);
+            margin-bottom: 3px;
+        }
+
+        .award-item .award-text p {
+            font-size: 0.75rem;
+            color: var(--white-muted);
+        }
+
+        .award-item .award-rank {
+            margin-left: auto;
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 0.8rem;
+            color: var(--gold);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        /* ===== EDUCATION ===== */
+        .education { background: var(--bg-primary); }
+
+        .edu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .edu-block {
+            background: var(--bg-surface);
+            border-radius: 16px;
+            padding: 40px 36px;
+            border: 1px solid rgba(255,255,255,0.03);
+        }
+
+        .edu-block h3 {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 1.15rem;
+            color: var(--gold);
+            margin-bottom: 24px;
+        }
+
+        .edu-block h4 {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .edu-block p {
+            font-size: 0.85rem;
+            color: var(--white-muted);
+            margin-bottom: 4px;
+        }
+
+        .tools-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .tool-tag {
+            padding: 6px 16px;
+            background: var(--gold-dim);
+            border: 1px solid var(--gold-border);
+            border-radius: 6px;
+            font-size: 0.78rem;
+            color: var(--gold-light);
+            font-weight: 500;
+        }
+
+        .learning-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .learning-dot {
+            width: 6px; height: 6px;
+            background: var(--gold);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .learning-item span {
+            font-size: 0.88rem;
+            color: var(--white-dim);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--bg-primary);
+            padding: 60px 0;
+            text-align: center;
+            border-top: 1px solid rgba(201,168,76,0.08);
+        }
+
+        .footer-logo {
+            font-family: var(--sans);
+            font-weight: 800;
+            font-size: 1rem;
+            letter-spacing: 5px;
+            color: var(--gold);
+            margin-bottom: 14px;
+            text-transform: uppercase;
+        }
+
+        .footer-tagline {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 0.9rem;
+            color: var(--white-muted);
+            margin-bottom: 10px;
+        }
+
+        .footer-copy {
+            font-size: 0.7rem;
+            color: rgba(245,245,245,0.2);
+            letter-spacing: 1px;
+        }
+
+        /* ===== REVEAL ANIMATION ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .avatar-wrapper { width: 300px; height: 300px; }
+            .silhouette { width: 160px; height: 260px; }
+            .silhouette-head { width: 66px; height: 72px; }
+            .silhouette-neck { width: 26px; height: 16px; }
+            .silhouette-body { width: 150px; height: 172px; }
+            .strength-grid { grid-template-columns: repeat(2, 1fr); }
+            .biz-stats { gap: 32px; }
+        }
+
+        @media (max-width: 768px) {
+            section { padding: 100px 0; }
+
+            .nav-links { display: none; }
+
+            .hero-content {
+                flex-direction: column-reverse;
+                text-align: center;
+                gap: 40px;
+            }
+
+            .hero-desc { margin: 0 auto; }
+            .hero-scroll-hint { justify-content: center; }
+
+            .avatar-wrapper { width: 220px; height: 220px; }
+            .silhouette { width: 120px; height: 190px; }
+            .silhouette-head { width: 50px; height: 55px; }
+            .silhouette-neck { width: 20px; height: 12px; }
+            .silhouette-body { width: 115px; height: 123px; }
+
+            .strength-grid { grid-template-columns: 1fr; }
+
+            .timeline::before { left: 20px; }
+            .timeline-dot { left: 20px; }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                flex-direction: row;
+            }
+
+            .timeline-content,
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                width: calc(100% - 56px);
+                margin-left: 56px;
+                margin-right: 0;
+            }
+
+            .product-grid { grid-template-columns: 1fr; }
+
+            .business-hero { padding: 36px 24px; }
+
+            .biz-stats { gap: 24px; }
+            .biz-stat-item .stat-number { font-size: 2.2rem; }
+
+            .awards-list { grid-template-columns: 1fr; }
+            .awards-summary { gap: 16px; }
+            .award-count { min-width: 100px; padding: 20px 24px; }
+            .award-count .num { font-size: 2rem; }
+
+            .edu-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-name { font-size: 2.4rem; }
+            .biz-stats { flex-direction: column; gap: 20px; }
+            .biz-details { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header id="header">
+        <div class="container header-inner">
+            <div class="logo">WETHRU</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#product">Product</a></li>
+                <li><a href="#business">Business</a></li>
+                <li><a href="#awards">Awards</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <span class="hero-label">Strategic Planner</span>
+                    <h1 class="hero-name">전략기획가</h1>
+                    <p class="hero-sub">Strategic Planner · Business Developer</p>
+                    <p class="hero-desc">
+                        조직의 목표를 위해 자발적으로 학습하며, 지속 성장 가능한 전략가.
+                        현장에서 직접 부딪히며 '되는 사업'을 만들기 위해 노력합니다.
+                    </p>
+                    <div class="hero-scroll-hint">
+                        <span class="line"></span>
+                        <span>Scroll to explore</span>
+                    </div>
+                </div>
+                <div class="avatar-wrapper">
+                    <div class="avatar-circle">
+                        <div class="silhouette">
+                            <div class="silhouette-head"></div>
+                            <div class="silhouette-neck"></div>
+                            <div class="silhouette-body"></div>
+                        </div>
+                    </div>
+                    <span class="avatar-label">Portfolio Sample</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="reveal">
+                <span class="section-label">About</span>
+                <h2 class="section-title">성장의 '불편함'을 즐기는 항해사</h2>
+                <div class="section-divider"></div>
+                <p class="section-desc">
+                    조직의 목표를 위해 자발적으로 학습하며 지속 성장 가능한 전략가.
+                    팀원의 말이 내가 이해한 것과 같은지 항상 확인하며 경청하고,
+                    부족한 능력을 채우기 위한 별도의 노력을 멈추지 않습니다.
+                </p>
+            </div>
+            <div class="strength-grid reveal">
+                <div class="strength-card">
+                    <span class="card-num">01</span>
+                    <h3>의사소통</h3>
+                    <p>팀원의 말이 내가 이해한 것과 같은지 항상 확인하며 경청하는 사람</p>
+                </div>
+                <div class="strength-card">
+                    <span class="card-num">02</span>
+                    <h3>문제 발굴</h3>
+                    <p>현장에서 직접 300회 이상의 인터뷰로 문제를 정의하고 가설을 검증</p>
+                </div>
+                <div class="strength-card">
+                    <span class="card-num">03</span>
+                    <h3>끈기</h3>
+                    <p>모든 프로세스에 오너십을 갖고 맡은 바를 끝까지 책임지는 자세</p>
+                </div>
+                <div class="strength-card">
+                    <span class="card-num">04</span>
+                    <h3>성장 의지</h3>
+                    <p>부족한 역량을 채우기 위한 별도의 노력을 지속하며 스스로 학습</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== EXPERIENCE ===== -->
+    <section class="experience" id="experience">
+        <div class="container">
+            <div class="reveal">
+                <span class="section-label">Experience</span>
+                <h2 class="section-title">커리어 타임라인</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="timeline reveal">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2024.09 — 2024.11</span>
+                        <h3 class="timeline-role">글로벌 컨설팅펌 RA</h3>
+                        <p class="timeline-desc">
+                            대형 고객사 ERP 솔루션 개편에 따른 CRM 데이터 마이그레이션 작업에 참여.
+                            구 시스템 데이터를 신규 시스템으로 이관하며, 데이터 누락·버그 리포팅 및
+                            고객사 개발자와 디버깅 협업을 수행했습니다.
+                        </p>
+                        <span class="timeline-tag">데이터 마이그레이션</span>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2023.06 — 2023.08</span>
+                        <h3 class="timeline-role">B2B 하드웨어 스타트업 영업 인턴</h3>
+                        <p class="timeline-desc">
+                            1,400여 곳에 콜드메일 및 유선 영업 진행. 행사 수주 후 기획·총괄을 담당하며,
+                            클라이언트 미팅마다 보고서를 작성·제공하고,
+                            강연자 초청부터 케이터링까지 외부 커뮤니케이션을 총괄했습니다.
+                        </p>
+                        <span class="timeline-tag">영업 · 행사 기획</span>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2023.02 — 2023.04</span>
+                        <h3 class="timeline-role">서비스 기획 인턴</h3>
+                        <p class="timeline-desc">
+                            소개팅 앱 사용자 UX 개선 프로젝트에 참여. GA를 통한 Pain Point 발견,
+                            이벤트 트래킹 및 UI/UX 리서치를 수행하여 고객 체류시간 32% 향상,
+                            이탈률 42% 감소, 전환율 28% 향상에 기여했습니다.
+                        </p>
+                        <span class="timeline-tag">UX 개선 · 전환율 28%↑</span>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2022.12 — 2023.02</span>
+                        <h3 class="timeline-role">전략기획 인턴</h3>
+                        <p class="timeline-desc">
+                            고객사 5개를 담당하며 사업계획서·IR 작성, 시장조사 보고서 제작,
+                            사업 방향성 제안 및 미팅, 사후 CS 관리까지 컨설팅 전 과정을 경험했습니다.
+                        </p>
+                        <span class="timeline-tag">사업계획서 · IR</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PRODUCT ===== -->
+    <section class="product" id="product">
+        <div class="container">
+            <div class="reveal">
+                <span class="section-label">Product</span>
+                <h2 class="section-title">세상에 없는 서비스를 만드는 움직임</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="product-grid reveal">
+                <div class="product-card">
+                    <div class="product-icon">💬</div>
+                    <h3>인터뷰 매칭 플랫폼</h3>
+                    <p>
+                        정성적 인터뷰 참여자를 연결하는 솔루션 플랫폼을 기획.
+                        개발자 11명과 협업하며 서비스 기획자 겸 퍼블리셔로 참여,
+                        VoC 검증을 완료하고 한 달 이상 지속적인 매출을 창출했습니다.
+                    </p>
+                    <div class="product-stat">
+                        <span>개발자 11명 협업</span>
+                        <span>지속 매출 창출</span>
+                        <span>VoC 검증 완료</span>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">🏋️</div>
+                    <h3>AI 헬스 자세 진단 솔루션</h3>
+                    <p>
+                        웨이트 트레이닝 시 자세 불균형·부상 위험을 진단하는 솔루션 기획.
+                        LLM 파인튜닝 및 RAG 기획, 82명 사용 인터뷰를 진행했으며,
+                        헬스장 계약 체결까지 달성했습니다.
+                    </p>
+                    <div class="product-stat">
+                        <span>LLM/RAG 기획</span>
+                        <span>82명 인터뷰</span>
+                        <span>헬스장 계약 체결</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== BUSINESS ===== -->
+    <section class="business" id="business">
+        <div class="container">
+            <div class="reveal">
+                <span class="section-label">Business</span>
+                <h2 class="section-title">'되는 사업'을 만들기 위한 여정</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="business-hero reveal">
+                <span class="biz-label">Founder & CEO</span>
+                <h3>친환경 포장재 스타트업</h3>
+                <p>
+                    물에 녹아 잔류농약 제거가 가능한 과일 포장재를 개발.
+                    과수농가·일반소비자·농협을 대상으로 300회 이상의 심층 인터뷰로 수요를 검증하고,
+                    특허 출원, OEM·원재료 공급처 확보, 정부지원금 1.2억 확보까지 달성했습니다.
+                </p>
+                <div class="biz-stats">
+                    <div class="biz-stat-item">
+                        <span class="stat-number">1.2억</span>
+                        <span class="stat-label">정부지원금 확보</span>
+                    </div>
+                    <div class="biz-stat-item">
+                        <span class="stat-number">300+</span>
+                        <span class="stat-label">고객 인터뷰 횟수</span>
+                    </div>
+                    <div class="biz-stat-item">
+                        <span class="stat-number">337곳</span>
+                        <span class="stat-label">농협 영업 (중앙 16 + 단위 321)</span>
+                    </div>
+                </div>
+                <div class="biz-details">
+                    <span class="biz-detail-tag">특허 출원 완료</span>
+                    <span class="biz-detail-tag">OEM 업체 확보</span>
+                    <span class="biz-detail-tag">원재료 공급 확약</span>
+                    <span class="biz-detail-tag">시제품 2종 제작</span>
+                    <span class="biz-detail-tag">창업 기업 선정</span>
+                </div>
+            </div>
+            <div class="business-sub reveal">
+                <h4>인턴 채용 플랫폼</h4>
+                <p>
+                    중소기업과 인턴 수요자를 연결하는 플랫폼을 기획.
+                    대학생 21명의 인턴 연계를 완료했으나, 빠른 가설 검증 결과 시장성이 부족하다 판단하여 피봇.
+                    빠른 시도와 빠른 실패, 그리고 빠른 재시도의 중요성을 체화한 경험입니다.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== AWARDS ===== -->
+    <section class="awards" id="awards">
+        <div class="container">
+            <div class="reveal">
+                <span class="section-label">Awards</span>
+                <h2 class="section-title">수상 내역</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="awards-summary reveal">
+                <div class="award-count">
+                    <span class="num">15+</span>
+                    <span class="label">Total</span>
+                </div>
+                <div class="award-count">
+                    <span class="num">5</span>
+                    <span class="label">대상</span>
+                </div>
+                <div class="award-count">
+                    <span class="num">4</span>
+                    <span class="label">우수상</span>
+                </div>
+                <div class="award-count">
+                    <span class="num">4</span>
+                    <span class="label">장려상</span>
+                </div>
+                <div class="award-count">
+                    <span class="num">2</span>
+                    <span class="label">은상·기타</span>
+                </div>
+            </div>
+            <div class="awards-list reveal">
+                <div class="award-item">
+                    <div class="award-icon">🏆</div>
+                    <div class="award-text">
+                        <h4>실감미디어 경진대회</h4>
+                        <p>2024</p>
+                    </div>
+                    <span class="award-rank">수상</span>
+                </div>
+                <div class="award-item">
+                    <div class="award-icon">🌍</div>
+                    <div class="award-text">
+                        <h4>국제 창업 대회 (보스턴)</h4>
+                        <p>2024 · 글로벌 대회</p>
+                    </div>
+                    <span class="award-rank">은상</span>
+                </div>
+                <div class="award-item">
+                    <div class="award-icon">🏆</div>
+                    <div class="award-text">
+                        <h4>국제 연합 해커톤</h4>
+                        <p>2024 · 베트남 대학교 연합</p>
+                    </div>
+                    <span class="award-rank">대상</span>
+                </div>
+                <div class="award-item">
+                    <div class="award-icon">🏆</div>
+                    <div class="award-text">
+                        <h4>소셜벤처 창업 경진대회</h4>
+                        <p>2024</p>
+                    </div>
+                    <span class="award-rank">대상</span>
+                </div>
+                <div class="award-item">
+                    <div class="award-icon">🏆</div>
+                    <div class="award-text">
+                        <h4>공공기술 사업화 아이디어톤</h4>
+                        <p>2023</p>
+                    </div>
+                    <span class="award-rank">대상</span>
+                </div>
+                <div class="award-item">
+                    <div class="award-icon">🏆</div>
+                    <div class="award-text">
+                        <h4>특허 경진대회</h4>
+                        <p>2023 · 글로컬 이노베이터</p>
+                    </div>
+                    <span class="award-rank">대상</span>
+                </div>
+                <div class="award-item">
+                    <div class="award-icon">🥇</div>
+                    <div class="award-text">
+                        <h4>아이디어 해커톤</h4>
+                        <p>2024</p>
+                    </div>
+                    <span class="award-rank">우수상</span>
+                </div>
+                <div class="award-item">
+                    <div class="award-icon">🥇</div>
+                    <div class="award-text">
+                        <h4>리서치 챌린지 대회</h4>
+                        <p>2024</p>
+                    </div>
+                    <span class="award-rank">우수상</span>
+                </div>
+                <div class="award-item">
+                    <div class="award-icon">🥇</div>
+                    <div class="award-text">
+                        <h4>국제 해커톤</h4>
+                        <p>2023 · VCC 캠프</p>
+                    </div>
+                    <span class="award-rank">장려상</span>
+                </div>
+                <div class="award-item">
+                    <div class="award-icon">🥇</div>
+                    <div class="award-text">
+                        <h4>메이커 해커톤</h4>
+                        <p>2023</p>
+                    </div>
+                    <span class="award-rank">우수상</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== EDUCATION ===== -->
+    <section class="education" id="education">
+        <div class="container">
+            <div class="reveal">
+                <span class="section-label">Education & Skills</span>
+                <h2 class="section-title">학력 · 역량</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="edu-grid reveal">
+                <div class="edu-block">
+                    <h3>Education</h3>
+                    <h4>서울 소재 4년제 대학교</h4>
+                    <p>경영학과 졸업 예정</p>
+                    <div style="margin-top: 32px;">
+                        <h3>Tools</h3>
+                        <div class="tools-wrap">
+                            <span class="tool-tag">GA4</span>
+                            <span class="tool-tag">SQL</span>
+                            <span class="tool-tag">Figma</span>
+                            <span class="tool-tag">React 기초</span>
+                            <span class="tool-tag">Python 기초</span>
+                            <span class="tool-tag">Excel</span>
+                            <span class="tool-tag">PowerPoint</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="edu-block">
+                    <h3>Continuous Learning</h3>
+                    <div class="learning-item">
+                        <span class="learning-dot"></span>
+                        <span>재무분석 전문 과정 수료 (전략 재무 · 전략 엑셀)</span>
+                    </div>
+                    <div class="learning-item">
+                        <span class="learning-dot"></span>
+                        <span>머신러닝 및 LLM 활용 독학 중 (Udemy)</span>
+                    </div>
+                    <div class="learning-item">
+                        <span class="learning-dot"></span>
+                        <span>GA4 · SQL 기반 데이터 의사결정 역량 강화 중</span>
+                    </div>
+                    <div class="learning-item">
+                        <span class="learning-dot"></span>
+                        <span>ESG 전문 경영 강좌 수료</span>
+                    </div>
+                    <div class="learning-item">
+                        <span class="learning-dot"></span>
+                        <span>금융 연수 프로그램 수료</span>
+                    </div>
+                    <div class="learning-item">
+                        <span class="learning-dot"></span>
+                        <span>재무학회 리서치 · 펀드매니저 활동</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">WETHRU</div>
+            <p class="footer-tagline">Crafted by WeThru</p>
+            <p class="footer-copy">© 2026 WeThru. All rights reserved. This is a portfolio demo.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Sticky Header
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 60);
+        });
+
+        // Scroll Reveal
+        const reveals = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        reveals.forEach(el => revealObserver.observe(el));
+
+        // Active Nav Link
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const sections = document.querySelectorAll('section[id]');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const top = section.offsetTop - 200;
+                if (window.scrollY >= top) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinks.forEach(link => {
+                link.style.color = '';
+                if (link.getAttribute('href') === '#' + current) {
+                    link.style.color = 'var(--gold)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
