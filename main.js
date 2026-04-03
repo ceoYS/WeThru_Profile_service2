@@ -387,14 +387,4 @@
     initStarRating();
   });
 
-  function scalePhoneIframe() {
-    const container = document.querySelector('.mockup-mobile__screen');
-    const iframe = container ? container.querySelector('iframe') : null;
-    if (!container || !iframe) return;
-    const scale = container.offsetWidth / 375;
-    iframe.style.transform = 'scale(' + scale + ')';
-    container.style.height = (812 * scale) + 'px';
-  }
-  window.addEventListener('load', scalePhoneIframe);
-  window.addEventListener('resize', scalePhoneIframe);
 })();

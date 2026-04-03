@@ -577,7 +577,8 @@ button:focus-visible {
 
 /* Laptop Mockup */
 .mockup-laptop {
-  width: 480px;
+  width: 680px;
+  max-width: 900px;
   background: #1A1A1A;
   border-radius: 12px;
   padding: 12px 12px 0;
@@ -604,6 +605,7 @@ button:focus-visible {
 .mockup-laptop__screen {
   width: 100%;
   aspect-ratio: 16 / 10;
+  min-height: 520px;
   background: #0A0A0A;
   border-radius: 4px 4px 0 0;
   overflow: hidden;
@@ -808,12 +810,16 @@ button:focus-visible {
   position: absolute;
   right: -40px;
   bottom: -30px;
-  width: 130px;
+  width: 200px;
+  aspect-ratio: 9 / 19.5;
+  min-height: 580px;
   background: #1A1A1A;
-  border-radius: 16px;
+  border-radius: 24px;
   padding: 8px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
   z-index: 3;
+  display: flex;
+  flex-direction: column;
 }
 
 .mockup-mobile__notch {
@@ -827,19 +833,18 @@ button:focus-visible {
 .mockup-mobile__screen {
   position: relative;
   width: 100%;
+  height: 100%;
+  flex: 1;
   background: #0A0A0A;
   border-radius: 8px;
   overflow: hidden;
 }
 
 .mockup-mobile__screen iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 375px;
-  height: 812px;
+  position: static;
+  width: 100%;
+  height: 100%;
   border: none;
-  transform-origin: top left;
 }
 
 .mockup-mobile__line {
@@ -2863,12 +2868,12 @@ button:focus-visible {
   }
 
   .hero__mockup {
-    width: 80%;
+    width: 90%;
   }
 
   .mockup-laptop {
     width: 100%;
-    max-width: 420px;
+    max-width: 600px;
   }
 
   .mockup-wrapper {
@@ -3071,14 +3076,33 @@ button:focus-visible {
     width: 100%;
   }
 
+  .mockup-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
   .mockup-laptop {
-    max-width: 320px;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 350px;
+  }
+
+  .mockup-laptop__screen {
+    min-height: 350px;
   }
 
   .mockup-mobile {
-    right: -16px;
-    bottom: -20px;
-    width: 90px;
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: 280px;
+    max-width: 280px;
+    min-height: auto;
+    margin: 0 auto;
+    aspect-ratio: 9 / 19.5;
   }
 
   .mockup-mobile__screen {
