@@ -3309,3 +3309,422 @@ button:focus-visible {
   user-select: none;
   pointer-events: none;
 }
+
+/* ====== Fear Marketing Additions ====== */
+
+.problem__stat-fear {
+  font-size: 17px;
+  color: #e04a4a;
+  margin-top: 12px;
+  text-align: center;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.fear {
+  padding: 100px 0;
+  background: linear-gradient(180deg, #0C0C0C 0%, #1a0a0a 50%, #0C0C0C 100%);
+  text-align: center;
+}
+.fear__headline {
+  font-size: 36px;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+.fear__sub {
+  font-size: 18px;
+  color: #e04a4a;
+  margin-bottom: 48px;
+  font-weight: 600;
+}
+.fear__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  max-width: 800px;
+  margin: 0 auto 48px;
+}
+.fear__item {
+  flex: 1 1 340px;
+  background: rgba(224, 74, 74, 0.08);
+  border: 1px solid rgba(224, 74, 74, 0.25);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: left;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+.fear__icon {
+  font-size: 28px;
+  flex-shrink: 0;
+}
+.fear__text {
+  font-size: 16px;
+  color: #cccccc;
+  line-height: 1.5;
+}
+.fear__cta-text {
+  font-size: 20px;
+  color: #e04a4a;
+  line-height: 1.6;
+}
+
+@media (max-width: 767px) {
+  .fear { padding: 60px 0; }
+  .fear__headline { font-size: 26px; }
+  .fear__sub { font-size: 15px; margin-bottom: 32px; }
+  .fear__item { flex: 1 1 100%; }
+  .fear__cta-text { font-size: 17px; }
+}
+
+.whynow__loss {
+  font-size: 13px;
+  color: #e04a4a;
+  margin-top: 8px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.pricing__urgency {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(224, 74, 74, 0.1);
+  border: 1px solid rgba(224, 74, 74, 0.3);
+  border-radius: 100px;
+  padding: 10px 24px;
+  font-size: 15px;
+  color: #e04a4a;
+  font-weight: 600;
+  margin-bottom: 40px;
+}
+.pricing__urgency-icon {
+  font-size: 18px;
+}
+
+.cta__fear {
+  font-size: 17px;
+  color: #e04a4a;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+@media (max-width: 767px) {
+  .cta__fear { font-size: 14px; }
+}
+
+.testimonial__before {
+  color: #888888;
+  font-size: 14px;
+  font-style: italic;
+}
+
+/* ============================================
+   Mobile v2 — overrides (max-width: 767px)
+   ============================================ */
+@media (max-width: 767px) {
+
+  /* ===== Nav ===== */
+  .nav__links {
+    display: none;
+  }
+
+  /* ===== 공통 ===== */
+  .container {
+    padding: 0 20px;
+  }
+
+  section {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  /* ===== Hero ===== */
+  .hero__content {
+    flex-direction: column;
+    gap: 32px;
+    padding: 100px 24px 40px;
+    min-height: auto;
+    text-align: center;
+  }
+
+  .hero__text {
+    min-width: unset;
+    max-width: 100%;
+  }
+
+  .hero__headline {
+    font-size: 36px;
+  }
+
+  .hero__sub {
+    font-size: 15px;
+  }
+
+  .hero__cta-group {
+    flex-direction: row;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .hero__cta-group .btn-primary,
+  .hero__cta-group .btn-outline {
+    width: auto;
+    padding: 14px 24px;
+    font-size: 14px;
+  }
+
+  .hero__mockup {
+    max-width: 100%;
+    order: -1;
+  }
+
+  .mockup-wrapper {
+    transform: none;
+    justify-content: center;
+  }
+
+  .mockup-laptop {
+    width: 100%;
+    max-width: 340px;
+  }
+
+  .mockup-laptop__screen {
+    min-height: 220px;
+  }
+
+  .hero__targets {
+    position: static;
+    width: 100%;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 24px;
+  }
+
+  .hero__target-badge {
+    font-size: 11px;
+    padding: 5px 10px;
+  }
+
+  .hero__target-badge--warm {
+    font-size: 11px;
+    padding: 5px 10px;
+  }
+
+  .hero__proof {
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .hero__proof-number {
+    font-size: 28px;
+  }
+
+  .hero__proof-label {
+    font-size: 11px;
+  }
+
+  .hero__proof-divider {
+    height: 28px;
+  }
+
+  /* ===== Problem ===== */
+  .problem__headline {
+    font-size: 28px;
+  }
+
+  .problem__comparison {
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .problem__col--old {
+    margin-right: 0;
+  }
+
+  .problem__col--new {
+    margin-left: 0;
+  }
+
+  .problem__vs {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    margin: -24px auto;
+    z-index: 10;
+  }
+
+  .problem__card-mock--paper {
+    height: 240px;
+  }
+
+  .problem__card-mock--profile {
+    height: 240px;
+  }
+
+  .problem__stat-text {
+    font-size: 20px;
+  }
+
+  .problem__stat-fear {
+    font-size: 14px;
+  }
+
+  /* ===== Fear ===== */
+  .fear {
+    padding: 60px 0;
+  }
+
+  .fear__headline {
+    font-size: 26px;
+  }
+
+  .fear__sub {
+    font-size: 15px;
+    margin-bottom: 32px;
+  }
+
+  .fear__list {
+    gap: 16px;
+  }
+
+  .fear__item {
+    flex: 1 1 100%;
+    padding: 20px;
+  }
+
+  .fear__icon {
+    font-size: 24px;
+  }
+
+  .fear__text {
+    font-size: 14px;
+  }
+
+  .fear__cta-text {
+    font-size: 17px;
+  }
+
+  /* ===== WhyNow ===== */
+  .whynow__headline {
+    font-size: 28px;
+  }
+
+  .whynow__stats {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .whynow__stat:not(:last-child)::after {
+    display: none;
+  }
+
+  .whynow__stat-number {
+    font-size: 48px;
+  }
+
+  .whynow__loss {
+    font-size: 12px;
+  }
+
+  /* ===== Showcase ===== */
+  .showcase__headline {
+    font-size: 28px;
+  }
+
+  .showcase__main {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .showcase__browser {
+    max-width: 100%;
+  }
+
+  .showcase__screen {
+    height: 400px;
+  }
+
+  .showcase__tabs {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  .showcase__tab {
+    min-width: 0;
+    flex: 1;
+    padding: 12px 8px;
+  }
+
+  .showcase__tab-name {
+    font-size: 12px;
+  }
+
+  .showcase__tab-desc {
+    font-size: 10px;
+    display: block;
+  }
+
+  /* ===== Pricing ===== */
+  .pricing__headline {
+    font-size: 28px;
+  }
+
+  .pricing__urgency {
+    font-size: 13px;
+    padding: 8px 16px;
+    margin-bottom: 24px;
+  }
+
+  .pricing__urgency-icon {
+    font-size: 14px;
+  }
+
+  .pricing__cards {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .pricing__card {
+    width: 100%;
+    min-height: auto;
+  }
+
+  /* ===== Process ===== */
+  .process__headline {
+    font-size: 28px;
+  }
+
+  /* ===== Testimonials ===== */
+  .testimonials__headline {
+    font-size: 28px;
+  }
+
+  .testimonial__before {
+    font-size: 12px;
+  }
+
+  /* ===== CTA ===== */
+  .cta__headline {
+    font-size: 28px;
+  }
+
+  .cta__fear {
+    font-size: 14px;
+  }
+
+  /* ===== Cross-sell ===== */
+  .cross-sell__cards {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
