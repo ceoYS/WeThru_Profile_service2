@@ -3683,7 +3683,7 @@ button:focus-visible {
     width: 1200px;
     height: 800px;
     transform-origin: top left;
-    transform: scale(calc(100vw / 1240));
+    transform: scale(0.3);
   }
 
   .showcase__slide iframe {
