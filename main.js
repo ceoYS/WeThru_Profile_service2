@@ -211,23 +211,38 @@
     var slides = document.querySelectorAll('.showcase__slide');
     var tagGroups = document.querySelectorAll('.showcase__tags-group');
     var urlEl = document.getElementById('showcaseUrl');
-    var urls = ['profile.wethru.co.kr', 'startup.wethru.co.kr', 'minimal.wethru.co.kr'];
+    var urls = ['BASIC.WETHRU.CO.KR', 'PRO.WETHRU.CO.KR', 'PREMIUM.WETHRU.CO.KR'];
 
     if (!tabs.length) return;
 
+    function activateTab(tab) {
+      var idx = parseInt(tab.getAttribute('data-tab'), 10);
+      if (Number.isNaN(idx) || !slides[idx]) return;
+
+      tabs.forEach(function (t) {
+        t.classList.remove('is-active');
+        t.setAttribute('aria-pressed', 'false');
+      });
+      slides.forEach(function (s) { s.classList.remove('is-active'); });
+      tagGroups.forEach(function (g) { g.classList.remove('is-active'); });
+
+      tab.classList.add('is-active');
+      tab.setAttribute('aria-pressed', 'true');
+      slides[idx].classList.add('is-active');
+      if (tagGroups[idx]) tagGroups[idx].classList.add('is-active');
+      if (urlEl) urlEl.textContent = urls[idx];
+    }
+
     tabs.forEach(function (tab) {
       tab.addEventListener('click', function () {
-        var idx = parseInt(tab.getAttribute('data-tab'), 10);
+        activateTab(tab);
+      });
 
-        tabs.forEach(function (t) { t.classList.remove('is-active'); });
-        slides.forEach(function (s) { s.classList.remove('is-active'); });
-        tagGroups.forEach(function (g) { g.classList.remove('is-active'); });
-
-        tab.classList.add('is-active');
-        slides[idx].classList.add('is-active');
-        if (tagGroups[idx]) tagGroups[idx].classList.add('is-active');
-        if (urlEl) urlEl.textContent = urls[idx];
-
+      tab.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          activateTab(tab);
+        }
       });
     });
   }

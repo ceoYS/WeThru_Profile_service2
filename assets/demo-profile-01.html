@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Business Profile | 현대건설</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap');
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap');
         :root {
             --charcoal: #1a1a2e;
             --deep-navy: #16213e;
@@ -35,15 +36,15 @@
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
         html { scroll-behavior: smooth; }
         body {
-            font-family: 'Noto Sans KR', sans-serif;
+            font-family: 'Pretendard Variable', 'Pretendard', sans-serif;
             background-color: var(--cream);
             color: var(--text-dark);
             line-height: 1.7;
             overflow-x: hidden;
             transition: background-color 0.4s ease;
         }
-        .serif { font-family: 'Cormorant Garamond', 'Noto Serif KR', serif; }
-        h1, h2, h3 { font-family: 'Cormorant Garamond', 'Noto Serif KR', serif; }
+        .serif { font-family: 'Cormorant Garamond', serif; }
+        h1, h2, h3 { font-family: 'Pretendard Variable', 'Pretendard', sans-serif; }
         ul { list-style: none; }
         a { text-decoration: none; color: inherit; transition: var(--transition); }
         .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
@@ -196,7 +197,7 @@
         .value-card:hover::before { width: 100%; }
         .value-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(176,141,87,0.08); border-color: transparent; }
         .value-card .number { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: var(--bronze); opacity: 0.4; line-height: 1; margin-bottom: 20px; }
-        .value-card h3 { font-size: 1.15rem; font-weight: 500; margin-bottom: 14px; font-family: 'Noto Sans KR', sans-serif; }
+        .value-card h3 { font-size: 1.15rem; font-weight: 500; margin-bottom: 14px; font-family: 'Pretendard Variable', 'Pretendard', sans-serif; }
         .value-card p { font-size: 0.88rem; color: var(--text-mid); line-height: 1.7; }
         .expertise-banner { background: var(--charcoal); padding: 80px 0; position: relative; overflow: hidden; }
         .expertise-banner::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 50%, rgba(176,141,87,0.06) 0%, transparent 70%); }
@@ -217,12 +218,12 @@
         .timeline-item .dot { position: absolute; left: 136px; top: 8px; width: 9px; height: 9px; background: var(--bronze); border-radius: 50%; border: 3px solid var(--white); z-index: 1; }
         [data-theme="dark"] .timeline-item .dot { border-color: var(--white); }
         .timeline-item .content { flex: 1; padding-left: 20px; }
-        .timeline-item .content h4 { font-size: 1.05rem; font-weight: 600; margin-bottom: 4px; font-family: 'Noto Sans KR', sans-serif; }
+        .timeline-item .content h4 { font-size: 1.05rem; font-weight: 600; margin-bottom: 4px; font-family: 'Pretendard Variable', 'Pretendard', sans-serif; }
         .timeline-item .content .role { font-size: 0.82rem; color: var(--bronze); font-weight: 500; margin-bottom: 6px; }
         .timeline-item .content p { font-size: 0.85rem; color: var(--text-light); }
         .badge-current { display: inline-block; font-size: 0.6rem; padding: 3px 10px; background: var(--bronze); color: #fff; border-radius: 2px; font-weight: 700; letter-spacing: 1px; margin-left: 10px; vertical-align: middle; text-transform: uppercase; }
         .current-block { background: var(--white); border: 1px solid var(--divider); border-left: 3px solid var(--bronze); border-radius: 2px; padding: 20px 24px; margin-bottom: 8px; }
-        .current-block h4 { font-size: 1.05rem; font-weight: 600; margin-bottom: 4px; font-family: 'Noto Sans KR', sans-serif; }
+        .current-block h4 { font-size: 1.05rem; font-weight: 600; margin-bottom: 4px; font-family: 'Pretendard Variable', 'Pretendard', sans-serif; }
         .current-block .role { font-size: 0.82rem; color: var(--bronze); font-weight: 500; margin-bottom: 4px; }
         .current-block p { font-size: 0.85rem; color: var(--text-light); }
         .credentials-layout { display: grid; grid-template-columns: 1fr 1px 1fr; gap: 60px; }
@@ -231,7 +232,7 @@
         .cred-item { margin-bottom: 28px; padding-bottom: 28px; border-bottom: 1px solid var(--divider); }
         .cred-item:last-child { border-bottom: none; }
         .cred-item .year { font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; color: var(--bronze); font-weight: 600; margin-bottom: 6px; display: block; }
-        .cred-item h4 { font-size: 1rem; font-weight: 500; margin-bottom: 4px; font-family: 'Noto Sans KR', sans-serif; }
+        .cred-item h4 { font-size: 1rem; font-weight: 500; margin-bottom: 4px; font-family: 'Pretendard Variable', 'Pretendard', sans-serif; }
         .cred-item p { font-size: 0.85rem; color: var(--text-light); }
         .cert-badge { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; background: var(--charcoal); color: #F1F5F9; border-radius: 2px; font-size: 0.85rem; font-weight: 500; margin-right: 10px; margin-bottom: 10px; }
         [data-theme="dark"] .cert-badge { background: var(--slate); border: 1px solid var(--divider); }
@@ -246,7 +247,7 @@
         .contact-item { background: rgba(255,255,255,0.03); border: 1px solid rgba(176,141,87,0.15); border-radius: 2px; padding: 28px 20px; text-align: center; transition: var(--transition); cursor: pointer; position: relative; }
         .contact-item:hover { border-color: var(--bronze); background: rgba(176,141,87,0.05); transform: translateY(-4px); }
         .contact-item .c-icon { font-size: 1.5rem; margin-bottom: 12px; display: block; }
-        .contact-item h4 { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 2px; color: var(--bronze); margin-bottom: 8px; font-family: 'Noto Sans KR', sans-serif; }
+        .contact-item h4 { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 2px; color: var(--bronze); margin-bottom: 8px; font-family: 'Cormorant Garamond', serif; }
         .contact-item p { font-size: 0.82rem; opacity: 0.8; }
         .contact-item .sub { font-size: 0.68rem; opacity: 0.4; margin-top: 4px; }
         .copy-tooltip { position: absolute; top: -32px; left: 50%; transform: translateX(-50%) scale(0.8); background: var(--bronze); color: var(--charcoal); padding: 5px 14px; border-radius: 2px; font-size: 0.72rem; font-weight: 700; opacity: 0; pointer-events: none; transition: all 0.3s ease; white-space: nowrap; }
@@ -308,7 +309,7 @@
             <div class="hero-content">
                 <div class="hero-text">
                     <span class="overline">Hyundai Engineering & Construction</span>
-                    <h1 class="serif"><span class="mosaic-name">여철기</span></h1>
+                    <h1><span class="mosaic-name">여철기</span></h1>
                     <span class="title-en mosaic-name">Cheolgi Yeo</span>
                     <div class="typing-container">
                         <span id="typing-text"></span><span class="cursor"></span>
@@ -332,7 +333,7 @@
         <div class="container">
             <div class="section-header reveal">
                 <span class="overline">About</span>
-                <h2 class="serif">소개</h2>
+                <h2>소개</h2>
                 <div class="line"></div>
             </div>
             <p class="about-statement reveal">현장 시공에서 시작하여 <em>해외사업, 영업, 구매, 채권관리, 경영지원</em>까지<br>건설사업의 전 과정을 직접 경험해 왔습니다.<br><br>특히 <em>주택·도시정비 영업</em>과 <em>민간사업 현장지원</em>을 두루 거치며<br>사업의 수주부터 준공까지 흐름을 꿰뚫는 시야를 갖추게 되었습니다.<br><br>어느 자리에서든, 함께 일하는 분들이 본업에 집중할 수 있도록<br><em>든든히 뒷받침하는 것</em>이 저의 역할이라고 생각합니다.</p>
@@ -377,7 +378,7 @@
         <div class="container">
             <div class="section-header reveal">
                 <span class="overline">Career</span>
-                <h2 class="serif">주요 이력</h2>
+                <h2>주요 이력</h2>
                 <div class="line"></div>
             </div>
             <p class="career-intro reveal">현장에서 시작하여 다양한 부서를 거치며 <strong>약 <span class="count-up" data-target="30" data-suffix="년간">0</span></strong><br><strong>시공, 영업, 구매, 해외사업, 경영지원</strong> 등<br>여러 분야에서 경험을 쌓아올 수 있었습니다.<br><span style="font-size:0.88rem;opacity:0.7;">그 중 <strong>약 <span class="count-up" data-target="19" data-suffix="년">0</span></strong>은 국내외 건설현장에서 직접 뛰었습니다.</span></p>
@@ -499,7 +500,7 @@
         <div class="container">
             <div class="section-header reveal">
                 <span class="overline">Credentials</span>
-                <h2 class="serif">자격 · 학력 · 수상</h2>
+                <h2>자격 · 학력 · 수상</h2>
                 <div class="line"></div>
             </div>
             <div class="credentials-layout reveal">
