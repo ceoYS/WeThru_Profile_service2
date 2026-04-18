@@ -2193,7 +2193,16 @@ button:focus-visible {
 }
 
 .pricing__price {
-  margin-bottom: 32px;
+  margin-bottom: 18px;
+}
+
+.pricing__desc {
+  min-height: 48px;
+  margin-bottom: 24px;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  line-height: 1.65;
+  word-break: keep-all;
 }
 
 .pricing__amount {
