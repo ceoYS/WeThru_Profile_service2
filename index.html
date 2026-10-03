@@ -70,6 +70,28 @@ a{text-decoration:none;color:inherit}
 .phonerows{padding:10px 17px}.prow{padding:13px 3px;border-bottom:1px solid #eee;display:flex;justify-content:space-between;align-items:center}.prow strong{font-size:13px}.prow span{font-size:11px;color:#999}
 .profilecopy h2{font-size:45px;line-height:1.14;letter-spacing:-.05em;margin:0 0 16px}.profilecopy>p{color:#75716b;line-height:1.75;font-size:15px}
 .features{margin-top:28px;display:grid;gap:12px}.feature{display:grid;grid-template-columns:52px 1fr;gap:17px;align-items:center;padding:12px 0}.ficon{width:52px;height:52px;border-radius:50%;background:#ded3bd;display:grid;place-items:center;font-weight:800}.feature b{display:block;font-size:17px;margin-bottom:5px}.feature span{font-size:13px;color:#77736d}
+.examples{background:#f7f4ee}
+.example-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 24px}
+.example-tab{border:1px solid #d9d4cb;background:#fff;color:#5f5b55;border-radius:999px;padding:9px 14px;font-size:12px;font-weight:700}
+.example-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.example-card{background:#fff;border:1px solid #ded9d0;border-radius:14px;overflow:hidden;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.example-card:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(31,27,20,.08);border-color:#c9b78f}
+.example-visual{height:210px;position:relative;overflow:hidden;background:#ebe7de}
+.example-visual.business-a{background:linear-gradient(135deg,#111 0 52%,#c4a769 52% 53%,#2a241c 53% 100%)}
+.example-visual.business-b{background:linear-gradient(160deg,#eee8df,#f9f6ef 50%,#bca887)}
+.example-visual.business-c{background:linear-gradient(145deg,#1a1a19,#0c0c0c)}
+.example-phone{position:absolute;width:104px;height:190px;border:6px solid #111;border-radius:20px;background:#fff;left:50%;top:22px;transform:translateX(-50%);box-shadow:0 14px 28px rgba(0,0,0,.18);overflow:hidden}
+.example-phone:before{content:"";display:block;height:78px;background:linear-gradient(145deg,#cbb58d,#383229)}
+.example-phone:after{content:"PROFILE";position:absolute;left:9px;bottom:12px;font-size:10px;font-weight:800;letter-spacing:.12em;color:#555}
+.example-campus{background:linear-gradient(135deg,#f0ece3,#ded8cc);display:flex;align-items:center;justify-content:center}
+.example-campus-card{width:80%;height:72%;background:#fff;border-radius:8px;box-shadow:0 10px 28px rgba(0,0,0,.1);padding:18px;position:relative}
+.example-campus-card:before{content:"";position:absolute;left:18px;top:18px;width:44px;height:44px;border-radius:50%;background:#d9d4ca}
+.example-campus-card:after{content:"CAREER PROFILE";position:absolute;left:18px;bottom:18px;font-size:11px;font-weight:800;letter-spacing:.12em}
+.example-body{padding:20px}
+.example-kind{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#99948b;font-weight:700}
+.example-body h3{font-size:19px;margin:7px 0 8px}.example-body p{font-size:13px;line-height:1.6;color:#77736c;margin:0 0 16px;min-height:62px}
+.example-link{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;color:#161513}
+.example-note{font-size:11px;color:#99958e;margin-top:17px;line-height:1.6}
 .usegrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.use{background:#faf8f4;border:1px solid #e0dcd3;border-radius:10px;overflow:hidden}.useart{height:124px;background:linear-gradient(135deg,#d8c8ad,#f7f3ea);position:relative}.use:nth-child(2) .useart{background:linear-gradient(135deg,#c9d6d4,#e8eeee)}.use:nth-child(3) .useart{background:linear-gradient(135deg,#e6e2dc,#fafafa)}.use:nth-child(4) .useart{background:linear-gradient(135deg,#d9d7e5,#f0ecf6)}
 .cardghost{width:125px;height:73px;background:#fff;box-shadow:0 9px 18px rgba(0,0,0,.13);position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-7deg);border-radius:3px}
 .cardghost:after{content:"QR";position:absolute;right:10px;bottom:8px;font-size:18px;font-weight:900}
@@ -82,10 +104,10 @@ a{text-decoration:none;color:inherit}
 .cta{background:linear-gradient(90deg,rgba(10,10,10,.98),rgba(10,10,10,.84)),radial-gradient(circle at 78% 35%,#82674a,#171512 48%,#0d0d0c);color:#fff;padding:78px 0}
 .ctagrid{display:grid;grid-template-columns:1fr .8fr;gap:40px;align-items:center}.cta h2{font-size:43px;line-height:1.14;margin:0 0 16px}.cta p{color:#c1bdb4;line-height:1.7;font-size:14px}.ctacard{height:210px;width:360px;justify-self:end;background:#111;border:1px solid #4a4133;border-radius:7px;transform:rotate(-4deg);box-shadow:0 30px 60px rgba(0,0,0,.34);display:flex;align-items:center;justify-content:center;gap:30px}.ctacard strong{letter-spacing:.18em}.ctaqr{width:82px;height:82px;background:#fff;display:grid;grid-template-columns:repeat(8,1fr);gap:1px;padding:7px}.ctaqr i{background:#111}.ctaqr i:nth-child(2n){background:#fff}.ctaqr i:nth-child(5n+1){background:#111}
 footer{background:#0d0d0c;color:#68645e;padding:24px 0;font-size:11px}
-@media(max-width:950px){
+@media(max-width:950px){ .example-grid{grid-template-columns:1fr 1fr}
  .links{display:none}.heroin,.profilegrid,.ctagrid{grid-template-columns:1fr}.hero{min-height:auto}.heroin{padding:60px 0}.visual{height:470px}.compare{grid-template-columns:1fr 1fr}.compare-intro{grid-column:1/-1}.usegrid{grid-template-columns:1fr 1fr}.ctacard{justify-self:start}.plangrid{grid-template-columns:1fr}.plan{min-height:auto}.pdesc{min-height:0}
 }
-@media(max-width:640px){
+@media(max-width:640px){ .example-grid{grid-template-columns:1fr}.example-visual{height:190px}
  .wrap{width:min(calc(100% - 28px),var(--max))}.nav{height:62px}.topcta{padding:9px 12px;font-size:12px}
  .hero h1{font-size:43px}.hero p{font-size:16px}.visual{height:390px}.bizcard{width:250px;height:145px;padding:20px}.bizcard.white{right:10px;top:40px}.bizcard.black{right:0;bottom:42px}.cardname{font-size:15px}.role{font-size:9px}.company{font-size:9px}.contact{left:20px;bottom:18px;font-size:8px}.qrbox{width:60px;height:60px;margin:7px auto 3px;padding:5px}.qrtext{font-size:8px}
  .section{padding:62px 0}.sectionhead{display:block}.sectionhead h2{font-size:31px}.sectionhead p{margin-top:15px}.compare{grid-template-columns:1fr}.compare-intro{grid-column:auto}.profilegrid{gap:38px}.phone{width:288px;height:560px}.phonehero{height:225px}.profilecopy h2{font-size:34px}.usegrid{grid-template-columns:1fr}.planhead{display:block}.planhead h2{font-size:31px}.planhead p{text-align:left;margin-top:12px}.cta h2{font-size:33px}.ctacard{width:100%;height:175px}
@@ -96,7 +118,7 @@ footer{background:#0d0d0c;color:#68645e;padding:24px 0;font-size:11px}
 <nav class="nav">
  <div class="wrap navin">
   <a class="logo" href="#top">WETHRU</a>
-  <div class="links"><a href="#service">서비스 소개</a><a href="#profile">실제 예시</a><a href="#use">이용 안내</a><a href="#plan">가격</a></div>
+  <div class="links"><a href="#service">서비스 소개</a><a href="#examples">실제 예시</a><a href="#use">이용 안내</a><a href="#plan">가격</a></div>
   <a class="topcta" href="https://pf.kakao.com/_wRVBX/friend" target="_blank" rel="noopener">상담 신청하기</a>
  </div>
 </nav>
@@ -109,7 +131,7 @@ footer{background:#0d0d0c;color:#68645e;padding:24px 0;font-size:11px}
    <p>QR코드 하나로 나의 이력, 사업, 포트폴리오까지.<br>지금의 나와 내가 하는 일을 더 잘 보여줄 수 있는 디지털 비즈니스 프로필입니다.</p>
    <div class="actions">
     <a class="btn dark" href="https://pf.kakao.com/_wRVBX/friend" target="_blank" rel="noopener">상담 신청하기 →</a>
-    <a class="btn" href="#profile">실제 예시 보기</a>
+    <a class="btn" href="#examples">실제 예시 보기</a>
    </div>
    <div class="pricequick"><strong>199,000원</strong><span>VAT 포함 · BASIC 입문형</span></div>
   </div>
@@ -146,6 +168,48 @@ footer{background:#0d0d0c;color:#68645e;padding:24px 0;font-size:11px}
  </div>
 </section>
 
+<section class="section examples" id="examples">
+ <div class="wrap">
+  <div class="sectionhead">
+   <div><div class="eyebrow">Real Examples</div><h2>어떤 사람에게 필요한지,<br>실제 예시로 확인해보세요.</h2></div>
+   <p>대표·창업자용 비즈니스 프로필뿐 아니라, 취업을 준비하는 학생과 직무 지원자에게도 같은 방식으로 활용할 수 있습니다.</p>
+  </div>
+  <div class="example-tabs">
+   <span class="example-tab">대표 · 창업자</span>
+   <span class="example-tab">사업 소개</span>
+   <span class="example-tab">취업 · 커리어</span>
+  </div>
+  <div class="example-grid">
+   <a class="example-card" href="https://profile.wethru.com/assets/demo-profile-03.html" target="_blank" rel="noopener">
+    <div class="example-visual business-b"><div class="example-phone"></div></div>
+    <div class="example-body"><div class="example-kind">Business · Basic</div><h3>간단 소개형 BASIC</h3><p>이름, 역할, 핵심 서비스와 연락처를 짧고 깔끔하게 정리한 비즈니스 프로필입니다.</p><span class="example-link">예시 보러가기 →</span></div>
+   </a>
+   <a class="example-card" href="https://profile.wethru.com/assets/demo-profile-02.html" target="_blank" rel="noopener">
+    <div class="example-visual business-a"><div class="example-phone"></div></div>
+    <div class="example-body"><div class="example-kind">Business · Pro</div><h3>사업 소개형 PRO</h3><p>대표와 사업, 포트폴리오, 문의 흐름까지 한 번에 보여주는 소개 방식입니다.</p><span class="example-link">예시 보러가기 →</span></div>
+   </a>
+   <a class="example-card" href="https://profile.wethru.com/assets/demo-profile-01.html" target="_blank" rel="noopener">
+    <div class="example-visual business-c"><div class="example-phone"></div></div>
+    <div class="example-body"><div class="example-kind">Business · Premium</div><h3>대표 프로필형 PREMIUM</h3><p>이력, 성과, 전문성처럼 ‘왜 믿을 만한 사람인지’를 더 깊게 보여주는 프로필입니다.</p><span class="example-link">예시 보러가기 →</span></div>
+   </a>
+
+   <a class="example-card" href="https://career.wethru.com/campus-v4/cases/case-01/" target="_blank" rel="noopener">
+    <div class="example-visual example-campus"><div class="example-campus-card"></div></div>
+    <div class="example-body"><div class="example-kind">Campus · Career</div><h3>리테일·고객경험 지원자</h3><p>흩어진 현장 경험을 정리해 ‘어떤 직무 강점을 가진 사람인지’를 먼저 보여주는 커리어 프로필입니다.</p><span class="example-link">예시 보러가기 →</span></div>
+   </a>
+   <a class="example-card" href="https://career.wethru.com/campus-v4/cases/case-02/" target="_blank" rel="noopener">
+    <div class="example-visual example-campus"><div class="example-campus-card"></div></div>
+    <div class="example-body"><div class="example-kind">Campus · Career</div><h3>데이터 기반 마케팅 지원자</h3><p>마케팅·자동화 경험을 단순 도구 나열이 아니라 ‘구조를 설계하는 사람’으로 보여주는 예시입니다.</p><span class="example-link">예시 보러가기 →</span></div>
+   </a>
+   <a class="example-card" href="https://career.wethru.com/campus-v4/cases/case-03/" target="_blank" rel="noopener">
+    <div class="example-visual example-campus"><div class="example-campus-card"></div></div>
+    <div class="example-body"><div class="example-kind">Campus · Career</div><h3>커머스·그로스 지원자</h3><p>상품과 프로모션 경험을 성장 흐름으로 정리해 직무 포지셔닝을 명확하게 보여주는 예시입니다.</p><span class="example-link">예시 보러가기 →</span></div>
+   </a>
+  </div>
+  <p class="example-note">Campus 예시는 공개 동의된 익명 사례만 연결합니다. 실제 개인식별 정보는 공개하지 않습니다.</p>
+ </div>
+</section>
+
 <section class="section" id="use">
  <div class="wrap"><div class="sectionhead"><div><div class="eyebrow">Use Case</div><h2>이런 상황에서 활용할 수 있습니다.</h2></div><p>명함뿐만 아니라 다양한 접점에서 하나의 링크로 나를 소개할 수 있습니다.</p></div>
  <div class="usegrid">
@@ -168,7 +232,7 @@ footer{background:#0d0d0c;color:#68645e;padding:24px 0;font-size:11px}
 </section>
 
 <section class="cta">
- <div class="wrap ctagrid"><div><div class="eyebrow">Start with WeThru</div><h2>지금, 나를 제대로 보여주는<br>비즈니스 프로필을 시작해보세요.</h2><p>명함, 카카오톡, 이메일 어디서든<br>하나의 링크로 더 많은 기회를 만들 수 있습니다.</p><div class="actions"><a class="btn" style="background:#fff;border-color:#fff;color:#111" href="https://pf.kakao.com/_wRVBX/friend" target="_blank" rel="noopener">상담 신청하기 →</a><a class="btn" style="border-color:#777;color:#fff" href="#profile">실제 예시 보기</a></div></div><div class="ctacard"><strong>WETHRU</strong><div class="ctaqr"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div>
+ <div class="wrap ctagrid"><div><div class="eyebrow">Start with WeThru</div><h2>지금, 나를 제대로 보여주는<br>비즈니스 프로필을 시작해보세요.</h2><p>명함, 카카오톡, 이메일 어디서든<br>하나의 링크로 더 많은 기회를 만들 수 있습니다.</p><div class="actions"><a class="btn" style="background:#fff;border-color:#fff;color:#111" href="https://pf.kakao.com/_wRVBX/friend" target="_blank" rel="noopener">상담 신청하기 →</a><a class="btn" style="border-color:#777;color:#fff" href="#examples">실제 예시 보기</a></div></div><div class="ctacard"><strong>WETHRU</strong><div class="ctaqr"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div>
 </section>
 <footer><div class="wrap">© WeThru · Business Profile Service</div></footer>
 </body>
