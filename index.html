@@ -76,17 +76,12 @@ a{text-decoration:none;color:inherit}
 .example-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .example-card{background:#fff;border:1px solid #ded9d0;border-radius:14px;overflow:hidden;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
 .example-card:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(31,27,20,.08);border-color:#c9b78f}
-.example-visual{height:210px;position:relative;overflow:hidden;background:#ebe7de}
-.example-visual.business-a{background:linear-gradient(135deg,#111 0 52%,#c4a769 52% 53%,#2a241c 53% 100%)}
-.example-visual.business-b{background:linear-gradient(160deg,#eee8df,#f9f6ef 50%,#bca887)}
-.example-visual.business-c{background:linear-gradient(145deg,#1a1a19,#0c0c0c)}
-.example-phone{position:absolute;width:104px;height:190px;border:6px solid #111;border-radius:20px;background:#fff;left:50%;top:22px;transform:translateX(-50%);box-shadow:0 14px 28px rgba(0,0,0,.18);overflow:hidden}
-.example-phone:before{content:"";display:block;height:78px;background:linear-gradient(145deg,#cbb58d,#383229)}
-.example-phone:after{content:"PROFILE";position:absolute;left:9px;bottom:12px;font-size:10px;font-weight:800;letter-spacing:.12em;color:#555}
-.example-campus{background:linear-gradient(135deg,#f0ece3,#ded8cc);display:flex;align-items:center;justify-content:center}
-.example-campus-card{width:80%;height:72%;background:#fff;border-radius:8px;box-shadow:0 10px 28px rgba(0,0,0,.1);padding:18px;position:relative}
-.example-campus-card:before{content:"";position:absolute;left:18px;top:18px;width:44px;height:44px;border-radius:50%;background:#d9d4ca}
-.example-campus-card:after{content:"CAREER PROFILE";position:absolute;left:18px;bottom:18px;font-size:11px;font-weight:800;letter-spacing:.12em}
+.example-visual{height:230px;position:relative;overflow:hidden;background:#e8e4db}
+.example-live{position:absolute;inset:0;overflow:hidden;background:#111}
+.example-live iframe{position:absolute;left:0;top:0;width:1280px;height:820px;border:0;transform:scale(.36);transform-origin:top left;pointer-events:none;background:#fff}
+.example-shot{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;background:#eee}
+.example-badge{position:absolute;z-index:3;left:14px;top:14px;padding:6px 9px;border-radius:999px;background:rgba(17,17,16,.82);backdrop-filter:blur(8px);color:#fff;font-size:10px;font-weight:800;letter-spacing:.06em}
+.example-open{position:absolute;z-index:3;right:14px;bottom:14px;padding:7px 10px;border-radius:7px;background:rgba(255,255,255,.9);color:#111;font-size:10px;font-weight:800;box-shadow:0 4px 14px rgba(0,0,0,.12)}
 .example-body{padding:20px}
 .example-kind{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#99948b;font-weight:700}
 .example-body h3{font-size:19px;margin:7px 0 8px}.example-body p{font-size:13px;line-height:1.6;color:#77736c;margin:0 0 16px;min-height:62px}
@@ -107,7 +102,7 @@ footer{background:#0d0d0c;color:#68645e;padding:24px 0;font-size:11px}
 @media(max-width:950px){ .example-grid{grid-template-columns:1fr 1fr}
  .links{display:none}.heroin,.profilegrid,.ctagrid{grid-template-columns:1fr}.hero{min-height:auto}.heroin{padding:60px 0}.visual{height:470px}.compare{grid-template-columns:1fr 1fr}.compare-intro{grid-column:1/-1}.usegrid{grid-template-columns:1fr 1fr}.ctacard{justify-self:start}.plangrid{grid-template-columns:1fr}.plan{min-height:auto}.pdesc{min-height:0}
 }
-@media(max-width:640px){ .example-grid{grid-template-columns:1fr}.example-visual{height:190px}
+@media(max-width:640px){ .example-grid{grid-template-columns:1fr}.example-visual{height:210px}.example-live iframe{transform:scale(.29)}
  .wrap{width:min(calc(100% - 28px),var(--max))}.nav{height:62px}.topcta{padding:9px 12px;font-size:12px}
  .hero h1{font-size:43px}.hero p{font-size:16px}.visual{height:390px}.bizcard{width:250px;height:145px;padding:20px}.bizcard.white{right:10px;top:40px}.bizcard.black{right:0;bottom:42px}.cardname{font-size:15px}.role{font-size:9px}.company{font-size:9px}.contact{left:20px;bottom:18px;font-size:8px}.qrbox{width:60px;height:60px;margin:7px auto 3px;padding:5px}.qrtext{font-size:8px}
  .section{padding:62px 0}.sectionhead{display:block}.sectionhead h2{font-size:31px}.sectionhead p{margin-top:15px}.compare{grid-template-columns:1fr}.compare-intro{grid-column:auto}.profilegrid{gap:38px}.phone{width:288px;height:560px}.phonehero{height:225px}.profilecopy h2{font-size:34px}.usegrid{grid-template-columns:1fr}.planhead{display:block}.planhead h2{font-size:31px}.planhead p{text-align:left;margin-top:12px}.cta h2{font-size:33px}.ctacard{width:100%;height:175px}
@@ -181,28 +176,28 @@ footer{background:#0d0d0c;color:#68645e;padding:24px 0;font-size:11px}
   </div>
   <div class="example-grid">
    <a class="example-card" href="https://profile.wethru.com/assets/demo-profile-03.html" target="_blank" rel="noopener">
-    <div class="example-visual business-b"><div class="example-phone"></div></div>
+    <div class="example-visual"><span class="example-badge">실제 화면</span><div class="example-live"><iframe loading="lazy" src="https://profile.wethru.com/assets/demo-profile-03.html" title="BASIC 실제 프로필 미리보기" tabindex="-1"></iframe></div><span class="example-open">클릭해 전체 보기 ↗</span></div>
     <div class="example-body"><div class="example-kind">Business · Basic</div><h3>간단 소개형 BASIC</h3><p>이름, 역할, 핵심 서비스와 연락처를 짧고 깔끔하게 정리한 비즈니스 프로필입니다.</p><span class="example-link">예시 보러가기 →</span></div>
    </a>
    <a class="example-card" href="https://profile.wethru.com/assets/demo-profile-02.html" target="_blank" rel="noopener">
-    <div class="example-visual business-a"><div class="example-phone"></div></div>
+    <div class="example-visual"><span class="example-badge">실제 화면</span><div class="example-live"><iframe loading="lazy" src="https://profile.wethru.com/assets/demo-profile-02.html" title="PRO 실제 프로필 미리보기" tabindex="-1"></iframe></div><span class="example-open">클릭해 전체 보기 ↗</span></div>
     <div class="example-body"><div class="example-kind">Business · Pro</div><h3>사업 소개형 PRO</h3><p>대표와 사업, 포트폴리오, 문의 흐름까지 한 번에 보여주는 소개 방식입니다.</p><span class="example-link">예시 보러가기 →</span></div>
    </a>
    <a class="example-card" href="https://profile.wethru.com/assets/demo-profile-01.html" target="_blank" rel="noopener">
-    <div class="example-visual business-c"><div class="example-phone"></div></div>
+    <div class="example-visual"><span class="example-badge">실제 화면</span><div class="example-live"><iframe loading="lazy" src="https://profile.wethru.com/assets/demo-profile-01.html" title="PREMIUM 실제 프로필 미리보기" tabindex="-1"></iframe></div><span class="example-open">클릭해 전체 보기 ↗</span></div>
     <div class="example-body"><div class="example-kind">Business · Premium</div><h3>대표 프로필형 PREMIUM</h3><p>이력, 성과, 전문성처럼 ‘왜 믿을 만한 사람인지’를 더 깊게 보여주는 프로필입니다.</p><span class="example-link">예시 보러가기 →</span></div>
    </a>
 
    <a class="example-card" href="https://career.wethru.com/campus-v4/cases/case-01/" target="_blank" rel="noopener">
-    <div class="example-visual example-campus"><div class="example-campus-card"></div></div>
+    <div class="example-visual"><span class="example-badge">실제 익명 사례</span><img class="example-shot" loading="lazy" src="https://raw.githubusercontent.com/ceoYS/Wethru_Profile_Customers-/main/src/assets/campus-v4-public/case-01-preview-v4-safe.webp" alt="Campus 실제 프로필 공개용 미리보기"><span class="example-open">클릭해 전체 보기 ↗</span></div>
     <div class="example-body"><div class="example-kind">Campus · Career</div><h3>리테일·고객경험 지원자</h3><p>흩어진 현장 경험을 정리해 ‘어떤 직무 강점을 가진 사람인지’를 먼저 보여주는 커리어 프로필입니다.</p><span class="example-link">예시 보러가기 →</span></div>
    </a>
    <a class="example-card" href="https://career.wethru.com/campus-v4/cases/case-02/" target="_blank" rel="noopener">
-    <div class="example-visual example-campus"><div class="example-campus-card"></div></div>
+    <div class="example-visual"><span class="example-badge">실제 익명 사례</span><img class="example-shot" loading="lazy" src="https://raw.githubusercontent.com/ceoYS/Wethru_Profile_Customers-/main/src/assets/campus-v4-public/case-02-preview-v3-safe.webp" alt="Campus 실제 프로필 공개용 미리보기"><span class="example-open">클릭해 전체 보기 ↗</span></div>
     <div class="example-body"><div class="example-kind">Campus · Career</div><h3>데이터 기반 마케팅 지원자</h3><p>마케팅·자동화 경험을 단순 도구 나열이 아니라 ‘구조를 설계하는 사람’으로 보여주는 예시입니다.</p><span class="example-link">예시 보러가기 →</span></div>
    </a>
    <a class="example-card" href="https://career.wethru.com/campus-v4/cases/case-03/" target="_blank" rel="noopener">
-    <div class="example-visual example-campus"><div class="example-campus-card"></div></div>
+    <div class="example-visual"><span class="example-badge">실제 익명 사례</span><img class="example-shot" loading="lazy" src="https://raw.githubusercontent.com/ceoYS/Wethru_Profile_Customers-/main/src/assets/campus-v4-public/case-03-preview-v3-safe.webp" alt="Campus 실제 프로필 공개용 미리보기"><span class="example-open">클릭해 전체 보기 ↗</span></div>
     <div class="example-body"><div class="example-kind">Campus · Career</div><h3>커머스·그로스 지원자</h3><p>상품과 프로모션 경험을 성장 흐름으로 정리해 직무 포지셔닝을 명확하게 보여주는 예시입니다.</p><span class="example-link">예시 보러가기 →</span></div>
    </a>
   </div>
