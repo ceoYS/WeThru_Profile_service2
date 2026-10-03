@@ -1,715 +1,175 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WeThru - 신뢰를 먼저 보여주는 비즈니스 프로필</title>
-  <meta name="description" content="대표와 프리랜서의 이력, 신뢰 요소, 사업 맥락, 포트폴리오를 자기 자랑처럼 보이지 않게 정리하는 비즈니스 프로필입니다.">
-
-  <!-- Fonts (font-display: swap via Google Fonts param) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/variable/woff2/SUIT-Variable.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f5f3ee">
+<title>WeThru — Business Profile</title>
+<meta name="description" content="명함, 카카오톡, 이메일 어디서든 하나의 링크로 나와 내 사업을 보여주는 WeThru 비즈니스 프로필.">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css">
+<style>
+:root{
+  --bg:#f4f1eb;--paper:#fbfaf7;--white:#fff;--ink:#10100f;--muted:#77736d;
+  --line:#ddd8ce;--soft:#ece7de;--gold:#c49a48;--dark:#11110f;--max:1180px
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Pretendard Variable","Pretendard",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:-.025em}
+a{text-decoration:none;color:inherit}
+.wrap{width:min(calc(100% - 48px),var(--max));margin:auto}
+.nav{height:70px;background:rgba(250,249,246,.93);backdrop-filter:blur(16px);position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(0,0,0,.055)}
+.navin{height:100%;display:flex;align-items:center;justify-content:space-between;gap:28px}
+.logo{font-weight:900;letter-spacing:.16em;font-size:17px}
+.links{display:flex;align-items:center;gap:29px;font-size:13px;color:#55524d}
+.topcta{background:#171716;color:#fff;padding:11px 16px;border-radius:7px;font-size:13px;font-weight:700}
+.hero{min-height:650px;background:#f2eee7;overflow:hidden}
+.heroin{display:grid;grid-template-columns:1.02fr .98fr;min-height:650px;align-items:center;gap:54px}
+.eyebrow{font-size:11px;font-weight:700;color:#aaa59d;letter-spacing:.16em;text-transform:uppercase;margin-bottom:17px}
+.hero h1{font-size:clamp(46px,5vw,70px);line-height:1.06;letter-spacing:-.058em;margin:0 0 22px;font-weight:850}
+.hero p{font-size:18px;line-height:1.72;color:#615e58;margin:0;max-width:580px;word-break:keep-all}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:47px;padding:0 21px;border-radius:7px;font-size:14px;font-weight:700;border:1px solid #9b978f}
+.btn.dark{background:#151514;color:#fff;border-color:#151514}
+.pricequick{margin-top:24px;display:flex;align-items:baseline;gap:9px}
+.pricequick strong{font-size:24px}.pricequick span{font-size:12px;color:#817d76}
+.visual{height:530px;position:relative}
+.texture{position:absolute;inset:-80px -120px -80px -30px;background:radial-gradient(circle at 60% 35%,#fff 0,#ede8de 42%,#ddd5c8 100%);transform:rotate(-5deg)}
+.bizcard{position:absolute;width:370px;height:215px;border-radius:4px;box-shadow:0 25px 50px rgba(26,23,18,.18);padding:31px;z-index:2}
+.bizcard.white{background:#f9f7f2;right:32px;top:62px;transform:rotate(-7deg);color:#161616}
+.bizcard.black{background:#0f0f0e;right:-1px;bottom:48px;transform:rotate(8deg);color:#fff}
+.cardtop{display:flex;justify-content:space-between;align-items:flex-start}
+.cardname{font-size:20px;font-weight:800}.role{font-size:11px;color:#79756e;margin-top:3px}
+.company{letter-spacing:.21em;font-size:12px;font-weight:800}
+.contact{position:absolute;left:31px;bottom:27px;font-size:11px;line-height:1.72;color:#615f5b}
+.black .contact{color:#bdb8af}
+.qrbox{width:92px;height:92px;background:#fff;padding:9px;margin:18px auto 6px;display:grid;grid-template-columns:repeat(9,1fr);gap:1px}
+.qrbox i{background:#111}.qrbox i:nth-child(2n){background:#fff}.qrbox i:nth-child(5n+1){background:#111}.qrtext{text-align:center;color:#ddd6c8;font-size:10px}
+.section{padding:88px 0}
+.white{background:#fff}
+.sectionhead{display:flex;justify-content:space-between;gap:45px;align-items:flex-end;margin-bottom:38px}
+.sectionhead h2{font-size:42px;line-height:1.14;letter-spacing:-.048em;margin:0;max-width:580px}
+.sectionhead p{margin:0;max-width:440px;color:#79756f;font-size:15px;line-height:1.7}
+.compare{display:grid;grid-template-columns:.85fr 1fr 1fr;gap:25px;align-items:start}
+.compare-intro h3{font-size:34px;line-height:1.2;margin:0 0 18px}.compare-intro p{color:#76726c;line-height:1.75;font-size:14px;margin:0}
+.compare-item .cap{font-weight:800;font-size:16px;margin-bottom:14px}
+.smallcard{height:188px;border:1px solid #ddd9d0;background:#f7f5f0;padding:27px;position:relative;box-shadow:0 12px 28px rgba(0,0,0,.06)}
+.smallcard.dark{background:#111;color:#fff;border-color:#111}
+.smallcard .name{font-weight:800;font-size:17px}.smallcard .tiny{font-size:10px;color:#777;margin-top:3px}.smallcard .brand{position:absolute;right:27px;top:27px;font-size:11px;letter-spacing:.18em;font-weight:800}.smallcard .data{position:absolute;left:27px;bottom:24px;font-size:10px;line-height:1.6;color:#666}.smallcard.dark .data{color:#bbb}
+.qrmini{width:78px;height:78px;background:#fff;padding:7px;position:absolute;right:29px;top:48px;display:grid;grid-template-columns:repeat(8,1fr);gap:1px}
+.qrmini i{background:#111}.qrmini i:nth-child(2n){background:#fff}.qrmini i:nth-child(5n+1){background:#111}
+.below{font-size:12px;line-height:1.6;color:#777;margin-top:12px}
+.note{font-size:11px;color:#99958e;margin-top:20px;line-height:1.6}
+.profile{background:#eee9e0}
+.profilegrid{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:center}
+.phonewrap{display:flex;justify-content:center}
+.phone{width:330px;height:630px;border:10px solid #111;border-radius:45px;background:#fff;box-shadow:0 28px 65px rgba(0,0,0,.2);overflow:hidden}
+.status{height:33px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800}
+.phonehero{height:260px;background:linear-gradient(180deg,rgba(18,18,18,.08),rgba(10,10,10,.88)),linear-gradient(135deg,#d6c6aa,#554b3c 55%,#1e1b17);padding:28px 21px;display:flex;flex-direction:column;justify-content:flex-end;color:white}
+.phonehero small{font-size:9px;letter-spacing:.15em}.phonehero b{font-size:30px;margin:7px 0 5px}.phonehero p{font-size:11px;line-height:1.55;margin:0;color:#dedbd5}
+.phonerows{padding:10px 17px}.prow{padding:13px 3px;border-bottom:1px solid #eee;display:flex;justify-content:space-between;align-items:center}.prow strong{font-size:13px}.prow span{font-size:11px;color:#999}
+.profilecopy h2{font-size:45px;line-height:1.14;letter-spacing:-.05em;margin:0 0 16px}.profilecopy>p{color:#75716b;line-height:1.75;font-size:15px}
+.features{margin-top:28px;display:grid;gap:12px}.feature{display:grid;grid-template-columns:52px 1fr;gap:17px;align-items:center;padding:12px 0}.ficon{width:52px;height:52px;border-radius:50%;background:#ded3bd;display:grid;place-items:center;font-weight:800}.feature b{display:block;font-size:17px;margin-bottom:5px}.feature span{font-size:13px;color:#77736d}
+.usegrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.use{background:#faf8f4;border:1px solid #e0dcd3;border-radius:10px;overflow:hidden}.useart{height:124px;background:linear-gradient(135deg,#d8c8ad,#f7f3ea);position:relative}.use:nth-child(2) .useart{background:linear-gradient(135deg,#c9d6d4,#e8eeee)}.use:nth-child(3) .useart{background:linear-gradient(135deg,#e6e2dc,#fafafa)}.use:nth-child(4) .useart{background:linear-gradient(135deg,#d9d7e5,#f0ecf6)}
+.cardghost{width:125px;height:73px;background:#fff;box-shadow:0 9px 18px rgba(0,0,0,.13);position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-7deg);border-radius:3px}
+.cardghost:after{content:"QR";position:absolute;right:10px;bottom:8px;font-size:18px;font-weight:900}
+.chatghost{width:80px;height:110px;background:#111;border-radius:14px;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);box-shadow:0 9px 20px rgba(0,0,0,.18)}.chatghost:after{content:"•••";display:block;background:#fff;margin:12px 7px;border-radius:8px;padding:14px 5px;color:#bbb;text-align:center}
+.mailghost{width:140px;height:90px;background:#fff;border-radius:5px;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);box-shadow:0 9px 20px rgba(0,0,0,.1)}.mailghost:before{content:"name@company.co.kr";position:absolute;left:12px;top:18px;font-size:8px}.mailghost:after{content:"profile.wethru.com";position:absolute;left:12px;bottom:17px;font-size:9px;font-weight:700}
+.socialghost{display:grid;grid-template-columns:repeat(2,48px);gap:8px;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}.socialghost i{width:48px;height:48px;background:#fff;border-radius:11px;box-shadow:0 6px 15px rgba(0,0,0,.12);display:grid;place-items:center;font-style:normal;font-weight:900}
+.usebody{padding:18px}.usebody b{font-size:15px;display:block;margin-bottom:6px}.usebody p{font-size:12px;color:#777;line-height:1.6;margin:0}
+.plans{background:#fff}.planhead{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:29px}.planhead h2{font-size:40px;margin:0}.planhead p{font-size:13px;line-height:1.6;color:#777;text-align:right}
+.plangrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.plan{border:1px solid #dedad2;border-radius:10px;padding:28px;background:#fff;min-height:420px;display:flex;flex-direction:column}.plan.active{border:1.5px solid var(--gold);box-shadow:0 8px 28px rgba(187,145,63,.09)}.ptag{font-size:11px;color:#8c877f;margin-bottom:8px}.pname{font-size:25px;font-weight:850}.pdesc{font-size:14px;color:#777;line-height:1.6;min-height:67px;margin:9px 0 17px}.pprice{font-size:27px;font-weight:850;margin-bottom:4px}.pvat{font-size:11px;color:#888;margin-bottom:18px}.pfeatures{display:grid;gap:9px;font-size:13px;line-height:1.45;margin:0 0 23px;padding:0;list-style:none}.pfeatures li:before{content:"✓";margin-right:8px}.planbtn{margin-top:auto;height:43px;display:grid;place-items:center;border:1px solid #d9d4cb;border-radius:7px;font-size:13px;font-weight:700}.active .planbtn{border-color:#caa55e;color:#b38732}
+.cta{background:linear-gradient(90deg,rgba(10,10,10,.98),rgba(10,10,10,.84)),radial-gradient(circle at 78% 35%,#82674a,#171512 48%,#0d0d0c);color:#fff;padding:78px 0}
+.ctagrid{display:grid;grid-template-columns:1fr .8fr;gap:40px;align-items:center}.cta h2{font-size:43px;line-height:1.14;margin:0 0 16px}.cta p{color:#c1bdb4;line-height:1.7;font-size:14px}.ctacard{height:210px;width:360px;justify-self:end;background:#111;border:1px solid #4a4133;border-radius:7px;transform:rotate(-4deg);box-shadow:0 30px 60px rgba(0,0,0,.34);display:flex;align-items:center;justify-content:center;gap:30px}.ctacard strong{letter-spacing:.18em}.ctaqr{width:82px;height:82px;background:#fff;display:grid;grid-template-columns:repeat(8,1fr);gap:1px;padding:7px}.ctaqr i{background:#111}.ctaqr i:nth-child(2n){background:#fff}.ctaqr i:nth-child(5n+1){background:#111}
+footer{background:#0d0d0c;color:#68645e;padding:24px 0;font-size:11px}
+@media(max-width:950px){
+ .links{display:none}.heroin,.profilegrid,.ctagrid{grid-template-columns:1fr}.hero{min-height:auto}.heroin{padding:60px 0}.visual{height:470px}.compare{grid-template-columns:1fr 1fr}.compare-intro{grid-column:1/-1}.usegrid{grid-template-columns:1fr 1fr}.ctacard{justify-self:start}.plangrid{grid-template-columns:1fr}.plan{min-height:auto}.pdesc{min-height:0}
+}
+@media(max-width:640px){
+ .wrap{width:min(calc(100% - 28px),var(--max))}.nav{height:62px}.topcta{padding:9px 12px;font-size:12px}
+ .hero h1{font-size:43px}.hero p{font-size:16px}.visual{height:390px}.bizcard{width:250px;height:145px;padding:20px}.bizcard.white{right:10px;top:40px}.bizcard.black{right:0;bottom:42px}.cardname{font-size:15px}.role{font-size:9px}.company{font-size:9px}.contact{left:20px;bottom:18px;font-size:8px}.qrbox{width:60px;height:60px;margin:7px auto 3px;padding:5px}.qrtext{font-size:8px}
+ .section{padding:62px 0}.sectionhead{display:block}.sectionhead h2{font-size:31px}.sectionhead p{margin-top:15px}.compare{grid-template-columns:1fr}.compare-intro{grid-column:auto}.profilegrid{gap:38px}.phone{width:288px;height:560px}.phonehero{height:225px}.profilecopy h2{font-size:34px}.usegrid{grid-template-columns:1fr}.planhead{display:block}.planhead h2{font-size:31px}.planhead p{text-align:left;margin-top:12px}.cta h2{font-size:33px}.ctacard{width:100%;height:175px}
+}
+</style>
 </head>
 <body>
+<nav class="nav">
+ <div class="wrap navin">
+  <a class="logo" href="#top">WETHRU</a>
+  <div class="links"><a href="#service">서비스 소개</a><a href="#profile">실제 예시</a><a href="#use">이용 안내</a><a href="#plan">가격</a></div>
+  <a class="topcta" href="https://pf.kakao.com/_wRVBX/friend" target="_blank" rel="noopener">상담 신청하기</a>
+ </div>
+</nav>
 
-  <!-- ====== Navigation ====== -->
-  <nav class="nav" id="nav">
-    <div class="nav__inner">
-      <a href="#hero" class="nav__logo">We<span>Thru</span></a>
-      <div class="nav__links">
-        <a href="#showcase" class="nav__link" data-nav="showcase">포트폴리오</a>
-        <a href="#pricing" class="nav__link" data-nav="pricing">가격</a>
-        <a href="#process" class="nav__link" data-nav="process">프로세스</a>
-        <a href="#testimonials" class="nav__link" data-nav="testimonials">후기</a>
-      </div>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeUBfH0LNALvadfsKlsaNZJ3yzMZfBlqWkbO-G-bJLQe2hiuw/viewform" class="nav__cta" target="_blank" rel="noopener noreferrer">문의하기</a>
-      <button class="nav__hamburger" id="navHamburger" aria-label="메뉴 열기">
-        <span class="nav__hamburger-line"></span>
-        <span class="nav__hamburger-line"></span>
-        <span class="nav__hamburger-line"></span>
-      </button>
-    </div>
-    <div class="nav__mobile-menu" id="navMobileMenu">
-      <a href="#showcase" class="nav__mobile-link">포트폴리오</a>
-      <a href="#pricing" class="nav__mobile-link">가격</a>
-      <a href="#process" class="nav__mobile-link">프로세스</a>
-      <a href="#testimonials" class="nav__mobile-link">후기</a>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeUBfH0LNALvadfsKlsaNZJ3yzMZfBlqWkbO-G-bJLQe2hiuw/viewform" class="nav__mobile-cta" target="_blank" rel="noopener noreferrer">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3C6.5 3 2 6.58 2 11c0 2.83 1.82 5.32 4.56 6.72l-.96 3.56c-.1.36.28.64.6.44L10.56 19h1.44c5.5 0 10-3.58 10-8s-4.5-8-10-8z"/></svg>
-        문의하기
-      </a>
-    </div>
-  </nav>
-
-  <!-- ====== Section 1: Hero ====== -->
-  <section class="hero" id="hero">
-    <div class="hero__bg">
-      <div class="hero__bg-orb"></div>
-    </div>
-    <div class="hero__noise"></div>
-
-    <div class="hero__content">
-      <div class="hero__text">
-        <span class="hero__label">BUSINESS PROFILE</span>
-        <h1 class="hero__headline">대표의 이력을<br>자연스럽게 보여줘<br>부담 없이<br>신뢰를 주는<br>비즈니스 프로필</h1>
-        <p class="hero__sub">회사 홈페이지에 길게 쓰기 애매한<br>대표의 이력, 사업 맥락, 포트폴리오를<br>거래처, 협업 파트너, 소개받은 사람에게<br>미팅 전에 자연스럽게 보여주는 수단입니다.<br><strong>자기 자랑처럼 보이지 않게 신뢰를 먼저 얻으실 수 있습니다.</strong></p>
-        <div class="hero__cta-group">
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSeUBfH0LNALvadfsKlsaNZJ3yzMZfBlqWkbO-G-bJLQe2hiuw/viewform" class="btn-primary" target="_blank" rel="noopener noreferrer">
-            문의하기
-          </a>
-          <a href="#showcase" class="btn-outline">포트폴리오 보기</a>
-        </div>
-      </div>
-
-      <div class="hero__mockup">
-        <div class="mockup-wrapper">
-          <!-- Laptop -->
-          <div class="mockup-laptop">
-            <div class="mockup-laptop__top-bar">
-              <span class="mockup-laptop__dot mockup-laptop__dot--red"></span>
-              <span class="mockup-laptop__dot mockup-laptop__dot--yellow"></span>
-              <span class="mockup-laptop__dot mockup-laptop__dot--green"></span>
-            </div>
-            <div class="mockup-laptop__screen">
-              <iframe src="assets/demo-profile-hero.html" title="WeThru 비즈니스 프로필 히어로 샘플" scrolling="yes"
-                style="width:100%;height:100%;border:none;pointer-events:auto;">
-              </iframe>
-            </div>
-            <div class="mockup-laptop__base"></div>
-          </div>
-
-        </div>
-        <div class="hero__targets">
-          <span class="hero__target-badge">대표 · 창업가</span>
-          <span class="hero__target-badge">프리랜서 · 외주업체 대표</span>
-          <span class="hero__target-badge">소개받은 사람에게 먼저 보내는 링크</span>
-        </div>
-        <div class="hero__proof">
-          <div class="hero__proof-item">
-            <span class="hero__proof-number">대표 이력부터</span>
-            <span class="hero__proof-label">사업 맥락까지</span>
-          </div>
-          <div class="hero__proof-divider"></div>
-          <div class="hero__proof-item">
-            <span class="hero__proof-number">소개받은 사람에게</span>
-            <span class="hero__proof-label">먼저 보내는 링크</span>
-          </div>
-          <div class="hero__proof-divider"></div>
-          <div class="hero__proof-item">
-            <span class="hero__proof-number">신뢰를 먼저 보여주는</span>
-            <span class="hero__proof-label">정리된 소개</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="hero__scroll">
-      <span class="hero__scroll-text">Scroll</span>
-      <div class="hero__scroll-arrow"></div>
-    </div>
-  </section>
-
-  <!-- ====== Section 2: Problem ====== -->
-  <section class="problem" id="problem">
-    <div class="container">
-      <div class="problem__header reveal">
-        <h2 class="problem__headline">회사 홈페이지에는 담기 애매하고,<br>명함으로는 설명이 부족한 내용이 있습니다.</h2>
-        <p class="problem__sub">대표의 이력, 이전 시도, 신뢰 요소, 사업 맥락은<br>상대가 알면 좋지만 먼저 꺼내기엔 애매한 경우가 많습니다.<br><br>회사 홈페이지에 길게 쓰면 과해 보이고,<br>명함이나 카카오톡 프로필로는 제대로 설명되지 않습니다.<br>그래서 상대가 부담 없이 먼저 확인할 수 있는<br>별도의 비즈니스 프로필이 필요합니다.</p>
-      </div>
-
-      <div class="problem__comparison">
-        <div class="problem__col problem__col--old reveal-left">
-          <span class="problem__col-label">Paper Business Card</span>
-          <div class="problem__card-mock problem__card-mock--paper">
-            <div class="problem__biz-card">
-              <div class="problem__biz-card-logo"></div>
-              <div class="problem__biz-card-name">김&nbsp;&nbsp;&nbsp;○&nbsp;&nbsp;&nbsp;○</div>
-              <div class="problem__biz-card-title">부장 · 영업본부</div>
-              <div class="problem__biz-card-divider"></div>
-              <div class="problem__biz-card-row">
-                <span class="problem__biz-card-field">T.</span>
-                <span class="problem__biz-card-blurred">010-○○○○-○○○○</span>
-              </div>
-              <div class="problem__biz-card-row">
-                <span class="problem__biz-card-field">E.</span>
-                <span class="problem__biz-card-blurred">name@company.co.kr</span>
-              </div>
-              <div class="problem__biz-card-row">
-                <span class="problem__biz-card-field">W.</span>
-                <span class="problem__biz-card-blurred">www.company.co.kr</span>
-              </div>
-            </div>
-          </div>
-          <ul class="problem__bullets" data-stagger>
-            <li class="problem__bullet stagger-item reveal"><span class="icon">×</span> 직함과 연락처만으로는 왜 믿어도 되는지 설명하기 어렵습니다.</li>
-            <li class="problem__bullet stagger-item reveal"><span class="icon">×</span> 대표 이력과 사업 맥락을 먼저 꺼내면 과해 보일 수 있습니다.</li>
-            <li class="problem__bullet stagger-item reveal"><span class="icon">×</span> 사례와 연락 방법이 따로 흩어져 확인이 번거롭습니다.</li>
-          </ul>
-        </div>
-
-        <div class="problem__vs reveal-scale">VS</div>
-
-        <div class="problem__col problem__col--new reveal-right">
-          <span class="problem__col-label">Business Profile</span>
-          <div class="problem__card-mock problem__card-mock--profile">
-            <div class="problem__profile-iframe-wrap">
-              <iframe src="assets/demo-profile-hero.html" scrolling="yes"
-                style="width:100%;height:100%;border:none;pointer-events:auto;"></iframe>
-            </div>
-          </div>
-          <ul class="problem__bullets" data-stagger>
-            <li class="problem__bullet stagger-item reveal">
-              <span class="problem__bullet-icon">&#10003;</span>
-              대표 이력과 사업 맥락을<br>부담 없이 확인
-            </li>
-            <li class="problem__bullet stagger-item reveal">
-              <span class="problem__bullet-icon">&#10003;</span>
-              사례 확인 후<br>바로 연락
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="problem__stats reveal">
-        <p class="problem__stat-text">상대가 처음 보는 자료일수록 <strong>대표 이력, 사업 맥락, 포트폴리오</strong>가 한 흐름으로 읽혀야 합니다.</p>
-        <p class="problem__stat-fear">자기 자랑처럼 보이지 않게,<br><strong>믿어도 되는 이유를 먼저 보여주는 비즈니스 프로필</strong>로 정리합니다.</p>
-        <span class="problem__stat-source">처음 보는 사람도 한 흐름으로 읽히는 소개</span>
-      </div>
-    </div>
-  </section>
-
-  <section class="fear" id="fear">
-  <div class="container">
-    <h2 class="fear__headline">이럴 때<br>비즈니스 프로필이 필요합니다.</h2>
-    <p class="fear__sub">처음 만나는 사람에게<br>내가 어떤 사람이고 어떤 일을 해왔는지<br>먼저 보여줄 명분이 필요할 때가 있습니다.<br><br>명함보다 더 설명되고,<br>회사 홈페이지보다 더 개인적인 신뢰를 담을 수 있는<br>중간 수단이 필요할 때 쓰는 페이지입니다.</p>
-    <p class="fear__cta-text"></p>
-    <div class="fear__list">
-      <div class="fear__item">
-        <span class="fear__icon">01</span>
-        <p class="fear__text">거래처나 협업 파트너에게<br>대표와 사업을 먼저 소개해야 할 때</p>
-      </div>
-      <div class="fear__item">
-        <span class="fear__icon">02</span>
-        <p class="fear__text">소개로 연결된 사람에게<br>내 이력과 신뢰 요소를 먼저 보여주고 싶을 때</p>
-      </div>
-      <div class="fear__item">
-        <span class="fear__icon">03</span>
-        <p class="fear__text">프리랜서나 외주업체가 자기 경력과<br>포트폴리오를자연스럽게 설명하고 싶을 때</p>
-      </div>
-      <div class="fear__item">
-        <span class="fear__icon">04</span>
-        <p class="fear__text">대표자나 창업가가 사업과 함께<br>자기 백그라운드도 보여주고 싶을 때</p>
-      </div>
-    </div>
+<header class="hero" id="top">
+ <div class="wrap heroin">
+  <div>
+   <div class="eyebrow">Digital Business Profile</div>
+   <h1>한 장의 명함이,<br>더 많은 이야기를 전합니다.</h1>
+   <p>QR코드 하나로 나의 이력, 사업, 포트폴리오까지.<br>지금의 나와 내가 하는 일을 더 잘 보여줄 수 있는 디지털 비즈니스 프로필입니다.</p>
+   <div class="actions">
+    <a class="btn dark" href="https://pf.kakao.com/_wRVBX/friend" target="_blank" rel="noopener">상담 신청하기 →</a>
+    <a class="btn" href="#profile">실제 예시 보기</a>
+   </div>
+   <div class="pricequick"><strong>199,000원</strong><span>VAT 포함 · BASIC 입문형</span></div>
   </div>
+  <div class="visual">
+   <div class="texture"></div>
+   <div class="bizcard white">
+    <div class="cardtop"><div><div class="cardname">김현우</div><div class="role">대표이사</div></div><div class="company">COMPANY</div></div>
+    <div class="contact">010-1234-5678<br>kim@company.co.kr<br>www.company.co.kr</div>
+   </div>
+   <div class="bizcard black">
+    <div class="cardtop"><div class="company">WETHRU</div><div class="company">PROFILE</div></div>
+    <div class="qrbox"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="qrtext">프로필 바로가기</div>
+   </div>
+  </div>
+ </div>
+</header>
+
+<section class="section white" id="service">
+ <div class="wrap">
+  <div class="compare">
+   <div class="compare-intro"><div class="eyebrow">Before & After</div><h3>일반 명함과는<br>차이가 있습니다.</h3><p>이름과 연락처만 담는 명함이 아니라,<br>지금의 나와 내가 하는 일을 제대로 보여줄 수 있는 디지털 명함입니다.</p></div>
+   <div class="compare-item"><div class="cap">일반 명함</div><div class="smallcard"><div class="name">김현우</div><div class="tiny">대표이사</div><div class="brand">COMPANY</div><div class="data">010-1234-5678<br>kim@company.co.kr<br>www.company.co.kr</div></div><div class="below">이름, 직함, 연락처 정도만 담을 수 있습니다.</div></div>
+   <div class="compare-item"><div class="cap">WeThru 프로필을 연결한 명함</div><div class="smallcard dark"><div class="name">WETHRU</div><div class="brand">PROFILE</div><div class="qrmini"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="data">QR코드 하나로 대표 소개 · 이력 · 사업 · 포트폴리오까지</div></div><div class="below">QR코드 하나로 나의 이력과 사업 소개를 한 번에 전달할 수 있습니다.</div></div>
+  </div>
+  <div class="note">* 위 명함은 활용 예시입니다. 종이 명함 디자인·인쇄·배송은 기본 서비스에 포함되지 않으며, 제작된 프로필 URL/QR을 기존 명함 또는 새 명함 제작 시 활용할 수 있습니다.</div>
+ </div>
 </section>
 
-  <!-- ====== Section 3: Why Now ====== -->
-  <section class="whynow" id="whynow">
-    <div class="whynow__gold-line"></div>
-    <div class="container">
-      <div class="whynow__header reveal">
-        <h2 class="whynow__headline">좋은 이력과 좋은 사업도<br>보여주는 방식이 애매하면 약하게 읽힙니다.</h2>
-        <p class="whynow__sub">위쓰루는 예쁘게 꾸미는 데서 끝나지 않습니다.<br>무엇을 먼저 보여주고, 어떤 순서로 설명해야<br>상대가 자연스럽게 신뢰하게 되는지부터 정리합니다.</p>
-      </div>
+<section class="section profile" id="profile">
+ <div class="wrap profilegrid">
+  <div class="phonewrap"><div class="phone"><div class="status">9:41 · profile.wethru.com</div><div class="phonehero"><small>WETHRU BUSINESS PROFILE</small><b>김현우</b><p>사람과 기술을 연결해<br>더 나은 내일을 만드는 일을 합니다.</p></div><div class="phonerows"><div class="prow"><strong>소개</strong><span>지금의 제가 있기까지 ›</span></div><div class="prow"><strong>주요 경력</strong><span>걸어온 길과 쌓아온 경험 ›</span></div><div class="prow"><strong>주요 프로젝트</strong><span>함께한 일과 만들어낸 결과 ›</span></div><div class="prow"><strong>비즈니스 소개</strong><span>지금 하고 있는 일 ›</span></div><div class="prow"><strong>문의하기</strong><span>바로 연락하기 ›</span></div></div></div></div>
+  <div class="profilecopy"><div class="eyebrow">My Profile</div><h2>소개가 더 쉬워지고,<br>기회가 더 가까워집니다.</h2><p>처음 보는 사람에게도, 소개받은 자리에서도 QR코드 하나로 나를 깔끔하게 소개할 수 있습니다.</p><div class="features"><div class="feature"><div class="ficon">01</div><div><b>대표의 이력과 경력을 한눈에</b><span>주요 경력, 프로젝트, 성과까지 체계적으로</span></div></div><div class="feature"><div class="ficon">02</div><div><b>소개받은 사람에게 바로 전달</b><span>명함, 카카오톡, 이메일, SNS 어디서든</span></div></div><div class="feature"><div class="ficon">03</div><div><b>신뢰를 먼저 보여주는 프로필</b><span>지금의 나와 함께할 이유를 명확하게</span></div></div></div></div>
+ </div>
+</section>
 
-      <div class="whynow__stats">
-        <div class="whynow__stat reveal">
-          <div class="whynow__stat-number">01</div>
-          <p class="whynow__stat-desc">대표의 이력을<br>먼저 정리합니다</p>
-          <span class="whynow__stat-source">Founder Profile</span>
-          <p class="whynow__loss">신뢰가 생기는 포인트를 먼저<br>보여줄 수 있게 정리합니다.</p>
-        </div>
-        <div class="whynow__stat reveal" style="transition-delay:0.15s">
-          <div class="whynow__stat-number">02</div>
-          <p class="whynow__stat-desc">사업 맥락을<br>함께 설명합니다</p>
-          <span class="whynow__stat-source">Business Context</span>
-          <p class="whynow__loss">대표 개인 이력만이 아니라,<br>지금 하는 일까지 같이 보이게 만듭니다.</p>
-        </div>
-        <div class="whynow__stat reveal" style="transition-delay:0.3s">
-          <div class="whynow__stat-number">03</div>
-          <p class="whynow__stat-desc">문의와 연결까지<br>흐름을 만듭니다</p>
-          <span class="whynow__stat-source">Contact Flow</span>
-          <p class="whynow__loss">상대가 확인한 뒤 문의나 미팅으로<br>자연스럽게 이어질 수 있게 정리합니다.</p>
-        </div>
-      </div>
+<section class="section" id="use">
+ <div class="wrap"><div class="sectionhead"><div><div class="eyebrow">Use Case</div><h2>이런 상황에서 활용할 수 있습니다.</h2></div><p>명함뿐만 아니라 다양한 접점에서 하나의 링크로 나를 소개할 수 있습니다.</p></div>
+ <div class="usegrid">
+  <div class="use"><div class="useart"><div class="cardghost"></div></div><div class="usebody"><b>명함에 QR로 연결</b><p>기존 명함에 QR을 추가하거나 새 명함 제작 시 활용할 수 있습니다.</p></div></div>
+  <div class="use"><div class="useart"><div class="chatghost"></div></div><div class="usebody"><b>카카오톡으로 공유</b><p>링크 하나로 상대방에게 깔끔하게 전달할 수 있습니다.</p></div></div>
+  <div class="use"><div class="useart"><div class="mailghost"></div></div><div class="usebody"><b>이메일 서명에 삽입</b><p>메일 하단에 프로필 링크를 추가해 항상 최신 정보를 보여줍니다.</p></div></div>
+  <div class="use"><div class="useart"><div class="socialghost"><i>in</i><i>◎</i><i>f</i><i>↗</i></div></div><div class="usebody"><b>SNS에 연결</b><p>인스타그램, 링크드인 등 다양한 채널의 프로필 허브로 활용합니다.</p></div></div>
+ </div></div>
+</section>
 
-      <blockquote class="whynow__quote reveal">
-        <div class="whynow__quote-bar"></div>
-        <div>
-          <p class="whynow__quote-text">"비즈니스 프로필은 내가 얼마나 대단한지 말하는 페이지가 아니라,<br>상대에게 나에 대한 신뢰감을 쌓는 가장 효율적인 첫걸음입니다."</p>
-          <cite class="whynow__quote-author">WeThru</cite>
-        </div>
-      </blockquote>
-    </div>
-  </section>
+<section class="section plans" id="plan">
+ <div class="wrap">
+  <div class="planhead"><div><div class="eyebrow">Plan</div><h2>나에게 맞는 구성을 선택하세요.</h2></div><p>현재 판매 중인 입문 상품은 BASIC 199,000원(VAT 포함)입니다.<br>더 넓은 범위는 필요한 구성에 따라 상담합니다.</p></div>
+  <div class="plangrid">
+   <article class="plan active"><div class="ptag">간단 소개형</div><div class="pname">BASIC</div><div class="pdesc">이름, 역할, 핵심 서비스, 연락처를 짧게 정리한 비즈니스 프로필</div><div class="pprice">199,000원</div><div class="pvat">VAT 포함</div><ul class="pfeatures"><li>처음 보는 사람에게</li><li>내가 누구인지</li><li>짧고 깔끔하게</li><li>보여주고 싶을 때</li></ul><a class="planbtn" href="https://pf.kakao.com/_wRVBX/friend" target="_blank" rel="noopener">상담 신청하기</a></article>
+   <article class="plan"><div class="ptag">사업 소개형</div><div class="pname">PRO</div><div class="pdesc">대표와 사업, 포트폴리오, 문의 흐름까지 함께 보여주는 소개 방식</div><div class="pprice">별도 견적</div><div class="pvat">범위에 따라 상담</div><ul class="pfeatures"><li>대표와 사업을 함께</li><li>사례와 포트폴리오</li><li>문의 흐름까지</li><li>한 번에 설명할 때</li></ul><a class="planbtn" href="https://pf.kakao.com/_wRVBX/friend" target="_blank" rel="noopener">구성 상담하기</a></article>
+   <article class="plan"><div class="ptag">대표 프로필형</div><div class="pname">PREMIUM</div><div class="pdesc">대표와 프리랜서의 이력, 성과, 믿을 만한 이유를 더 자세히 보여주는 방식</div><div class="pprice">별도 견적</div><div class="pvat">범위에 따라 상담</div><ul class="pfeatures"><li>왜 믿어도 되는 사람인지</li><li>이력과 성과를 깊게</li><li>사업의 맥락까지</li><li>차분하게 보여줄 때</li></ul><a class="planbtn" href="https://pf.kakao.com/_wRVBX/friend" target="_blank" rel="noopener">구성 상담하기</a></article>
+  </div>
+ </div>
+</section>
 
-  <!-- ====== Section 4: Showcase ====== -->
-  <section class="showcase" id="showcase">
-    <div class="container">
-      <div class="showcase__header reveal">
-        <span class="showcase__label">DEMO SAMPLES</span>
-        <h2 class="showcase__headline">어떤 방식으로 소개되는지<br>예시로 확인해보세요</h2>
-        <p class="showcase__sub">같은 비즈니스 프로필이어도<br>무엇을 먼저 보여주느냐에 따라<br>상대가 받아들이는 느낌이 달라집니다.<br>아래 예시에서 자신에게 맞는 소개 방식을 확인해보세요.</p>
-      </div>
-
-      <div class="showcase__main reveal">
-        <!-- Browser Mockup -->
-        <div class="showcase__browser">
-          <div class="showcase__browser-bar">
-            <span class="showcase__browser-dot showcase__browser-dot--red"></span>
-            <span class="showcase__browser-dot showcase__browser-dot--yellow"></span>
-            <span class="showcase__browser-dot showcase__browser-dot--green"></span>
-            <span class="showcase__browser-url" id="showcaseUrl">BASIC.WETHRU.CO.KR</span>
-          </div>
-          <div class="showcase__screen">
-            <!-- Slide 1: 간단 소개형 (Basic) -->
-            <div class="showcase__slide is-active" data-slide="0" style="padding:0">
-              <iframe src="assets/demo-profile-03.html" title="BASIC 간단 소개형 샘플" scrolling="yes"
-                style="width:100%;height:100%;border:none;pointer-events:auto;">
-              </iframe>
-            </div>
-
-            <!-- Slide 2: 사업 소개형 (Pro) -->
-            <div class="showcase__slide" data-slide="1" style="padding:0">
-              <iframe src="assets/demo-profile-02.html" title="PRO 사업 소개형 샘플" scrolling="yes"
-                style="width:100%;height:100%;border:none;pointer-events:auto;">
-              </iframe>
-            </div>
-
-            <!-- Slide 3: 대표 프로필형 (Premium) -->
-            <div class="showcase__slide" data-slide="2" style="padding:0">
-              <iframe src="assets/demo-profile-01.html" title="PREMIUM 대표 프로필형 샘플" scrolling="yes"
-                style="width:100%;height:100%;border:none;pointer-events:auto;">
-              </iframe>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tabs -->
-        <div class="showcase__tabs">
-          <div class="showcase__tab is-active" data-tab="0" role="button" tabindex="0" aria-pressed="true">
-            <span class="showcase__tab-num">간단 소개형</span>
-            <div class="showcase__tab-info">
-              <span class="showcase__tab-name">BASIC</span>
-              <span class="showcase__tab-purpose">이름, 역할, 핵심 서비스, 연락처를<br>짧게 정리한 비즈니스 프로필</span>
-              <span class="showcase__tab-fit-label">이럴 때 적합합니다</span>
-              <span class="showcase__tab-desc">처음 보는 사람에게<br>내가 누구인지<br>짧고 깔끔하게 보여주고 싶을 때</span>
-            </div>
-          </div>
-          <div class="showcase__tab" data-tab="1" role="button" tabindex="0" aria-pressed="false">
-            <span class="showcase__tab-num">사업 소개형</span>
-            <div class="showcase__tab-info">
-              <span class="showcase__tab-name">PRO</span>
-              <span class="showcase__tab-purpose">대표와 사업, 포트폴리오, 문의 흐름까지<br>함께 보여주는 소개 방식</span>
-              <span class="showcase__tab-fit-label">이럴 때 적합합니다</span>
-              <span class="showcase__tab-desc">대표와 사업을 함께 소개하고<br>사례와 문의까지<br>한 번에 설명해야 할 때</span>
-            </div>
-          </div>
-          <div class="showcase__tab" data-tab="2" role="button" tabindex="0" aria-pressed="false">
-            <span class="showcase__tab-num">대표 프로필형</span>
-            <div class="showcase__tab-info">
-              <span class="showcase__tab-name">PREMIUM</span>
-              <span class="showcase__tab-purpose">대표와 프리랜서의 이력, 성과,<br>믿을 만한 이유를 더 자세히 보여주는 방식</span>
-              <span class="showcase__tab-fit-label">이럴 때 적합합니다</span>
-              <span class="showcase__tab-desc">왜 믿어도 되는 사람인지까지<br>차분하게 보여주고 싶을 때</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tags -->
-      <div class="showcase__tags">
-        <div class="showcase__tags-group is-active" data-tags="0">
-          <span class="showcase__tag">#BASIC</span>
-          <span class="showcase__tag">#간단소개형</span>
-          <span class="showcase__tag">#핵심정보</span>
-          <span class="showcase__tag">#사전공유</span>
-        </div>
-        <div class="showcase__tags-group" data-tags="1">
-          <span class="showcase__tag">#PRO</span>
-          <span class="showcase__tag">#사업소개형</span>
-          <span class="showcase__tag">#서비스설명</span>
-          <span class="showcase__tag">#상담연결</span>
-        </div>
-        <div class="showcase__tags-group" data-tags="2">
-          <span class="showcase__tag">#PREMIUM</span>
-          <span class="showcase__tag">#대표프로필형</span>
-          <span class="showcase__tag">#신뢰중심</span>
-          <span class="showcase__tag">#고관여미팅</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ====== Section 5: Pricing ====== -->
-  <section class="pricing" id="pricing">
-    <div class="container">
-      <div class="pricing__header reveal">
-        <h2 class="pricing__headline">내 상황에 맞는<br>소개 방식을 선택하세요</h2>
-        <p class="pricing__sub">짧게 소개하는 기본형부터,<br>대표 이력과 신뢰를 더 자세히 보여주는 구성까지<br>내 상황에 맞춰 고를 수 있습니다.</p>
-      </div>
-
-      <div class="pricing__cards">
-        <!-- BASIC -->
-        <div class="pricing__card reveal" style="transition-delay:0s">
-          <div class="pricing__tier">BASIC</div>
-          <div class="pricing__tier-type">간단 소개형</div>
-          <div class="pricing__price">
-            <span class="pricing__amount">200,000</span>
-            <span class="pricing__currency">원</span>
-          </div>
-          <p class="pricing__desc">짧게 보내는 사전 소개 페이지가 필요할 때 좋은 기본형입니다.</p>
-          <ul class="pricing__features">
-            <li class="pricing__feature pricing__feature--highlight">
-              <span class="pricing__feature-icon">&#10003;</span>
-              디자인안 1개
-            </li>
-            <li class="pricing__feature">
-              <span class="pricing__feature-icon">&#10003;</span>
-              수정 2회
-            </li>
-            <li class="pricing__feature">
-              <span class="pricing__feature-icon">&#10003;</span>
-              QR 연결 이미지 제공
-            </li>
-            <li class="pricing__feature">
-              <span class="pricing__feature-icon">&#10003;</span>
-              1페이지 소개형 웹페이지 제공
-            </li>
-            <li class="pricing__feature">
-              <span class="pricing__feature-icon">&#10003;</span>
-              짧게 보내는 사전 소개 페이지 구성
-            </li>
-          </ul>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSeUBfH0LNALvadfsKlsaNZJ3yzMZfBlqWkbO-G-bJLQe2hiuw/viewform" class="pricing__btn pricing__btn--outline" target="_blank" rel="noopener noreferrer">문의하기</a>
-        </div>
-
-        <!-- PRO -->
-        <div class="pricing__card pricing__card--pro reveal" style="transition-delay:0.15s">
-          <div class="pricing__badge">BEST</div>
-          <div class="pricing__tier">PRO</div>
-          <div class="pricing__tier-type">사업 소개형</div>
-          <div class="pricing__price">
-            <span class="pricing__amount">500,000</span>
-            <span class="pricing__currency">원</span>
-          </div>
-          <p class="pricing__desc">대표와 사업을 함께 소개하고,<br>포트폴리오와 문의까지 한 번에 보여주고 싶을 때<br>가장 많이 선택하는 구성입니다.</p>
-          <ul class="pricing__features">
-            <li class="pricing__feature pricing__feature--highlight">
-              <span class="pricing__feature-icon">&#10003;</span>
-              디자인안 2개
-            </li>
-            <li class="pricing__feature">
-              <span class="pricing__feature-icon">&#10003;</span>
-              수정 3회
-            </li>
-            <li class="pricing__feature">
-              <span class="pricing__feature-icon">&#10003;</span>
-              QR 연결 이미지 제공
-            </li>
-            <li class="pricing__feature">
-              <span class="pricing__feature-icon">&#10003;</span>
-              1페이지 소개형 웹페이지 제공
-            </li>
-            <li class="pricing__feature">
-              <span class="pricing__feature-icon">&#10003;</span>
-              사업 소개, 사례, 문의 섹션 포함
-            </li>
-            <li class="pricing__feature">
-              <span class="pricing__feature-icon">&#10003;</span>
-              서비스 설명과 사례 흐름을 설득 순서로 정리
-            </li>
-          </ul>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSeUBfH0LNALvadfsKlsaNZJ3yzMZfBlqWkbO-G-bJLQe2hiuw/viewform" class="pricing__btn pricing__btn--gold" target="_blank" rel="noopener noreferrer">문의하기</a>
-        </div>
-
-        <!-- PREMIUM -->
-        <div class="pricing__card reveal" style="transition-delay:0.3s">
-          <div class="pricing__tier">PREMIUM</div>
-          <div class="pricing__tier-type">대표 프로필형</div>
-          <div class="pricing__price">
-            <span class="pricing__amount">1,000,000</span>
-            <span class="pricing__currency">원</span>
-          </div>
-          <p class="pricing__desc">대표자나 프리랜서의 이력과 성과를<br>더 자세히 보여주고 싶을 때<br>어울리는 구성입니다.</p>
-          <ul class="pricing__features">
-            <li class="pricing__feature pricing__feature--highlight">
-              <span class="pricing__feature-icon">&#10003;</span>
-              이력, 성과, 설득 요소 중심 프로필 설계
-            </li>
-            <li class="pricing__feature">
-              <span class="pricing__feature-icon">&#10003;</span>
-              QR 연결 이미지 제공
-            </li>
-            <li class="pricing__feature">
-              <span class="pricing__feature-icon">&#10003;</span>
-              구성 전략 컨설팅
-            </li>
-            <li class="pricing__feature">
-              <span class="pricing__feature-icon">&#10003;</span>
-              대표 소개, 성과, 주요 분야 섹션 포함
-            </li>
-            <li class="pricing__feature">
-              <span class="pricing__feature-icon">&#10003;</span>
-              SEO 및 GEO 최적화
-            </li>
-            <li class="pricing__feature">
-              <span class="pricing__feature-icon">&#10003;</span>
-              웹페이지 제공 + 커스텀 도메인
-            </li>
-          </ul>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSeUBfH0LNALvadfsKlsaNZJ3yzMZfBlqWkbO-G-bJLQe2hiuw/viewform" class="pricing__btn pricing__btn--outline" target="_blank" rel="noopener noreferrer">문의하기</a>
-        </div>
-      </div>
-
-      <p class="pricing__note reveal">모든 가격은 VAT 별도입니다.<br>실제 범위, 자료 상태, 도메인 연결 여부에 따라 조정될 수 있습니다.</p>
-      <p class="pricing__note pricing__note--kmong reveal">크몽에서는 일부 범위를 축소한 입문형 오픈가 패키지를 별도 운영합니다.<br>자사몰 구성은 전략 정리와 확장 섹션까지 포함한 프리미엄 기준입니다.</p>
-    </div>
-  </section>
-
-  <!-- ====== Section 6: Process ====== -->
-  <section class="process" id="process">
-    <div class="container">
-      <div class="process__header reveal">
-        <span class="process__label">HOW IT WORKS</span>
-        <h2 class="process__headline">자료를 받아<br>소개 구조부터 정리합니다.</h2>
-        <p class="process__sub">빠르게 만드는 것보다, 먼저 무엇을 어떤 순서로 보여줄지 설계합니다.</p>
-      </div>
-
-      <div class="process__timeline">
-        <div class="process__step reveal">
-          <div class="process__card">
-            <div class="process__step-num">01</div>
-            <h3 class="process__step-title">초기 상담</h3>
-            <p class="process__step-desc">업종, 역할, 소개 목적, 공유 대상자를 확인합니다.<br>미팅 전 자료인지, 대표 소개인지, 사업 소개인지 먼저 정리합니다.</p>
-            <span class="process__step-time">접수 후 1영업일 이내 회신</span>
-          </div>
-        </div>
-
-        <div class="process__step reveal" style="transition-delay:0.1s">
-          <div class="process__card">
-            <div class="process__step-num">02</div>
-            <h3 class="process__step-title">자료 정리</h3>
-            <p class="process__step-desc">프로필 사진, 이력, 서비스 설명, 포트폴리오, 기존 소개서 등을 받습니다. 부족한 정보는 질문 리스트로 보완합니다.</p>
-            <span class="process__step-time">소요시간: 1~2일</span>
-          </div>
-        </div>
-
-        <div class="process__step reveal" style="transition-delay:0.2s">
-          <div class="process__card">
-            <div class="process__step-num">03</div>
-            <h3 class="process__step-title">구조 설계</h3>
-            <p class="process__step-desc">첫 화면 메시지, 믿을 만한 이유, 서비스 설명,<br>사례, 연락 방법을 어떤 순서로 보여줄지 구성합니다.</p>
-            <span class="process__step-time">핵심은 카피 구조와 섹션 흐름</span>
-            <span class="process__step-pro-badge">PRO 이상 확장 섹션 설계</span>
-          </div>
-        </div>
-
-        <div class="process__step reveal" style="transition-delay:0.3s">
-          <div class="process__card">
-            <div class="process__step-num">04</div>
-            <h3 class="process__step-title">시안 제작</h3>
-            <p class="process__step-desc">정리된 구조를 바탕으로 반응형 웹페이지 시안을 제작합니다.<br>실제 URL 미리보기로 PC와 모바일 화면을 확인합니다.</p>
-            <span class="process__step-time">소요시간: 3~5일</span>
-          </div>
-        </div>
-
-        <div class="process__step reveal" style="transition-delay:0.4s">
-          <div class="process__card">
-            <div class="process__step-num">05</div>
-            <h3 class="process__step-title">수정 반영</h3>
-            <p class="process__step-desc">문구, 순서, 이미지, 버튼 연결을 함께 점검합니다.<br>수정사항은 섹션별로 정리해 반영합니다.</p>
-            <span class="process__step-time">수정 범위는 플랜별 상이</span>
-          </div>
-        </div>
-
-        <div class="process__step reveal" style="transition-delay:0.5s">
-          <div class="process__card">
-            <div class="process__step-num">06</div>
-            <h3 class="process__step-title">납품과 연결</h3>
-            <p class="process__step-desc">완성 URL과 소스를 전달하고, 필요한 경우 QR 연결 이미지도 함께 제공합니다. 명함, 제안서, 카카오톡 프로필, 이메일 서명에 활용할 수 있도록 안내합니다.</p>
-            <span class="process__step-time">도메인 연결은 별도 상담<br>자료 확정 후 보통 1~2주 내 진행</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ====== Section 7: Testimonials ====== -->
-  <section class="testimonials" id="testimonials">
-    <div class="container">
-      <div class="testimonials__header reveal">
-        <h2 class="testimonials__headline">소개가 쉬워졌다는<br>실제 피드백</h2>
-      </div>
-
-      <div class="testimonials__carousel">
-        <div class="testimonials__track" id="testimonialTrack">
-          <!-- Card 1 -->
-          <div class="testimonials__card">
-            <div class="testimonials__stars">
-              <span class="testimonials__star">&#9733;</span>
-              <span class="testimonials__star">&#9733;</span>
-              <span class="testimonials__star">&#9733;</span>
-              <span class="testimonials__star">&#9733;</span>
-              <span class="testimonials__star">&#9733;</span>
-            </div>
-            <div class="testimonials__quote-mark">&ldquo;</div>
-            <p class="testimonials__text"><span class="testimonial__before">미팅 전에 보낼 소개 자료가 없었습니다.</span><br>지금은 링크 하나로 대표 소개와 서비스 설명을 먼저 보낼 수 있어 대화가 훨씬 빨라졌습니다.</p>
-            <div class="testimonials__author">
-              <div class="testimonials__avatar">K</div>
-              <div class="testimonials__author-info">
-                <span class="testimonials__name">K.J.</span>
-                <span class="testimonials__role">외주업 대표</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 2 -->
-          <div class="testimonials__card">
-            <div class="testimonials__stars">
-              <span class="testimonials__star">&#9733;</span>
-              <span class="testimonials__star">&#9733;</span>
-              <span class="testimonials__star">&#9733;</span>
-              <span class="testimonials__star">&#9733;</span>
-              <span class="testimonials__star">&#9733;</span>
-            </div>
-            <div class="testimonials__quote-mark">&ldquo;</div>
-            <p class="testimonials__text"><span class="testimonial__before">경력은 많은데 짧게 설명하기 어려웠습니다.</span><br>연혁과 핵심 성과를 필요한 순서로 정리하니 임원 소개 자료로 활용하기 쉬워졌습니다.</p>
-            <div class="testimonials__author">
-              <div class="testimonials__avatar">P</div>
-              <div class="testimonials__author-info">
-                <span class="testimonials__name">P.S.</span>
-                <span class="testimonials__role">임원</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 3 -->
-          <div class="testimonials__card">
-            <div class="testimonials__stars">
-              <span class="testimonials__star">&#9733;</span>
-              <span class="testimonials__star">&#9733;</span>
-              <span class="testimonials__star">&#9733;</span>
-              <span class="testimonials__star">&#9733;</span>
-              <span class="testimonials__star">&#9733;</span>
-            </div>
-            <div class="testimonials__quote-mark">&ldquo;</div>
-            <p class="testimonials__text"><span class="testimonial__before">서비스 설명을 할 때마다 말이 길어졌습니다.</span><br>지금은 사례와 연락 방법까지 한 페이지에 정리돼 상담 전에 보내기 편해졌습니다.</p>
-            <div class="testimonials__author">
-              <div class="testimonials__avatar">L</div>
-              <div class="testimonials__author-info">
-                <span class="testimonials__name">L.H.</span>
-                <span class="testimonials__role">컨설턴트</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="testimonials__nav">
-          <button class="testimonials__arrow" id="testimonialPrev" aria-label="이전 후기">&larr;</button>
-          <div class="testimonials__dots" id="testimonialDots">
-            <button class="testimonials__dot is-active" data-dot="0" aria-label="후기 1"></button>
-            <button class="testimonials__dot" data-dot="1" aria-label="후기 2"></button>
-            <button class="testimonials__dot" data-dot="2" aria-label="후기 3"></button>
-          </div>
-          <button class="testimonials__arrow" id="testimonialNext" aria-label="다음 후기">&rarr;</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ====== Section 8: Cross-sell ====== -->
-  <section class="crosssell" id="crosssell">
-    <div class="crosssell__gold-line"></div>
-    <div class="container">
-      <div class="crosssell__header reveal">
-        <h2 class="crosssell__headline">비즈니스 프로필 이후에도<br>필요한 자료를 이어서 만들 수 있습니다</h2>
-        <p class="crosssell__sub">먼저 신뢰를 보여주는 비즈니스 프로필을 만들고,<br>그다음 필요한 자료를 단계적으로 확장합니다.</p>
-      </div>
-
-      <div class="crosssell__cards">
-        <div class="crosssell__card reveal" style="transition-delay:0s">
-          <div class="crosssell__icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>
-          </div>
-          <h3 class="crosssell__card-title">사업계획서</h3>
-          <p class="crosssell__card-desc">사업 구조, 실행 계획,<br>수익 모델을 문서로 정리해야 할 때</p>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSeUBfH0LNALvadfsKlsaNZJ3yzMZfBlqWkbO-G-bJLQe2hiuw/viewform" class="crosssell__card-link" target="_blank" rel="noopener noreferrer">문의하기</a>
-        </div>
-
-        <div class="crosssell__card reveal" style="transition-delay:0.1s">
-          <div class="crosssell__icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
-          </div>
-          <h3 class="crosssell__card-title">IR / PPT</h3>
-          <p class="crosssell__card-desc">투자자, 심사위원, 파트너에게<br>사업 가능성을 보여줘야 할 때</p>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSeUBfH0LNALvadfsKlsaNZJ3yzMZfBlqWkbO-G-bJLQe2hiuw/viewform" class="crosssell__card-link" target="_blank" rel="noopener noreferrer">문의하기</a>
-        </div>
-
-        <div class="crosssell__card reveal" style="transition-delay:0.2s">
-          <div class="crosssell__icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h18v12H3z"/><path d="M8 20h8"/><path d="M12 16v4"/><path d="M7 9h5"/><path d="M7 12h9"/></svg>
-          </div>
-          <h3 class="crosssell__card-title">발표 PPT</h3>
-          <p class="crosssell__card-desc">강의, 제안, 보고 자리에서<br>말할 순서까지 함께 잡아야 할 때</p>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSeUBfH0LNALvadfsKlsaNZJ3yzMZfBlqWkbO-G-bJLQe2hiuw/viewform" class="crosssell__card-link" target="_blank" rel="noopener noreferrer">문의하기</a>
-        </div>
-
-        <div class="crosssell__card reveal" style="transition-delay:0.3s">
-          <div class="crosssell__icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5Z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-          </div>
-          <h3 class="crosssell__card-title">홈페이지</h3>
-          <p class="crosssell__card-desc">서비스, 사례, 채용, 문의까지<br>더 넓은 정보 구조가 필요할 때</p>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSeUBfH0LNALvadfsKlsaNZJ3yzMZfBlqWkbO-G-bJLQe2hiuw/viewform" class="crosssell__card-link" target="_blank" rel="noopener noreferrer">문의하기</a>
-        </div>
-      </div>
-
-      <div class="crosssell__banner reveal">
-        <p class="crosssell__banner-text">메인 상품은 비즈니스 프로필입니다. 필요한 자료는 이후 단계적으로 확장합니다.</p>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeUBfH0LNALvadfsKlsaNZJ3yzMZfBlqWkbO-G-bJLQe2hiuw/viewform" class="crosssell__banner-btn" target="_blank" rel="noopener noreferrer">문의하기</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ====== Section 9: CTA + Footer ====== -->
-  <section class="cta-section" id="cta">
-    <div class="container">
-      <h2 class="cta__headline" id="ctaHeadline">나를 믿어도 되는 이유를<br>먼저 보여주는 소개를 시작해보세요</h2>
-      <p class="cta__sub reveal">대표 이력을 먼저 보여줄지,<br>사업과 포트폴리오를 함께 담을지,<br>짧게 소개하는 방식으로 시작할지부터 같이 정해드립니다.</p>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeUBfH0LNALvadfsKlsaNZJ3yzMZfBlqWkbO-G-bJLQe2hiuw/viewform" class="cta__button reveal" target="_blank" rel="noopener noreferrer">
-        문의하기 &rarr;
-      </a>
-      <p class="cta__note reveal">회사 홈페이지에 길게 쓰기 애매한 이력과 신뢰 요소를<br>부담 없이 먼저 보낼 수 있는 비즈니스 프로필로 정리합니다.</p>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__content">
-        <div class="footer__logo">We<span>Thru</span></div>
-        <nav class="footer__links">
-          <a href="https://ceoys.github.io/Wethru_website/" class="footer__link" target="_blank" rel="noopener">위쓰루 메인사이트</a>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSeUBfH0LNALvadfsKlsaNZJ3yzMZfBlqWkbO-G-bJLQe2hiuw/viewform" class="footer__link" target="_blank" rel="noopener noreferrer">문의하기</a>
-        </nav>
-        <span class="footer__copy">&copy; 2026 WeThru. All rights reserved.</span>
-      </div>
-      <div class="footer__bottom">
-        <span class="footer__credit">Designed &amp; Built by WeThru</span>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Scripts -->
-  <script src="main.js" defer></script>
+<section class="cta">
+ <div class="wrap ctagrid"><div><div class="eyebrow">Start with WeThru</div><h2>지금, 나를 제대로 보여주는<br>비즈니스 프로필을 시작해보세요.</h2><p>명함, 카카오톡, 이메일 어디서든<br>하나의 링크로 더 많은 기회를 만들 수 있습니다.</p><div class="actions"><a class="btn" style="background:#fff;border-color:#fff;color:#111" href="https://pf.kakao.com/_wRVBX/friend" target="_blank" rel="noopener">상담 신청하기 →</a><a class="btn" style="border-color:#777;color:#fff" href="#profile">실제 예시 보기</a></div></div><div class="ctacard"><strong>WETHRU</strong><div class="ctaqr"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div>
+</section>
+<footer><div class="wrap">© WeThru · Business Profile Service</div></footer>
 </body>
 </html>
